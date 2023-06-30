@@ -1,4 +1,5 @@
 import SvgIcon from './SvgIcon/index.vue'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const Components = {
   'svg-icon': SvgIcon,
@@ -9,4 +10,7 @@ export const registerComponents = (app) => {
   Object.keys(Components).forEach((key) => {
     app.component(key, Components[key]);
   });
+  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+  }
 };

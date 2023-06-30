@@ -13,9 +13,9 @@ import SidebarItem from './SidebarItem.vue'
 import Logo from './Logo.vue'
 import { routes } from '@/router/index.js'
 import { useAppStore } from "@/store/app.js"
-const userStore = useAppStore()
+const appStore = useAppStore()
 
-const { isCollapse } = storeToRefs(userStore)
+const { isCollapse } = storeToRefs(appStore)
 
 import {
   Document,

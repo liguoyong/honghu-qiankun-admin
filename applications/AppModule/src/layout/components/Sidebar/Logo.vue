@@ -4,14 +4,13 @@
     <transition name="sidebarLogoFade">
       <router-link v-if="isCollapse" key="collapse" to="/">
         <div class="sidebar-logo-link">
-          <svg-icon v-if="logo" name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
-          <h1 v-else class="sidebar-title">{{ title }} </h1>
+          <svg-icon name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
         </div>
       </router-link>
       <!--展开 -->
       <router-link v-else key="expand" to="/">
         <div class="sidebar-logo-link">
-          <svg-icon v-if="logo" name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
+          <svg-icon name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
           <h1 class="sidebar-title">{{ title }} </h1>
         </div>
       </router-link>

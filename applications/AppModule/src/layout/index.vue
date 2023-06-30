@@ -1,13 +1,16 @@
 <script lang="ts" setup>
 import { defineComponent } from 'vue'
-
+import { storeToRefs } from 'pinia';
 import sidebar from './components/Sidebar/index.vue'
 import { useAppStore } from "@/store/app.js"
-const userStore = useAppStore()
+const appStore = useAppStore()
 
-const { isCollapse } = userStore
-console.log(isCollapse,userStore, 'isCollapse');
+const { isCollapse } = storeToRefs(appStore)
+console.log(isCollapse, appStore, 'isCollapse');
 
+const handleChangeCollapse = function(collapse) {
+  appStore.isCollapse = collapse
+}
 </script>
 <template>
   <div class="common-layout">
@@ -16,7 +19,14 @@ console.log(isCollapse,userStore, 'isCollapse');
         <component :is="sidebar"></component>
       </el-aside>
       <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
-        <el-header>Header</el-header>
+        <el-header>
+          <div v-if="isCollapse">
+            <el-icon  @click="handleChangeCollapse(false)"><Expand /></el-icon>
+          </div>
+          <div v-else>
+            <el-icon @click="handleChangeCollapse(true)"><Fold /></el-icon>
+          </div>
+        </el-header>
         <router-view></router-view>
       </el-main>
     </el-container>
