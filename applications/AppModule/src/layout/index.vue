@@ -3,12 +3,15 @@ import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia';
 import sidebar from './components/Sidebar/index.vue'
 import { useAppStore } from "@/store/app.js"
+
 const appStore = useAppStore()
+
+const userName = '你大爷'
 
 const { isCollapse } = storeToRefs(appStore)
 console.log(isCollapse, appStore, 'isCollapse');
 
-const handleChangeCollapse = function(collapse) {
+const handleChangeCollapse = function (collapse) {
   appStore.isCollapse = collapse
 }
 </script>
@@ -20,11 +23,17 @@ const handleChangeCollapse = function(collapse) {
       </el-aside>
       <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
         <el-header>
-          <div v-if="isCollapse">
-            <el-icon  @click="handleChangeCollapse(false)"><Expand /></el-icon>
-          </div>
-          <div v-else>
-            <el-icon @click="handleChangeCollapse(true)"><Fold /></el-icon>
+          <el-icon class="collapseIcon" v-if="isCollapse" @click="handleChangeCollapse(false)">
+            <Expand />
+          </el-icon>
+          <el-icon class="expandIcon" v-else @click="handleChangeCollapse(true)">
+            <Fold />
+          </el-icon>
+          <div class="common-right-menu">
+            <el-icon>
+              <Avatar />
+            </el-icon>
+            <span>{{ userName }}</span>
           </div>
         </el-header>
         <router-view></router-view>
@@ -36,6 +45,7 @@ const handleChangeCollapse = function(collapse) {
 .common-layout {
   width: 100%;
   height: 100vh;
+  font-size: 14px;
 
   .common-layout-container {
     width: calc(100vw - 200px);
@@ -57,6 +67,21 @@ const handleChangeCollapse = function(collapse) {
   .el-header {
     background: #1890ff;
     height: 64px;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    // .collapseIcon,
+    // .expandIcon {
+    //   color: #fff;
+    //   font-size: 20px;
+    // }
+    .el-icon {
+      color: #fff;
+      font-size: 20px;
+    }
   }
 
   .el-aside {
