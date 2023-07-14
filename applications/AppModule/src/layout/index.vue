@@ -18,7 +18,7 @@ const handleChangeCollapse = function (collapse) {
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="200px" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
+      <el-aside :width="isCollapse?'64px': '200px'" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
         <component :is="sidebar"></component>
       </el-aside>
       <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
@@ -48,24 +48,18 @@ const handleChangeCollapse = function (collapse) {
   font-size: 14px;
 
   .common-layout-container {
-    width: calc(100vw - 200px);
-
-    &.collapse {
-      width: calc(100vw - 54px);
-    }
-
-    &.expand {
-      width: calc(100vw - 200px);
-    }
+    transition: all 0.3s;
+    flex: 1;
   }
 
   .el-main {
     padding: 0;
+    background-color: #f5f7fa;
   }
 
   // header
   .el-header {
-    background: #1890ff;
+    background: var(--el-color-primary);
     height: 64px;
     display: flex;
     vertical-align: middle;
@@ -73,28 +67,27 @@ const handleChangeCollapse = function (collapse) {
     padding: 0;
     display: flex;
     justify-content: space-between;
-    // .collapseIcon,
-    // .expandIcon {
-    //   color: #fff;
-    //   font-size: 20px;
-    // }
     .el-icon {
       color: #fff;
       font-size: 20px;
+    }
+    .common-right-menu {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+      span {
+        margin-left: 6px;
+        color: #fff;
+      }
     }
   }
 
   .el-aside {
     height: 100vh;
-    background: #1890ff;
-
-    &.collapse {
-      width: 54px;
-    }
-
-    &.expand {
-      width: 200px;
-    }
+    background: #fff;
+    transition: all 0.3s;
+    overflow-x: hidden;
   }
 }
 </style>

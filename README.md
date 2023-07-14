@@ -86,3 +86,5 @@ npm start
  主子工程的通信格式肯定是要一致的, 否则就是鸡同鸭讲话, 既然一样那么方法直接定义到主工程里面, 格式也由主工程定义就好了, 派发给子工程用
 
   子工程在main里面接收, 然后作为方法,直接挂在到全局,`Vue.prototype.$qiankun=props`,  子应用的vue页面通过` this.$qiankun`可以获得所有方法, 然后进行操作, 具体看vue子应用的App页面
+
+<!-- // "start:vue3": "cd applications/OperationalModule && npm start", -->

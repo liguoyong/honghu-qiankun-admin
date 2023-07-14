@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import  '@/assets/index.scss';
 import { registerMicroApps, start,setDefaultMountApp } from 'qiankun';
 import microApps from "./micro-app";
 import ElementPlus from 'element-plus'
 import { createPinia } from 'pinia'
 import 'element-plus/dist/index.css'
+import  '@/styles/index.scss';
 // import "nprogress/nprogress.css";
 import router from './router'
 import '@/icons' // icon

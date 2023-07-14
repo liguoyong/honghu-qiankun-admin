@@ -30,6 +30,9 @@
     "prettier": "^2.4.1",
     "sass": "^1.41.1",
     "svg-sprite-loader": "^6.0.11",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-element-plus": "^0.7.2",
+    "unplugin-vue-components": "^0.25.1",
     "vite": "^2.5.8"
   }
 }

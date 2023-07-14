@@ -1,24 +1,17 @@
 <template>
-  <div class="menu-wrapper">
-    <template v-for="item in menu">
-      <!-- 最后一级菜单 -->
-      <el-menu-item v-if="!item.children && !item.hidden" :key="item.path" :index="getIndex(item)">
-        <i :class="item.meta.icon"></i>
-        <span slot="title">{{ item.meta.title }}</span>
+    <el-sub-menu :index="item.id + ''" v-for="item in menu" :key="item.path">
+      <template #title>
+        <el-icon v-if="item.meta.icon">
+          <component :is="item.meta.icon" />
+        </el-icon>
+        <span>{{ item.meta.title }}</span>
+      </template>
+      <el-menu-item :index="(item.path === '/' ? '' : item.path) + '/' + subItem.path" v-for="subItem in item.children"
+        :key="subItem.id">
+        <el-icon><icon-menu /></el-icon>
+        {{ subItem.meta.title }}
       </el-menu-item>
-
-      <!-- 此菜单下还有子菜单 -->
-      <el-submenu v-if="item.children && !item.hidden" :key="item.path"
-        :index="parent ? parent + '/' + item.path : item.path">
-        <template slot="title">
-          <i :class="item.meta.icon"></i>
-          <span> {{ item.meta.title }}</span>
-        </template>
-        <!-- 递归 -->
-        <sidebar-item :menu="item.children" :parent="getIndex(item)" />
-      </el-submenu>
-    </template>
-  </div>
+    </el-sub-menu>
 </template>
 
 <script>

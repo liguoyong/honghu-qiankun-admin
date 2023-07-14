@@ -1,8 +1,8 @@
 <template>
   <logo />
-  <el-menu :default-active="$route.path" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
-    mode="vertical" router :collapse="isCollapse" @open="handleOpen" @close="handleClose">
-    <SidebarItem :menu="routes" />
+  <el-menu width="200px" class="el-menu-slider-container" :default-active="$route.path" background-color="#fff" text-color="031321"
+    active-text-color="#1890ff" mode="vertical" router :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+    <sidebar-item :menu="routes" />
   </el-menu>
 </template>
 
@@ -34,9 +34,17 @@ const logo = 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.pn
 
 </script>
 
-<style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+<style lang="scss">
+.el-menu-slider-container {
+  height: calc(100vh - 64px);
+  overflow: hidden;
+
+  &:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+  .el-icon:not(.el-sub-menu__icon-arrow) {
+    color: var(--el-color-primary)
+  }
 }
 </style>

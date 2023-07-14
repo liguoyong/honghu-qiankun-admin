@@ -11,7 +11,7 @@
     "start": "npm-run-all --parallel start:*",
     "start:main": "cd applications/AppModule && npm start",
     "start:vue": "cd applications/CapabilityModule && npm start",
-    "start:vue3": "cd applications/OperationalModule && npm start",
+
     "start:vue3Vite": "cd applications/UserManagementModule && npm start",
     "build": "npm-run-all build:* && bash ./scripts/bundle.sh",
     "build:vue": "cd applications/CapabilityModule && npm run build",

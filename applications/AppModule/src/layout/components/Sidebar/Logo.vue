@@ -2,16 +2,10 @@
   <!-- collapse 折叠 ； expand 展开 -->
   <div class="sidebar-logo-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
     <transition name="sidebarLogoFade">
-      <router-link v-if="isCollapse" key="collapse" to="/">
+      <router-link :key="isCollapse ? 'collapse':'expand'" to="/">
         <div class="sidebar-logo-link">
           <svg-icon name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
-        </div>
-      </router-link>
-      <!--展开 -->
-      <router-link v-else key="expand" to="/">
-        <div class="sidebar-logo-link">
-          <svg-icon name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
-          <h1 class="sidebar-title">{{ title }} </h1>
+          <h1 v-show="!isCollapse" class="sidebar-title">{{ title }} </h1>
         </div>
       </router-link>
     </transition>
@@ -37,10 +31,12 @@ const title = '鸿鹄云平台'
 <style lang="scss" scoped>
 .sidebar-logo-container {
   height: 64px;
-
+  background: var(--el-color-primary);
+  overflow: hidden;
   &.expand {
     .sidebar-logo-link {
       margin-left: 30px;
+      padding-left: 0;
     }
   }
 
@@ -49,6 +45,7 @@ const title = '鸿鹄云平台'
     display: flex;
     height: 100%;
     align-items: center;
+    padding-left: 12px;
 
     .sidebar-logo {
       width: 36px;
@@ -66,6 +63,7 @@ const title = '鸿鹄云平台'
       font-weight: 600;
       line-height: 64px;
       vertical-align: middle;
+      min-width: 82px;
     }
   }
 
