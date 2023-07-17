@@ -1,6 +1,6 @@
 {
-  "name": "vue",
-  "version": "0.1.0",
+  "name": "operationalmodule",
+  "version": "0.0.1",
   "scripts": {
     "start": "vue-cli-service serve",
     "dev": "vue-cli-service serve",

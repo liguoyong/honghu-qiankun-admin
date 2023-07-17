@@ -1,0 +1,20 @@
+{
+  "apps": [
+    {
+      "name": "AppModule",
+      "path": "../applications/AppModule"
+    },
+    {
+      "name": "CapabilityModule",
+      "path": "../applications/CapabilityModule"
+    },
+    {
+      "name": "OperationalModule",
+      "path": "../applications/OperationalModule"
+    },
+    {
+      "name": "UserManagementModule",
+      "path": "../applications/UserManagementModule"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "name": "vue3",
-  "version": "0.1.0",
+  "name": "capabilitymodule",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
