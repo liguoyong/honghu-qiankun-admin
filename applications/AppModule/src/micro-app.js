@@ -9,12 +9,12 @@ const microApps = [
   {
     name: "vue3",
     entry:"//localhost:7305/vue3",
-    activeRule: "/vue3",
+    activeRule: "/operational/capability",
   },
   {
     name: "vue3Vite",
     entry:"//localhost:7316/vue3Vite",
-    activeRule: "/vue3Vite",
+    activeRule: "/user",
   }
 ];
 

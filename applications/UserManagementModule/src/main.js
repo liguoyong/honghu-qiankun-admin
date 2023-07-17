@@ -22,7 +22,7 @@ let instance = null;
 let history = null;
 function render(props = {}) {
   const { container } = props;
-  history = createWebHistory(qiankunWindow.__POWERED_BY_QIANKUN__ ? '/vue3Vite' : '/');
+  history = createWebHistory(qiankunWindow.__POWERED_BY_QIANKUN__ ? '/user' : '/');
 //   console.log(history,qiankunWindow.__POWERED_BY_QIANKUN__ ,"history");
   router = createRouter({
     history,

@@ -87,6 +87,15 @@ export const routes = [
       meta: {
         title: "操作云",
       }
+    },
+    {
+      path: "capability",
+      name: "operational-capability",
+      component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
+      id: '4-2',
+      meta: {
+        title: "赋能控制",
+      }
     }]
   },
 ];
