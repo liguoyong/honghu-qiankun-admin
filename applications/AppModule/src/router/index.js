@@ -96,7 +96,17 @@ export const routes = [
       meta: {
         title: "赋能控制",
       }
-    }]
+    },
+    {
+      path: "designer",
+      name: "operational-designer",
+      component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
+      id: '4-3',
+      meta: {
+        title: "设计器控制",
+      }
+    },
+  ]
   },
 ];
 const router = createRouter({

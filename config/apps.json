@@ -2,19 +2,36 @@
   "apps": [
     {
       "name": "AppModule",
-      "path": "../applications/AppModule"
+      "path": "../applications/AppModule",
+      "appPort": 2000
     },
     {
       "name": "CapabilityModule",
-      "path": "../applications/CapabilityModule"
+      "path": "../applications/CapabilityModule",
+      "entry":"//localhost:2001/vue3",
+      "activeRule": "/operational/capability",
+      "appPort": 2001
     },
     {
       "name": "OperationalModule",
-      "path": "../applications/OperationalModule"
+      "path": "../applications/OperationalModule",
+      "entry": "//localhost:2002/vue",
+      "activeRule": "/operational/cloud",
+      "appPort": 2002
     },
     {
       "name": "UserManagementModule",
-      "path": "../applications/UserManagementModule"
+      "path": "../applications/UserManagementModule",
+      "entry":"//localhost:2003/vue3Vite",
+      "activeRule": "/user",
+      "appPort": 2003
+    },
+    {
+      "name": "DesignerModule",
+      "path": "../applications/DesignerModule",
+      "entry":"//localhost:2004",
+    "activeRule": "/operational/designer",
+      "appPort": 2004
     }
   ]
 }

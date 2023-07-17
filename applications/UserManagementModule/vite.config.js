@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
           },
         server: {
         host: '0.0.0.0' ,// 暴露内网ip
-        port: 7316,
+        port: 2003,
         cors: true,
         },
       define: {

@@ -5,14 +5,17 @@ rm -rf ./dist
 mkdir ./dist
 mkdir ./dist/subapp
 
-# sub-home子应用
-cp -r ./sub-home/dist/ ./dist/subapp/sub-home/
+# 子应用 CapabilityModule
+cp -r ./applications/CapabilityModule/dist/ ./dist/subapp/CapabilityModule/
 
-# sub-first子应用
-cp -r ./sub-first/dist/ ./dist/subapp/sub-first/
+# 子应用 OperationalModule
+cp -r ./applications/OperationalModule/dist/ ./dist/subapp/OperationalModule/
+
+# 子应用 UserManagementModule
+cp -r ./applications/UserManagementModule/dist/ ./dist/subapp/UserManagementModule/
 
 # main基座
-cp -r ./main/dist/ ./dist/
+cp -r ./applications/AppModule/dist/ ./dist/
 
 # cd ./dist
 # zip -r mp$(date +%Y%m%d%H%M%S).zip *

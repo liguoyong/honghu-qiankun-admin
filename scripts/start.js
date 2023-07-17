@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 读取配置文件
-const configFile = path.join(__dirname, './apps.json');
+const configFile = path.join(__dirname, '../config/apps.json');
 const config = JSON.parse(fs.readFileSync(configFile, 'utf-8'));
 
 // 生成启动命令

@@ -1,23 +1,8 @@
 import store from "./store";
-const microApps = [
-
-  {
-    name: "OperationalCloud",
-    entry: "//localhost:7301/vue",
-    activeRule: "/operational/cloud",
-  },
-  {
-    name: "vue3",
-    entry:"//localhost:7305/vue3",
-    activeRule: "/operational/capability",
-  },
-  {
-    name: "vue3Vite",
-    entry:"//localhost:7316/vue3Vite",
-    activeRule: "/user",
-  }
-];
-
+import { name } from "../package.json"
+import appsConfig from "../../../config/apps.json"
+const microApps = appsConfig.apps.filter(item => item.name !== name);
+console.log(microApps,'microApps');
 const apps = microApps.map((item) => {
   return {
     ...item,

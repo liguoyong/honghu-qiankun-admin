@@ -1,5 +1,5 @@
 {
-  "name": "OperationalModule",
+  "name": "DesignerModule",
   "version": "0.0.1",
   "scripts": {
     "start": "vue-cli-service serve",

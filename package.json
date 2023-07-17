@@ -9,7 +9,7 @@
   "scripts": {
     "dev": " npm run start",
     "start": "npm-run-all --parallel start:*",
-    "start:all": "node config/start.js",
+    "start:all": "node scripts/start.js",
     "build": "npm-run-all build:* && bash ./scripts/bundle.sh",
     "build:vue": "cd applications/CapabilityModule && npm run build",
     "build:main": "cd applications/AppModule && npm run build"
