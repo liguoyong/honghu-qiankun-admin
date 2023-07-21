@@ -5,8 +5,8 @@ export const useUsersStore = defineStore('users', {
   // 其它配置项
   state: () => {
     return {
-      name: "李华",
-      age: 25,
+      userName: "李华",
+      password: '',
       sex: "男",
     }
   },

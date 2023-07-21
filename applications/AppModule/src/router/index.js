@@ -109,6 +109,15 @@ export const routes = [
     },
   ]
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login/index.vue'),
+    id: '5',
+    meta: {
+      title: "登录"
+    }
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),

@@ -3,13 +3,10 @@ import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia';
 import sidebar from './components/Sidebar/index.vue'
 import { useAppStore } from "@/store/app.js"
-
+import { useUsersStore } from "@/store/user.js"
+const userStore = useUsersStore()
 const appStore = useAppStore()
-
-const userName = '你大爷'
-
 const { isCollapse } = storeToRefs(appStore)
-console.log(isCollapse, appStore, 'isCollapse');
 
 const handleChangeCollapse = function (collapse) {
   appStore.isCollapse = collapse
@@ -18,7 +15,7 @@ const handleChangeCollapse = function (collapse) {
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside :width="isCollapse?'64px': '200px'" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
+      <el-aside :width="isCollapse ? '64px' : '200px'" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
         <component :is="sidebar"></component>
       </el-aside>
       <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
@@ -33,7 +30,7 @@ const handleChangeCollapse = function (collapse) {
             <el-icon>
               <Avatar />
             </el-icon>
-            <span>{{ userName }}</span>
+            <span>{{ userStore.userName }}</span>
           </div>
         </el-header>
         <router-view></router-view>
@@ -67,15 +64,18 @@ const handleChangeCollapse = function (collapse) {
     padding: 0;
     display: flex;
     justify-content: space-between;
+
     .el-icon {
       color: #fff;
       font-size: 20px;
     }
+
     .common-right-menu {
       height: 100%;
       display: flex;
       align-items: center;
       margin-right: 30px;
+
       span {
         margin-left: 6px;
         color: #fff;
