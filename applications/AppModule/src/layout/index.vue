@@ -1,15 +1,23 @@
 <script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia';
+import { useRouter, useRoute } from 'vue-router';
 import sidebar from './components/Sidebar/index.vue'
 import { useAppStore } from "@/store/app.js"
 import { useUsersStore } from "@/store/user.js"
 const userStore = useUsersStore()
 const appStore = useAppStore()
+const router = useRouter()
+const route = useRoute()
 const { isCollapse } = storeToRefs(appStore)
 
 const handleChangeCollapse = function (collapse) {
   appStore.isCollapse = collapse
+}
+const logout = () => {
+  console.log(route.path, 'path');
+  let path = route.path
+  router.push({ path: '/login', query: { redirect: path } })
 }
 </script>
 <template>
@@ -27,10 +35,25 @@ const handleChangeCollapse = function (collapse) {
             <Fold />
           </el-icon>
           <div class="common-right-menu">
-            <el-icon>
+            <!-- <el-icon>
               <Avatar />
             </el-icon>
-            <span>{{ userStore.userName }}</span>
+            <span>{{ userStore.userName }}</span> -->
+            <el-dropdown trigger="hover">
+              <span>
+                <el-icon>
+                  <Avatar />
+                </el-icon>
+                <span class="user-name">{{ userStore.userName }}</span>
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu class="logout">
+                  <el-dropdown-item @click="logout">
+                    退出系统
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </div>
         </el-header>
         <router-view></router-view>
@@ -76,9 +99,12 @@ const handleChangeCollapse = function (collapse) {
       align-items: center;
       margin-right: 30px;
 
-      span {
+      span.user-name {
         margin-left: 6px;
         color: #fff;
+        margin: 4px;
+        display: inline-block;
+        vertical-align: top;
       }
     }
   }

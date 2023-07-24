@@ -1,40 +1,40 @@
 <template>
-    <el-sub-menu :index="item.id + ''" v-for="item in menu" :key="item.path">
-      <template #title>
-        <el-icon v-if="item.meta.icon">
-          <component :is="item.meta.icon" />
-        </el-icon>
-        <span>{{ item.meta.title }}</span>
-      </template>
-      <el-menu-item :index="(item.path === '/' ? '' : item.path) + '/' + subItem.path" v-for="subItem in item.children"
-        :key="subItem.id">
-        <el-icon><icon-menu /></el-icon>
-        {{ subItem.meta.title }}
-      </el-menu-item>
-    </el-sub-menu>
+  <el-menu-item v-if="!item.children || !item.children.length" :index="item.path">
+    <el-icon v-if="item.meta.icon">
+      <component :is="item.meta.icon" />
+    </el-icon>
+    <span>{{ item.meta.title }}</span>
+  </el-menu-item>
+
+  <el-sub-menu v-else :index="item.path">
+    <template #title>
+      <el-icon v-if="item.meta.icon">
+        <component :is="item.meta.icon" />
+      </el-icon>
+      <span>{{ item.meta.title }}</span>
+    </template>
+    <template v-for="child in item.children" :key="child.path">
+      <sidebar-item :item="child"></sidebar-item>
+    </template>
+  </el-sub-menu>
 </template>
-
 <script>
-export default {
-  name: "SidebarItem",
-  props: ["menu", "parent"],
-  data() {
-    return {};
-  },
-  created() {
-    console.log(this.menu, 'menu');
-  },
-  methods: {
-    getIndex(item) {
-      const parent = this.parent
-      const path = item.path && item.path.indexOf(':') === 0 ? '' : item.path
-      const index = (parent && parent != '/') ? parent + '/' + path : path
-      console.log(parent, 'parent', 'path', path, 'index', index);
-      return index
-    }
-  }
-};
-</script>
+import { defineComponent } from 'vue';
+import { RouterLink } from 'vue-router';
 
-<style>
-</style>
+export default defineComponent({
+  name: 'SidebarItem',
+  components: {
+    RouterLink
+  },
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    // console.log(props.item, 'item', props.item.path);
+  }
+});
+</script>

@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
 interface RuleForm {
   userName: string
@@ -38,6 +38,7 @@ import { useUsersStore } from "@/store/user.js"
 
 const userStore = useUsersStore()
 const router = useRouter()
+const route = useRoute()
 const labelPosition = ref('left')
 const { userName } = storeToRefs(userStore)
 const loginForm = reactive({
@@ -64,7 +65,12 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       userStore.userName = loginForm.userName
       userStore.password = loginForm.password
-      router.push({ 'name': 'home' })
+      if (router.currentRoute.value.query.redirect) {
+        router.push(router.currentRoute.value.query.redirect + '')
+      } else {
+        router.push({ 'name': 'home' })
+      }
+      // router.push({ 'name': 'home' })
       console.log('submit!')
     } else {
       console.log('error submit!', fields)
