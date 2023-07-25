@@ -52,9 +52,9 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/cnbi/, '')
       },
       '/api': {
-        target: 'http://192.168.2.207:9005',
+        target: 'http://127.0.0.1:7001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        // rewrite: (path) => path.replace(/^\/api/, '')
       },
     },
   },

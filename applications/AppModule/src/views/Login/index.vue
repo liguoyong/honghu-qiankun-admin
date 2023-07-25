@@ -35,7 +35,7 @@ interface RuleForm {
   password: string
 }
 import { useUsersStore } from "@/store/user.js"
-
+import { getLogin } from "@/api/user"
 const userStore = useUsersStore()
 const router = useRouter()
 const route = useRoute()
@@ -49,7 +49,7 @@ const loginFormFormRef = ref<FormInstance>()
 const rules = reactive<FormRules<RuleForm>>({
   userName: [
     { required: true, message: '请输入账号名称', trigger: 'blur' },
-    { min: 3, max: 15, message: '长度3~15个字符', trigger: 'blur' },
+    { min: 1, max: 15, message: '长度1~15个字符', trigger: 'blur' },
   ],
   password: [
     {
@@ -63,8 +63,10 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
+      getLogin({ username: loginForm.userName, password: loginForm.password })
       userStore.userName = loginForm.userName
       userStore.password = loginForm.password
+
       if (router.currentRoute.value.query.redirect) {
         router.push(router.currentRoute.value.query.redirect + '')
       } else {
