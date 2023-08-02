@@ -7,7 +7,6 @@ const Components = require("unplugin-vue-components/webpack");
 const ElementPlus = require("unplugin-element-plus/webpack");
 const { ElementPlusResolver } = require("unplugin-vue-components/resolvers");
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -46,11 +45,11 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 2000,
     proxy: {
-      '/cnbi': {
-        target: 'http://192.168.2.207:9005',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/cnbi/, '')
-      },
+      // '/cnbi': {
+      //   target: 'http://192.168.2.207:9005',
+      //   changeOrigin: true,
+      //   rewrite: (path) => path.replace(/^\/cnbi/, '')
+      // },
       '/api': {
         target: 'http://127.0.0.1:7001',
         changeOrigin: true,

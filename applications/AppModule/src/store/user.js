@@ -5,9 +5,22 @@ export const useUsersStore = defineStore('users', {
   // 其它配置项
   state: () => {
     return {
-      userName: "admin",
+      username: "",
       password: '',
-      sex: "男",
+      roles: '',
+      avatar: '',
+      userId: "",
     }
   },
+  getters: {
+
+  },
+  actions: {
+    async SET_USER_INFO(data) {
+      this.username = data.username
+      this.roles = data.roles
+      this.avatar = data.avatar
+      this.userId = data.userId
+    },
+  }
 })

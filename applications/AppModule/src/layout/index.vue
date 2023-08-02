@@ -35,16 +35,12 @@ const logout = () => {
             <Fold />
           </el-icon>
           <div class="common-right-menu">
-            <!-- <el-icon>
-              <Avatar />
-            </el-icon>
-            <span>{{ userStore.userName }}</span> -->
             <el-dropdown trigger="hover">
               <span>
                 <el-icon>
                   <Avatar />
                 </el-icon>
-                <span class="user-name">{{ userStore.userName }}</span>
+                <span class="user-name">{{ userStore.username }}</span>
               </span>
               <template #dropdown>
                 <el-dropdown-menu class="logout">
@@ -56,7 +52,16 @@ const logout = () => {
             </el-dropdown>
           </div>
         </el-header>
-        <router-view></router-view>
+        <div class="app-container">
+          <div class="app-container-view">
+            <el-scrollbar>
+              <transition name="el-fade-in">
+                <router-view></router-view>
+              </transition>
+            </el-scrollbar>
+          </div>
+        </div>
+
       </el-main>
     </el-container>
   </div>
@@ -109,11 +114,22 @@ const logout = () => {
     }
   }
 
+  .app-container {
+    height: calc(100vh - 64px);
+    padding: 18px 20px;
+    background: #efefef;
+
+    .app-container-view {
+      height: 100%;
+      background: #ffffff;
+    }
+  }
+
   .el-aside {
     height: 100vh;
     background: #fff;
     transition: all 0.3s;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 }
 </style>

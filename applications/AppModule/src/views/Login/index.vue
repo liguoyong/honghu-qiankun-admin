@@ -30,12 +30,15 @@ import { reactive, ref } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useRouter, useRoute } from 'vue-router'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
 interface RuleForm {
   userName: string
   password: string
 }
+import { setToken } from "@/utils/auth";
 import { useUsersStore } from "@/store/user.js"
-import { getLogin } from "@/api/user"
+import { getLogin, getUserInfo } from "@/api/user"
+
 const userStore = useUsersStore()
 const router = useRouter()
 const route = useRoute()
@@ -63,16 +66,27 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      getLogin({ username: loginForm.userName, password: loginForm.password })
-      userStore.userName = loginForm.userName
-      userStore.password = loginForm.password
+      getLogin({ username: loginForm.userName, password: loginForm.password }).then(async res => {
+        const { code, data } = res
+        if (code === 200) {
+          userStore.username = loginForm.userName
+          userStore.password = loginForm.password
+          setToken(data)
+          const userInfo = await getUserInfo({})
+          userStore.SET_USER_INFO(userInfo.data)
+          if (router.currentRoute.value.query.redirect) {
+            router.push(router.currentRoute.value.query.redirect + '')
+          } else {
+            router.push({ 'name': 'home' })
+          }
+          // router.push({ 'name': 'home' })
+        } else {
+          ElMessage.error(res.msg || '')
+        }
+      })
 
-      if (router.currentRoute.value.query.redirect) {
-        router.push(router.currentRoute.value.query.redirect + '')
-      } else {
-        router.push({ 'name': 'home' })
-      }
-      // router.push({ 'name': 'home' })
+
+
       console.log('submit!')
     } else {
       console.log('error submit!', fields)
