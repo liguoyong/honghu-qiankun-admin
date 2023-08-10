@@ -1,0 +1,16 @@
+// 使用覆盖后的颜色变量来重新定义ElementUI表格的边框颜色
+.el-table {
+  border: 1px solid var(--table-header-border-color);
+  border-bottom: none;
+  .el-table__header {
+    th.el-table__cell {
+      border-bottom-color: var(--table-header-border-color);
+      color: #252626;
+      background: #f6f7fb;
+      font-weight: normal;
+    }
+  }
+  th.el-table__cell.is-leaf {
+    border-bottom-color: var(--table-header-border-color);
+  }
+}

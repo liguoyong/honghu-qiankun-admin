@@ -96,6 +96,7 @@ const logout = () => {
     .el-icon {
       color: #fff;
       font-size: 20px;
+      margin-left: 20px;
     }
 
     .common-right-menu {

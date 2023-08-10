@@ -23,6 +23,13 @@
     ),
   )
 );
+// $--table-header-border-color: #EDF0F1;
 :root {
   --el-menu-hover-bg-color: #eaf3ff;
+  
+  --el-fill-color-lighter: #F6F7FB; // 表格斑马线背景色
+
+  --el-text-color-regular: #565859;
+
+  --table-header-border-color: #edf0f1;
 }
