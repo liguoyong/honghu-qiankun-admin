@@ -9,6 +9,11 @@
                 <el-button @click="resetForm(noteFormRef)">重置</el-button>
             </el-form-item>
         </el-form>
+        <div class="btns-container">
+            <el-button type="primary" @click="onSubmit">
+                <el-icon color="#fff" style="margin-right: 8px;"><Plus /></el-icon>新增笔记
+            </el-button>
+        </div>
         <el-table :data="tableData" stripe style="width: 100%">
             <el-table-column prop="id" label="id" />
             <el-table-column prop="title" label="标题" />
@@ -22,8 +27,8 @@
         <div class="common-pagination">
             <el-pagination :current-page="pageParamas.currentPage" :page-size="pageParamas.pageSize"
                 :page-sizes="[10, 20, 50, 100]" :small="small" background
-                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParamas.total" @size-change="handleSizeChange"
-                @current-change="handleCurrentChange" />
+                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParamas.total"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
     </div>
 </template>
