@@ -78,5 +78,8 @@ const logo =
   .el-icon:not(.el-sub-menu__icon-arrow) {
     color: var(--el-color-primary);
   }
+  .el-menu-item:hover {
+    background-color: #eaf3ff;
+  }
 }
 </style>

@@ -71,7 +71,6 @@ const logout = () => {
   width: 100%;
   height: 100vh;
   font-size: 14px;
-
   .common-layout-container {
     transition: all 0.3s;
     flex: 1;

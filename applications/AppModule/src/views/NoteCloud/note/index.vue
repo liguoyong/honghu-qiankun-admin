@@ -11,7 +11,9 @@
         </el-form>
         <div class="btns-container">
             <el-button type="primary" @click="onSubmit">
-                <el-icon color="#fff" style="margin-right: 8px;"><Plus /></el-icon>新增笔记
+                <el-icon color="#fff" style="margin-right: 8px;">
+                    <Plus />
+                </el-icon>新增笔记
             </el-button>
         </div>
         <el-table :data="tableData" stripe style="width: 100%">
@@ -19,6 +21,12 @@
             <el-table-column prop="title" label="标题" />
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
+            </el-table-column>
+            <el-table-column fixed="right" label="操作" width="120">
+                <template #default>
+                    <el-button link type="primary" size="small" @click="handleClick">查看</el-button>
+                    <el-button link type="primary" size="small">编辑</el-button>
+                </template>
             </el-table-column>
             <template #empty>
                 <data-empty></data-empty>
@@ -52,20 +60,20 @@ const noteFormRef = ref<FormInstance>()
 const onSubmit = () => {
     console.log('submit!')
 }
-const tableData = ref([])
-// const tableData = ref([{
-//     id: 123,
-//     title: '测试备注',
-//     createTime: '2023-11-11 12:00:00'
-// }, {
-//     id: 124,
-//     title: '测试备注2',
-//     createTime: '2023-11-11 12:00:00'
-// }, {
-//     id: 125,
-//     title: '测试备注2',
-//     createTime: '2023-11-11 12:00:00'
-// }])
+// const tableData = ref([])
+const tableData = ref([{
+    id: 123,
+    title: '测试备注',
+    createTime: '2023-11-11 12:00:00'
+}, {
+    id: 124,
+    title: '测试备注2',
+    createTime: '2023-11-11 12:00:00'
+}, {
+    id: 125,
+    title: '测试备注2',
+    createTime: '2023-11-11 12:00:00'
+}])
 const getList = () => {
     // const response = await getNotesList({})
     // tableData.value = response.data.list
@@ -83,6 +91,10 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
+}
+
+const handleClick = () => {
+
 }
 
 const handleCurrentChange = (val: number) => {
