@@ -13,21 +13,26 @@ export default defineConfig({
     vue(),
     svgBuilder('./src/icons/svg/'),
   ],
+  
   css: {
     preprocessorOptions: {
       scss: {
         //自定义的主题文件
-        additionalData: `@use "@/styles/variables.scss" as *;`,
+        additionalData: `@use "@/styles/element/index.scss" as *;`,
       },
     },
   },
   configureWebpack: {
     plugins: [
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({
+          importStyle: 'sass',
+        })],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({
+          importStyle: 'sass',
+        })],
       }),
       ElementPlus({
         useSource: true,

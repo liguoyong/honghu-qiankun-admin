@@ -1,5 +1,6 @@
 @import "./common.scss";
 @import "./element-ui.scss";
+
 // 主应用慎用 reset 样式
 html,
 body {
@@ -88,6 +89,7 @@ body {
   .filter-container {
     .el-form-item {
       margin-bottom: 24px;
+      margin-right: 24px;
     }
   }
 }

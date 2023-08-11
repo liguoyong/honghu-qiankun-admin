@@ -6,7 +6,7 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">查询</el-button>
-                <el-button @click="resetForm(noteFormRef)">Reset</el-button>
+                <el-button @click="resetForm(noteFormRef)">重置</el-button>
             </el-form-item>
         </el-form>
         <el-table :data="tableData" stripe style="width: 100%">
@@ -15,14 +15,14 @@
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
             </el-table-column>
-            <template slot="empty">
+            <template #empty>
                 <data-empty></data-empty>
             </template>
         </el-table>
         <div class="common-pagination">
-            <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize"
-                :page-sizes="[100, 200, 300, 400]" :small="small" :disabled="disabled" :background="background"
-                layout="->,total, sizes, prev, pager, next, jumper" :total="400" @size-change="handleSizeChange"
+            <el-pagination :current-page="pageParamas.currentPage" :page-size="pageParamas.pageSize"
+                :page-sizes="[10, 20, 50, 100]" :small="small" background
+                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParamas.total" @size-change="handleSizeChange"
                 @current-change="handleCurrentChange" />
         </div>
     </div>
@@ -36,10 +36,12 @@ import type { FormInstance, FormRules } from 'element-plus'
 const ruleForm = reactive({
     title: ''
 })
-const currentPage = ref(4)
-const pageSize = ref(100)
-const background = ref(false)
-const disabled = ref(false)
+const pageParamas = reactive({
+    currentPage: 1,
+    pageSize: 10,
+    total: 50
+})
+
 const small = ref(false)
 const noteFormRef = ref<FormInstance>()
 const onSubmit = () => {

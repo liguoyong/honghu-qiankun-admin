@@ -1,7 +1,7 @@
 <template slot="empty">
   <div class="data-empty">
     <div>
-      <svg-icon :icon-class="iconName"></svg-icon>
+      <svg-icon :name="iconName"></svg-icon>
     </div>
     <div>{{ emptyText }}</div>
     <div v-if="description">{{ description }}</div>

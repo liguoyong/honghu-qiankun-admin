@@ -118,7 +118,7 @@ const logout = () => {
   .app-container {
     height: calc(100vh - 64px);
     padding: 18px 20px;
-    background: #efefef;
+    background: #f5f7fa;
 
     .app-container-view {
       height: 100%;
