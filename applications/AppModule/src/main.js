@@ -53,5 +53,5 @@ registerMicroApps(apps, {
     }
   ]
 });
-setDefaultMountApp("/vue3Vite");
+// setDefaultMountApp("/vue3Vite");
 start();

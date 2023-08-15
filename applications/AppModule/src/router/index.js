@@ -39,6 +39,14 @@ export const routes = [
         title: "笔记",
       },
     }, {
+      path: "create",
+      name: "noteCloud-create",
+      hidden: true,
+      component: () => import(/* webpackChunkName: "notecloudnote" */ '../views/NoteCloud/note/create.vue'),
+      meta: {
+        title: "创建笔记",
+      },
+    }, {
       path: "log",
       name: "noteCloud-log",
       component: () => import(/* webpackChunkName: "notecloudlog" */ '../views/NoteCloud/log/index.vue'),

@@ -5,12 +5,12 @@
                 <el-input v-model="ruleForm.title" placeholder="请输入标题" clearable />
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">查询</el-button>
+                <el-button type="primary" @click="onSearch">查询</el-button>
                 <el-button @click="resetForm(noteFormRef)">重置</el-button>
             </el-form-item>
         </el-form>
         <div class="btns-container">
-            <el-button type="primary" @click="onSubmit">
+            <el-button type="primary" @click="handelCreateNote">
                 <el-icon color="#fff" style="margin-right: 8px;">
                     <Plus />
                 </el-icon>新增笔记
@@ -33,11 +33,12 @@
             </template>
         </el-table>
         <div class="common-pagination">
-            <el-pagination :current-page="pageParamas.currentPage" :page-size="pageParamas.pageSize"
+            <el-pagination :current-page="pageParams.currentPage" :page-size="pageParams.pageSize"
                 :page-sizes="[10, 20, 50, 100]" :small="small" background
-                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParamas.total"
+                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
+        <createNoteForm :dialogFormVisible="dialogFormVisible" @close="handelCloseDialogForm" />
     </div>
 </template>
 
@@ -46,37 +47,43 @@ import { ref } from 'vue'
 import { reactive } from 'vue'
 import { getNotesList } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
+import createNoteForm from './components/createNoteForm.vue'
 const ruleForm = reactive({
     title: ''
 })
-const pageParamas = reactive({
+const pageParams = reactive({
     currentPage: 1,
     pageSize: 10,
     total: 50
 })
-
+const dialogFormVisible = ref(false)
 const small = ref(false)
 const noteFormRef = ref<FormInstance>()
-const onSubmit = () => {
+const onSearch = () => {
     console.log('submit!')
+    getList()
 }
-// const tableData = ref([])
-const tableData = ref([{
-    id: 123,
-    title: '测试备注',
-    createTime: '2023-11-11 12:00:00'
-}, {
-    id: 124,
-    title: '测试备注2',
-    createTime: '2023-11-11 12:00:00'
-}, {
-    id: 125,
-    title: '测试备注2',
-    createTime: '2023-11-11 12:00:00'
-}])
-const getList = () => {
-    // const response = await getNotesList({})
-    // tableData.value = response.data.list
+const tableData = ref([])
+// const tableData = ref([{
+//     id: 123,
+//     title: '测试备注',
+//     createTime: '2023-11-11 12:00:00'
+// }, {
+//     id: 124,
+//     title: '测试备注2',
+//     createTime: '2023-11-11 12:00:00'
+// }, {
+//     id: 125,
+//     title: '测试备注2',
+//     createTime: '2023-11-11 12:00:00'
+// }])
+const getList = async () => {
+    const response = await getNotesList({})
+    if (response.code == 200) {
+        const { list = [], total } = response.data
+        tableData.value = response.data.list
+        pageParams.total = total
+    }
 }
 getList()
 const transformTimeDate = (date: string) => {
@@ -99,6 +106,15 @@ const handleClick = () => {
 
 const handleCurrentChange = (val: number) => {
     console.log(`current page: ${val}`)
+}
+const handelCreateNote = () => {
+    dialogFormVisible.value = true
+}
+const handelCloseDialogForm = (key) => {
+    dialogFormVisible.value = false
+    if(key == 1) {
+        getList()
+    }
 }
 </script>
 

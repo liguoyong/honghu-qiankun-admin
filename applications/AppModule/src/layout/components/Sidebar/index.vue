@@ -33,7 +33,7 @@ const getMenuList = function (data, basePath) {
     return [];
   }
   data = data.filter((item) => !item.hidden); // 过滤隐藏的菜单
-  data.map((item) => {
+  data = data.map((item) => {
     if (basePath) {
       // 拼接path
       item.path = `${basePath}${item.path.indexOf("/") >= 0 || basePath === "/" ? "" : "/"
@@ -41,7 +41,7 @@ const getMenuList = function (data, basePath) {
     }
     if (item.children && item.children.length > 1) {
       // 存在子级继续递归
-      getMenuList(item.children, item.path);
+      item.children = getMenuList(item.children, item.path);
     } else if (item.children && item.children.length == 1) {
       const { children = [{}] } = item
       const [{ path = '' }] = children
@@ -50,6 +50,7 @@ const getMenuList = function (data, basePath) {
       }
       item.children = null
     }
+    return item
   });
   return data;
 };
@@ -78,6 +79,7 @@ const logo =
   .el-icon:not(.el-sub-menu__icon-arrow) {
     color: var(--el-color-primary);
   }
+
   .el-menu-item:hover {
     background-color: #eaf3ff;
   }
