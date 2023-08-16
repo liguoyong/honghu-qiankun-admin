@@ -59,7 +59,7 @@ const rules = reactive<FormRules<RuleForm>>({
       required: true,
       message: '请输入密码',
       trigger: 'blur',
-    },
+    }
   ]
 })
 const onSubmit = async (formEl: FormInstance | undefined) => {

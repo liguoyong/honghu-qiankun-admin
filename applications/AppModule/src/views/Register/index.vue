@@ -7,20 +7,20 @@
       </div>
       <div class="login-main">
         <div class="login-title">注册</div>
-        <el-form :label-position="labelPosition" ref="loginFormFormRef" :rules="rules" :model="loginForm"
+        <el-form :label-position="labelPosition" ref="loginFormFormRef" :rules="rules" :model="registerForm"
           style="max-width: 460px">
           <el-form-item prop="userName">
-            <el-input v-model="loginForm.userName" placeholder="请输入用户名" />
+            <el-input v-model="registerForm.userName" placeholder="请输入用户名" />
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" show-password />
+            <el-input v-model="registerForm.password" type="password" placeholder="请输入密码" show-password />
           </el-form-item>
           <el-form-item prop="comfirmPassword">
-            <el-input v-model="loginForm.comfirmPassword" type="password" placeholder="请输入二次确认密码" show-password />
+            <el-input v-model="registerForm.comfirmPassword" type="password" placeholder="请输入二次确认密码" show-password />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit(loginFormFormRef)"
-              :disabled="!loginForm.userName || !loginForm.password">注册</el-button>
+              :disabled="!registerForm.userName || !registerForm.password || !registerForm.comfirmPassword">注册</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -48,12 +48,21 @@ const router = useRouter()
 const route = useRoute()
 const labelPosition = ref('left')
 const { userName } = storeToRefs(userStore)
-const loginForm = reactive({
+const registerForm = reactive({
   userName: '',
   password: '',
   comfirmPassword: ''
 })
 const loginFormFormRef = ref<FormInstance>()
+const validateComfirmPassword = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('请输入二次确认密码'))
+  } else if (value !== registerForm.password) {
+    callback(new Error("两次输入密码不一致，请重新输入"))
+  } else {
+    callback()
+  }
+}
 const rules = reactive<FormRules<RuleForm>>({
   userName: [
     { required: true, message: '请输入账号名称', trigger: 'blur' },
@@ -65,24 +74,27 @@ const rules = reactive<FormRules<RuleForm>>({
       message: '请输入密码',
       trigger: 'blur',
     },
+    { min: 6, max: 15, message: '长度6~15个字符', trigger: 'blur' }
   ],
   comfirmPassword: [
     {
       required: true,
       message: '请输入二次确认密码',
       trigger: 'blur',
-    }
+    },
+    { min: 6, max: 15, message: '长度6~15个字符', trigger: 'blur' },
+    { validator: validateComfirmPassword, trigger: 'blur' }
   ]
 })
 const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      getLogin({ username: loginForm.userName, password: loginForm.password }).then(async res => {
+      getLogin({ username: registerForm.userName, password: registerForm.password }).then(async res => {
         const { code, data } = res
         if (code === 200) {
-          userStore.username = loginForm.userName
-          userStore.password = loginForm.password
+          userStore.username = registerForm.userName
+          userStore.password = registerForm.password
           setToken(data)
           const userInfo = await getUserInfo({})
           userStore.SET_USER_INFO(userInfo.data)
