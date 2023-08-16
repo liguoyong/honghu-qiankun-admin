@@ -132,10 +132,8 @@ const handelCreateNote = async (formEl: FormInstance | undefined) => {
 }
 
 .quill-container {
-  ::v-deep {
-    .ql-container {
-      min-height: 200px;
-    }
+  ::v-deep(.ql-container) {
+    min-height: 200px;
   }
 }
 </style>

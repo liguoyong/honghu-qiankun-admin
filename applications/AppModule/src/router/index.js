@@ -115,6 +115,16 @@ export const routes = [
       title: "登录"
     }
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "register" */ '../views/Register/index.vue'),
+    hidden: true,
+    meta: {
+      title: "注册"
+    }
+  },
+  // Register
 ];
 const router = createRouter({
   history: createWebHistory(),

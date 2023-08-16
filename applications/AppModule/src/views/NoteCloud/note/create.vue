@@ -150,7 +150,7 @@ onMounted(() => {
     margin-top: 18px;
 
     .content-item {
-      ::v-deep .el-form-item__content {
+      ::v-deep(.el-form-item__content)  {
         display: block;
       }
 
