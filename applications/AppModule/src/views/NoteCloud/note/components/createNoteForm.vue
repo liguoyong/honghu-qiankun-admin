@@ -11,7 +11,7 @@
       <el-form-item class="content-item" label="内容" prop="content">
         <!-- 此处注意写法v-model:content -->
         <div class="quill-container">
-          <QuillEditor ref="myQuillEditor" theme="snow" :content="form.content" :options="data.editorOption"
+          <QuillEditor ref="myQuillEditor" theme="snow" v-model:content="form.content" :options="data.editorOption"
             contentType="html" @update:content="setValue()" />
         </div>
       </el-form-item>
@@ -147,6 +147,7 @@ onMounted(() => {
 
 .quill-container {
   width: 100%;
+
   ::v-deep(.ql-container) {
     min-height: 200px;
   }

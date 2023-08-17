@@ -34,11 +34,11 @@
         </el-table>
         <div class="common-pagination">
             <el-pagination :current-page="pageParams.currentPage" :page-size="pageParams.pageSize"
-                :page-sizes="[10, 20, 50, 100]" :small="small" 
-                layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+                :page-sizes="[10, 20, 50, 100]" :small="small" layout="->,total, sizes, prev, pager, next, jumper"
+                :total="pageParams.total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
         <createNoteForm :dialogFormVisible="dialogFormVisible" @close="handelCloseDialogForm" />
+        <updateNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
     </div>
 </template>
 
@@ -49,13 +49,24 @@ import { reactive } from 'vue'
 import { getNotesList, updateNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
 import createNoteForm from './components/createNoteForm.vue'
+import updateNoteDialog from './components/updateNoteDialog.vue'
 const ruleForm = reactive({
     title: ''
 })
+interface RuleForm {
+    title: string,
+    desc: string,
+    content: string
+}
 const pageParams = reactive({
     currentPage: 1,
     pageSize: 10,
     total: 50
+})
+const updateDialog = reactive({
+    show: false,
+    type: 'update',
+    form: {}
 })
 const dialogFormVisible = ref(false)
 const small = ref(false)
@@ -65,19 +76,6 @@ const onSearch = () => {
     getList()
 }
 const tableData = ref([])
-// const tableData = ref([{
-//     id: 123,
-//     title: '测试备注',
-//     createTime: '2023-11-11 12:00:00'
-// }, {
-//     id: 124,
-//     title: '测试备注2',
-//     createTime: '2023-11-11 12:00:00'
-// }, {
-//     id: 125,
-//     title: '测试备注2',
-//     createTime: '2023-11-11 12:00:00'
-// }])
 const getList = async () => {
     const response = await getNotesList({})
     if (response.code == 200) {
@@ -101,11 +99,14 @@ const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
 }
 
-const handleClickEdit = async (id:number) => {
-    const res = await getNoteDetail({id: id})
-    console.log(res);
-    
-    dialogFormVisible.value = true
+const handleClickEdit = async (id: number) => {
+    const { code, data = {} } = await getNoteDetail({ id: id })
+    if (code == 200) {
+        updateDialog.type = 'edit'
+        updateDialog.form = data
+        updateDialog.show = true
+    }
+    // dialogFormVisible.value = true
 }
 
 const handleCurrentChange = (val: number) => {
@@ -114,9 +115,15 @@ const handleCurrentChange = (val: number) => {
 const handelCreateNote = () => {
     dialogFormVisible.value = true
 }
-const handelCloseDialogForm = (key) => {
+const handelCloseDialogForm = (key: number | undefined) => {
     dialogFormVisible.value = false
-    if(key == 1) {
+    if (key == 1) {
+        getList()
+    }
+}
+const handelCloseEditDialog = (key: number | undefined) => {
+    updateDialog.show = false
+    if (key == 1) {
         getList()
     }
 }
