@@ -23,9 +23,9 @@
                 <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="120">
-                <template #default>
-                    <el-button link type="primary" size="small" @click="handleClick">查看</el-button>
-                    <el-button link type="primary" size="small">编辑</el-button>
+                <template #default="scope">
+                    <el-button link type="primary" size="small" @click="handleClickEdit(scope.row.id)">编辑</el-button>
+                    <el-button link type="danger" size="small">删除</el-button>
                 </template>
             </el-table-column>
             <template #empty>
@@ -34,7 +34,7 @@
         </el-table>
         <div class="common-pagination">
             <el-pagination :current-page="pageParams.currentPage" :page-size="pageParams.pageSize"
-                :page-sizes="[10, 20, 50, 100]" :small="small" background
+                :page-sizes="[10, 20, 50, 100]" :small="small" 
                 layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
@@ -45,7 +45,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { reactive } from 'vue'
-import { getNotesList } from '@/api/note'
+
+import { getNotesList, updateNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
 import createNoteForm from './components/createNoteForm.vue'
 const ruleForm = reactive({
@@ -100,8 +101,11 @@ const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
 }
 
-const handleClick = () => {
-
+const handleClickEdit = async (id:number) => {
+    const res = await getNoteDetail({id: id})
+    console.log(res);
+    
+    dialogFormVisible.value = true
 }
 
 const handleCurrentChange = (val: number) => {

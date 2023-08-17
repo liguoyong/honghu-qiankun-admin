@@ -10,6 +10,9 @@ import 'element-plus/dist/index.css'
 
 // import "nprogress/nprogress.css";
 import router from './router'
+
+
+
 import '@/icons' // icon
 // import SvgIcon from './components/SvgIcon/index.vue'// svg component
 // register globally
@@ -19,7 +22,7 @@ const pinia = createPinia()
 registerComponents(mainApp)
 // mainApp.component('svg-icon', SvgIcon)
 mainApp.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).mount('#mainapp')
-
+import './permission'
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading
 // function loader(loading) {
 //     if (instance.isLoading) {

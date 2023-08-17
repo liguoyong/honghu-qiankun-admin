@@ -5,6 +5,7 @@ import { useRouter, useRoute } from 'vue-router';
 import sidebar from './components/Sidebar/index.vue'
 import { useAppStore } from "@/store/app.js"
 import { useUsersStore } from "@/store/user.js"
+import {removeToken} from "@/utils/auth"
 const userStore = useUsersStore()
 const appStore = useAppStore()
 const router = useRouter()
@@ -16,6 +17,7 @@ const handleChangeCollapse = function (collapse) {
 }
 const logout = () => {
   console.log(route.path, 'path');
+  removeToken()
   let path = route.path
   router.push({ path: '/login', query: { redirect: path } })
 }

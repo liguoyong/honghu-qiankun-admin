@@ -1,6 +1,6 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" :before-close="handleClose" :close-on-click-modal="false" title="创建笔记"
-    width="76%" align-center>
+  <el-dialog class="createNoteForm" v-model="props.dialogFormVisible" :before-close="handleClose"
+    :close-on-click-modal="false" title="创建笔记" width="60%" align-center>
     <el-form :model="form" :rules="rules" ref="noteFormRef">
       <el-form-item label="标题" prop="title">
         <el-input v-model="form.title" />
@@ -11,7 +11,7 @@
       <el-form-item class="content-item" label="内容" prop="content">
         <!-- 此处注意写法v-model:content -->
         <div class="quill-container">
-          <QuillEditor ref="myQuillEditor" theme="snow" v-model:content="form.content" :options="data.editorOption"
+          <QuillEditor ref="myQuillEditor" theme="snow" :content="form.content" :options="data.editorOption"
             contentType="html" @update:content="setValue()" />
         </div>
       </el-form-item>
@@ -25,7 +25,7 @@
   </el-dialog>
 </template>
 <script setup lang="ts">
-import { reactive, ref, toRaw, watch } from 'vue'
+import { reactive, ref, toRaw, watch, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
@@ -97,11 +97,7 @@ const rules = reactive<FormRules<RuleForm>>({
 const setValue = () => {
   const text = toRaw(myQuillEditor.value).getHTML()
 }
-const handleClose = () => {
-  console.log('guanbi');
 
-  emits('close')
-}
 const handelCreateNote = async (formEl: FormInstance | undefined) => {
   console.log(form, 'submit!')
   if (!formEl) return
@@ -117,21 +113,40 @@ const handelCreateNote = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+
+const handleClose = ref()
+// 在组件挂载时获取 $refs
+onMounted(() => {
+  const resetFrom = (formEl: FormInstance | undefined) => {
+    if (!formEl) return
+    formEl.resetFields()
+  }
+  handleClose.value = () => {
+    form.content = ''
+    resetFrom(noteFormRef.value)
+    emits('close')
+  }
+});
 </script>
 <style lang="scss" scoped>
+.createNoteForm {
+  .el-input {
+    width: 100%;
+  }
+}
+
 .el-select {
   width: 300px;
 }
 
-.el-input {
-  width: 300px;
-}
+
 
 .dialog-footer button:first-child {
   margin-right: 10px;
 }
 
 .quill-container {
+  width: 100%;
   ::v-deep(.ql-container) {
     min-height: 200px;
   }

@@ -2,7 +2,7 @@
 .el-table {
   &.el-table--fit {
     border: 1px solid var(--table-header-border-color);
-    border-bottom: none; 
+    border-bottom: none;
   }
   border: 1px solid var(--table-header-border-color);
   border-bottom: none;
@@ -15,5 +15,40 @@
   }
   th.el-table__cell.is-leaf {
     border-bottom-color: var(--table-header-border-color);
+  }
+}
+// 分页器调整
+.el-pagination {
+  .el-pager li.is-active {
+    background-color: var(--el-color-primary);
+    color: #fff;
+  }
+}
+.el-dialog {
+  .el-dialog__header {
+    padding-bottom: 0;
+    .el-dialog__title {
+      font-family: PingFang SC;
+      font-size: 20px;
+      font-weight: bold;
+      color: #031321;
+    }
+    .el-dialog__headerbtn {
+      width: 24px;
+      height: 24px;
+      right: 30px;
+      top: 26px;
+      .el-dialog__close {
+        font-size: 24px;
+        color: #606266;
+      }
+    }
+  }
+  .el-dialog__body {
+    padding-top: 28px;
+    padding-bottom: 6px;
+  }
+  .el-dialog__footer {
+    padding-bottom: 24px;
   }
 }
