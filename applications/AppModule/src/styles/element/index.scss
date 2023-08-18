@@ -28,12 +28,16 @@ $--dialog: (
 $--input: (
   "border-color": #E0E1E9
 );
+$--menu: (
+  "hover-bg-color": #eaf3ff,
+  "item-height": 46px,
+);
 // You should use them in scss, because we calculate it by sass.
 // comment next lines to use default color
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
   // do not use same name, it will override.
   $colors: $--colors,
-  $menu: ("hover-bg-color": #eaf3ff),
+  $menu: $--menu,
   $pagination: $--pagination,
   $table: ("header-bg-color": #f6f7fb), // $menu: $--menu,
   $dialog: $--dialog,
@@ -60,4 +64,5 @@ $--input: (
   --table-header-border-color: #edf0f1;
 
   --el-menu-hover-bg-color: #eaf3ff;
+  
 }

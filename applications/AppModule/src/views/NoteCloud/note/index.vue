@@ -16,7 +16,7 @@
                 </el-icon>新增笔记
             </el-button>
         </div>
-        <el-table :data="tableData" stripe style="width: 100%">
+        <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail">
             <el-table-column prop="id" label="id" />
             <el-table-column prop="title" label="标题" />
             <el-table-column label="创建时间">
@@ -38,6 +38,7 @@
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
         <editNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
+        <notedrawer :drawer="drawer" />
     </div>
 </template>
 
@@ -49,6 +50,7 @@ import { getNotesList, getDeleteNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import editNoteDialog from './components/editNoteDialog.vue'
+import notedrawer from './components/Notedrawer.vue'
 const ruleForm = reactive({
     title: ''
 })
@@ -69,6 +71,11 @@ const updateDialog = reactive({
 })
 const small = ref(false)
 const noteFormRef = ref<FormInstance>()
+const drawer = reactive({
+    show: false,
+    title: '查看详情',
+    data: {}
+})
 const onSearch = () => {
     console.log('submit!')
     getList()
@@ -113,14 +120,22 @@ const handleClickEdit = async (id: number) => {
         updateDialog.show = true
     }
 }
-
+const handelClickViewDetail = async (row) => {
+    const { code = 0, data = {} } = await getNoteDetail({ id: row.id })
+    if (code === 200) {
+        drawer.show = true
+        drawer.title = '查看笔记详情'
+        drawer.data = data
+    }
+    console.log(code, data, 'code, data')
+}
 const handelCreateNote = () => {
     updateDialog.type = 'add'
     updateDialog.form = {}
     updateDialog.show = true
 }
 const handleClickDelete = async (id: number) => {
-    
+
     ElMessageBox.confirm(
         '确认删除该笔记?',
         '温馨提示',
@@ -144,7 +159,7 @@ const handleClickDelete = async (id: number) => {
             //     message: 'Delete canceled',
             // })
         })
-    
+
 }
 
 const handelCloseEditDialog = (key: number | undefined) => {
