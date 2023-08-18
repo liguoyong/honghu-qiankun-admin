@@ -25,7 +25,7 @@
             <el-table-column fixed="right" label="操作" width="120">
                 <template #default="scope">
                     <el-button link type="primary" size="small" @click="handleClickEdit(scope.row.id)">编辑</el-button>
-                    <el-button link type="danger" size="small">删除</el-button>
+                    <el-button link type="danger" size="small" @click="handleClickDelete(scope.row.id)">删除</el-button>
                 </template>
             </el-table-column>
             <template #empty>
@@ -33,12 +33,11 @@
             </template>
         </el-table>
         <div class="common-pagination">
-            <el-pagination :current-page="pageParams.currentPage" :page-size="pageParams.pageSize"
-                :page-sizes="[10, 20, 50, 100]" :small="small" layout="->,total, sizes, prev, pager, next, jumper"
-                :total="pageParams.total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+            <el-pagination :current-page="pageParams.page" :page-size="pageParams.size" :page-sizes="[10, 20, 50, 100]"
+                :small="small" layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
-        <createNoteForm :dialogFormVisible="dialogFormVisible" @close="handelCloseDialogForm" />
-        <updateNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
+        <editNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
     </div>
 </template>
 
@@ -46,10 +45,10 @@
 import { ref } from 'vue'
 import { reactive } from 'vue'
 
-import { getNotesList, updateNote, getNoteDetail } from '@/api/note'
+import { getNotesList, getDeleteNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
-import createNoteForm from './components/createNoteForm.vue'
-import updateNoteDialog from './components/updateNoteDialog.vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import editNoteDialog from './components/editNoteDialog.vue'
 const ruleForm = reactive({
     title: ''
 })
@@ -59,16 +58,15 @@ interface RuleForm {
     content: string
 }
 const pageParams = reactive({
-    currentPage: 1,
-    pageSize: 10,
-    total: 50
+    page: 1,
+    size: 10,
+    total: 0
 })
 const updateDialog = reactive({
     show: false,
     type: 'update',
     form: {}
 })
-const dialogFormVisible = ref(false)
 const small = ref(false)
 const noteFormRef = ref<FormInstance>()
 const onSearch = () => {
@@ -77,7 +75,7 @@ const onSearch = () => {
 }
 const tableData = ref([])
 const getList = async () => {
-    const response = await getNotesList({})
+    const response = await getNotesList({ ...ruleForm, ...pageParams })
     if (response.code == 200) {
         const { list = [], total } = response.data
         tableData.value = response.data.list
@@ -97,6 +95,14 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
+    pageParams.size = val
+    getList()
+}
+
+const handleCurrentChange = (val: number) => {
+    console.log(`current page: ${val}`)
+    pageParams.page = val
+    getList()
 }
 
 const handleClickEdit = async (id: number) => {
@@ -106,21 +112,41 @@ const handleClickEdit = async (id: number) => {
         updateDialog.form = data
         updateDialog.show = true
     }
-    // dialogFormVisible.value = true
 }
 
-const handleCurrentChange = (val: number) => {
-    console.log(`current page: ${val}`)
-}
 const handelCreateNote = () => {
-    dialogFormVisible.value = true
+    updateDialog.type = 'add'
+    updateDialog.form = {}
+    updateDialog.show = true
 }
-const handelCloseDialogForm = (key: number | undefined) => {
-    dialogFormVisible.value = false
-    if (key == 1) {
-        getList()
-    }
+const handleClickDelete = async (id: number) => {
+    
+    ElMessageBox.confirm(
+        '确认删除该笔记?',
+        '温馨提示',
+        {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+    )
+        .then(async () => {
+            await getDeleteNote({ id })
+            getList()
+            ElMessage({
+                type: 'success',
+                message: '删除完成',
+            })
+        })
+        .catch(() => {
+            // ElMessage({
+            //     type: 'info',
+            //     message: 'Delete canceled',
+            // })
+        })
+    
 }
+
 const handelCloseEditDialog = (key: number | undefined) => {
     updateDialog.show = false
     if (key == 1) {

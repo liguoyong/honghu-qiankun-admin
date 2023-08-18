@@ -1,7 +1,7 @@
 <template>
     <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
         :title="props.dialog.type === 'add' ? '新建笔记' : '编辑笔记'" destroy-on-close @confirm="handleSubmit">
-        <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :label-width="100" :rules="rules"
+        <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules"
             @submit="handleSubmit">
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
@@ -19,7 +19,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { FormOption } from '@/components/form/index'
 import { QuillEditor } from '@vueup/vue-quill'
-import { updateNote } from '@/api/note'
+import { updateNote, createNote } from '@/api/note'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 interface RuleForm {
     title: string,
@@ -100,7 +100,7 @@ function handleSubmit() {
         if (valid) {
             let res
             if (props.dialog.type === 'add') {
-                // res = await service.add(form)
+                res = await createNote(form)
             } else {
                 res = await updateNote(form)
             }
