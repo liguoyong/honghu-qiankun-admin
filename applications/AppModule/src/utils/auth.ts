@@ -4,6 +4,7 @@ export interface DataInfo<T> {
     /** token */
     accessToken: string;
     /** `accessToken`的过期时间（时间戳） */
+    expires: T;
     expire: T;
     /** 用于调用刷新accessToken的接口时所需的token */
     refreshToken: string;
@@ -32,12 +33,13 @@ export function getToken(): DataInfo<number> {
  */
 export function setToken(data: DataInfo<Date>) {
     let expire = 0;
-    const { accessToken, refreshToken } = data;
-    expire = new Date(data.expire).getTime(); // 如果后端直接设置时间戳，将此处代码改为expire = data.expire，然后把上面的DataInfo<Date>改成DataInfo<number>即可
+    const { accessToken, refreshToken, expires } = data;
+    expire = Number(expires) - new Date().getTime(); // 如果后端直接设置时间戳，将此处代码改为expire = data.expire，然后把上面的DataInfo<Date>改成DataInfo<number>即可
+    const expireDate = new Date(expires)
     const cookieString = JSON.stringify({ accessToken, expire });
     expire > 0
         ? Cookies.set(TokenKey, cookieString, {
-            expires: new Date(expire + Date.now())
+            expires: expireDate
         })
         : Cookies.set(TokenKey, cookieString);
     function setSessionKey(username: string, roles: Array<string>) {

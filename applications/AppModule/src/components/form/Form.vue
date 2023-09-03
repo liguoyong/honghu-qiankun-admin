@@ -30,8 +30,8 @@ const props = defineProps({
     default: () => []
   },
   rules: {
-    type: Array,
-    default: () => []
+    type: Object,
+    default: () => ({})
   }
 })
 const emit = defineEmits(['update:modelValue', 'reset', 'submit'])

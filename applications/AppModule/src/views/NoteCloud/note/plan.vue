@@ -100,6 +100,7 @@ console.log(tableData, 'tableData');
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
+  getList()
 }
 
 const handleSizeChange = (val: number) => {

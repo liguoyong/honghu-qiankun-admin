@@ -56,7 +56,7 @@ export const routes = [
       icon: "User"
     },
     children: [{
-      path: "/list",
+      path: "list",
       name: "operational-list",
       component: () => import(/* webpackChunkName: "operational" */ '../views/User/index.vue'),
       meta: {
@@ -73,7 +73,7 @@ export const routes = [
       icon: "MostlyCloudy"
     },
     children: [{
-      path: "/cloud",
+      path: "cloud",
       name: "operational-cloud",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {
@@ -81,7 +81,7 @@ export const routes = [
       }
     },
     {
-      path: "/capability",
+      path: "capability",
       name: "operational-capability",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {
@@ -89,7 +89,7 @@ export const routes = [
       }
     },
     {
-      path: "/designer",
+      path: "designer",
       name: "operational-designer",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {

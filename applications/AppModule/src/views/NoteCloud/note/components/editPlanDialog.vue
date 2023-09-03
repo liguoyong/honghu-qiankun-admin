@@ -1,6 +1,6 @@
 <template>
     <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
-        :title="props.dialog.type === 'add' ? '新建计划' : '编辑计划'" destroy-on-close @confirm="handleSubmit">
+        :title="props.dialog.type === 'add' ? '新增计划' : '编辑计划'" destroy-on-close @confirm="handleSubmit">
         <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules" @submit="handleSubmit"
             label-width="80px">
             <el-form-item class="content-item" label="日期" v-slot="date" prop="date">
@@ -109,7 +109,7 @@ function handleSubmit() {
                 res = await updatePlan(form)
             }
             if (res.code === 200) {
-                ElMessage.success('操作成功')
+                ElMessage.success(props.dialog.type === 'add' ? '新增成功' : '更新成功')
                 emits('close', 1)
             }
         } else {

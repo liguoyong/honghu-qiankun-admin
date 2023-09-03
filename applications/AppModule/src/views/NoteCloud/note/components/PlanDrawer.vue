@@ -8,6 +8,7 @@
                 <el-descriptions :column="1" title="" direction="vertical">
                     <el-descriptions-item label="标题：">{{ props.drawer.data.title }}</el-descriptions-item>
                     <el-descriptions-item label="描述：">{{ props.drawer.data.desc }}</el-descriptions-item>
+                    <el-descriptions-item label="日期：">{{ props.drawer.data.date }}</el-descriptions-item>
                     <el-descriptions-item label="内容：">
                         <div v-html="props.drawer.data.content"></div>
                     </el-descriptions-item>
@@ -43,6 +44,7 @@ const direction = ref('rtl')
 .planDrawer {
     .el-drawer__header {
         margin-bottom: 0;
+
         h4 {
             font-size: 20px;
             color: #031321;

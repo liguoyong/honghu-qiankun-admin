@@ -1,6 +1,6 @@
 <template>
     <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
-        :title="props.dialog.type === 'add' ? '新建笔记' : '编辑笔记'" destroy-on-close @confirm="handleSubmit">
+        :title="props.dialog.type === 'add' ? '新增笔记' : '编辑笔记'" destroy-on-close @confirm="handleSubmit">
         <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules" @submit="handleSubmit">
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
@@ -99,7 +99,7 @@ function handleSubmit() {
                 res = await updateNote(form)
             }
             if (res.code === 200) {
-                ElMessage.success('操作成功')
+                ElMessage.success(props.dialog.type === 'add' ? '新增成功' : '更新成功')
                 emits('close', 1)
             }
         } else {
@@ -111,9 +111,19 @@ function handleSubmit() {
 <style lang="scss" scoped>
 .quill-container {
     width: 100%;
+    border-radius: 4px;
 
     ::v-deep(.ql-container) {
         min-height: 200px;
+
+    }
+
+    ::v-deep(.ql-toolbar.ql-snow) {
+        border-radius: 4px 4px 0 0;
+    }
+
+    ::v-deep(.ql-toolbar.ql-snow+.ql-container.ql-snow) {
+        border-radius: 0 0 4px 4px;
     }
 }
 </style>
