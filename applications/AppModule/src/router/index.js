@@ -37,14 +37,13 @@ export const routes = [
       component: () => import(/* webpackChunkName: "notecloudnote" */ '../views/NoteCloud/note/index.vue'),
       meta: {
         title: "笔记",
-      },
+      }
     }, {
-      path: "create",
-      name: "noteCloud-create",
-      hidden: true,
-      component: () => import(/* webpackChunkName: "notecloudnote" */ '../views/NoteCloud/note/create.vue'),
+      path: "plan",
+      name: "noteCloud-plan",
+      component: () => import(/* webpackChunkName: "createNoteCloudPlan" */ '../views/NoteCloud/note/plan.vue'),
       meta: {
-        title: "创建笔记",
+        title: "计划",
       },
     }]
   },
@@ -57,7 +56,7 @@ export const routes = [
       icon: "User"
     },
     children: [{
-      path: "list",
+      path: "/list",
       name: "operational-list",
       component: () => import(/* webpackChunkName: "operational" */ '../views/User/index.vue'),
       meta: {
@@ -74,7 +73,7 @@ export const routes = [
       icon: "MostlyCloudy"
     },
     children: [{
-      path: "cloud",
+      path: "/cloud",
       name: "operational-cloud",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {
@@ -82,7 +81,7 @@ export const routes = [
       }
     },
     {
-      path: "capability",
+      path: "/capability",
       name: "operational-capability",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {
@@ -90,7 +89,7 @@ export const routes = [
       }
     },
     {
-      path: "designer",
+      path: "/designer",
       name: "operational-designer",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
       meta: {

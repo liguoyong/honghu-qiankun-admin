@@ -46,7 +46,7 @@ const getMenuList = function (data, basePath) {
       const { children = [{}] } = item
       const [{ path = '' }] = children
       if (item.path !== '/') {
-        item.path = item.path + (path ? '/' + path : '')
+        item.path = item.path + (!path.includes('/') ? '/' + path : '')
       }
       item.children = null
     }

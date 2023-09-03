@@ -1,4 +1,5 @@
 export interface FormOption {
+[x: string]: any
   component?: string
   label?: string
   prop: string

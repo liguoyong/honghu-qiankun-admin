@@ -38,7 +38,7 @@
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
         <editNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
-        <notedrawer :drawer="drawer" />
+        <note-drawer :drawer="drawer" />
     </div>
 </template>
 
@@ -50,7 +50,7 @@ import { getNotesList, getDeleteNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import editNoteDialog from './components/editNoteDialog.vue'
-import notedrawer from './components/Notedrawer.vue'
+import noteDrawer from './components/Notedrawer.vue'
 const ruleForm = reactive({
     title: ''
 })
@@ -67,7 +67,7 @@ const pageParams = reactive({
 const updateDialog = reactive({
     show: false,
     type: 'update',
-    form: {}
+    form: { content: '' }
 })
 const small = ref(false)
 const noteFormRef = ref<FormInstance>()
@@ -131,7 +131,7 @@ const handelClickViewDetail = async (row) => {
 }
 const handelCreateNote = () => {
     updateDialog.type = 'add'
-    updateDialog.form = {}
+    updateDialog.form = { content: '' }
     updateDialog.show = true
 }
 const handleClickDelete = async (id: number) => {

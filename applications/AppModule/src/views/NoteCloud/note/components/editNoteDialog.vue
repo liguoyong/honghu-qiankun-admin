@@ -1,8 +1,7 @@
 <template>
     <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
         :title="props.dialog.type === 'add' ? '新建笔记' : '编辑笔记'" destroy-on-close @confirm="handleSubmit">
-        <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules"
-            @submit="handleSubmit">
+        <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules" @submit="handleSubmit">
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
                 <div class="quill-container">
@@ -34,20 +33,15 @@ const props = defineProps({
             return {
                 show: false,
                 type: 'add',
-                form: {}
+                form: { content: '' }
             }
         }
     }
 })
 const formRef = ref()
+
 const myQuillEditor2 = ref()
-// 通过watch监听回显，笔者这边使用v-model:content 不能正常回显
 
-watch(() => props.dialog.form.content, (val) => {
-    console.log(myQuillEditor2, 'myQuillEditor2');
-
-    myQuillEditor2.value && toRaw(myQuillEditor2.value).setHTML(val)
-}, { deep: true })
 const formOptions = computed<FormOption[]>(() => [
     { label: '标题', prop: 'title', required: true },
     { label: '描述', prop: 'desc', required: true },

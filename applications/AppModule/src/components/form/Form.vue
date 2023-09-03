@@ -3,7 +3,7 @@
     <template v-for="item in options" :key="item.prop">
       <slot v-if="item.slot" :name="item.slot" v-bind="item"></slot>
       <el-form-item v-else :label="item.label" :prop="item.prop" :required="item.required">
-        <component :is="item.component || 'el-input'" v-model="form[item.prop]" v-bind="item.props">
+        <component :is="item.component || 'el-input'" v-model="form[item.prop]" v-bind="item.props" >
           <template v-if="item.component === 'el-select'">
             <el-option v-for="(o, i) in item.props.options" :key="i" v-bind="o" />
           </template>
