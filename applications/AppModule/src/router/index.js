@@ -48,23 +48,6 @@ export const routes = [
     }]
   },
   {
-    path: '/user',
-    name: 'user',
-    component: Layout,
-    meta: {
-      title: "用户管理",
-      icon: "User"
-    },
-    children: [{
-      path: "list",
-      name: "operational-list",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/User/index.vue'),
-      meta: {
-        title: "用户列表",
-      },
-    }]
-  },
-  {
     path: '/operational',
     name: 'operational',
     component: Layout,
@@ -79,7 +62,7 @@ export const routes = [
       meta: {
         title: "工具中心",
       }
-    },{
+    }, {
       path: "cloud",
       name: "operational-cloud",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
@@ -104,6 +87,22 @@ export const routes = [
       }
     },
     ]
+  }, {
+    path: '/user',
+    name: 'user',
+    component: Layout,
+    meta: {
+      title: "用户管理",
+      icon: "User"
+    },
+    children: [{
+      path: "list",
+      name: "operational-list",
+      component: () => import(/* webpackChunkName: "operational" */ '../views/User/index.vue'),
+      meta: {
+        title: "用户列表",
+      },
+    }]
   },
   {
     path: '/login',

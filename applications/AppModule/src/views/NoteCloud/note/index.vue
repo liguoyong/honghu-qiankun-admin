@@ -33,7 +33,8 @@
             </template>
         </el-table>
         <div class="common-pagination">
-            <com-pagination :current-page="pageParams.page" :page-size="pageParams.size" :total="pageParams.total" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
+            <com-pagination :current-page="pageParams.page" :page-size="pageParams.size" :total="pageParams.total"
+                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
         <editNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
         <note-drawer :drawer="drawer" />
@@ -170,10 +171,6 @@ const handelCloseEditDialog = (key: number | undefined) => {
 </script>
 
 <style>
-.layout-wrapper {
-    padding: 24px;
-}
-
 .demo-form-inline .el-input {
     --el-input-width: 220px;
 }

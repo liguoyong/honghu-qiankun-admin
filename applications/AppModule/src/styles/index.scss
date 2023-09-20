@@ -24,7 +24,7 @@ body {
 }
 
 .mainapp-header {
-  > h1 {
+  >h1 {
     color: #333;
     font-size: 36px;
     font-weight: 700;
@@ -44,7 +44,7 @@ body {
     padding: 0;
     border-right: 2px solid #aaa;
 
-    > li {
+    >li {
       color: #aaa;
       margin: 20px 0;
       font-size: 18px;
@@ -86,12 +86,15 @@ body {
 }
 
 .layout-wrapper {
+  padding: 24px;
+
   .filter-container {
     .el-form-item {
       margin-bottom: 24px;
       margin-right: 24px;
     }
   }
+
   .btns-container {
     margin-bottom: 24px;
   }
