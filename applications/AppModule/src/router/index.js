@@ -28,7 +28,7 @@ export const routes = [
     name: 'noteCloud',
     component: Layout,
     meta: {
-      title: "云笔记",
+      title: "笔记管理",
       icon: "Management"
     },
     children: [{
@@ -52,7 +52,7 @@ export const routes = [
     name: 'user',
     component: Layout,
     meta: {
-      title: "用户",
+      title: "用户管理",
       icon: "User"
     },
     children: [{
@@ -69,10 +69,17 @@ export const routes = [
     name: 'operational',
     component: Layout,
     meta: {
-      title: "操作云",
+      title: "工具管理",
       icon: "MostlyCloudy"
     },
     children: [{
+      path: "tool",
+      name: "tool",
+      component: () => import(/* webpackChunkName: "operational" */ '../views/Tool/index.vue'),
+      meta: {
+        title: "工具中心",
+      }
+    },{
       path: "cloud",
       name: "operational-cloud",
       component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),

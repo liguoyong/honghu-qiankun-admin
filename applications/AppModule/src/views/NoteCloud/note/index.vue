@@ -33,9 +33,7 @@
             </template>
         </el-table>
         <div class="common-pagination">
-            <el-pagination :current-page="pageParams.page" :page-size="pageParams.size" :page-sizes="[10, 20, 50, 100]"
-                :small="small" layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+            <com-pagination :current-page="pageParams.page" :page-size="pageParams.size" :total="pageParams.total" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
         </div>
         <editNoteDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
         <note-drawer :drawer="drawer" />
@@ -102,6 +100,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 const handleSizeChange = (val: number) => {
     console.log(`${val} items per page`)
+    pageParams.page = 1
     pageParams.size = val
     getList()
 }

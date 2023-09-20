@@ -25,7 +25,7 @@
         </template>
       </Table>
       <template v-if="showPagination">
-        <el-pagination v-model:currentPage="pageInfo.page" v-model:page-size="pageInfo.size" background
+        <el-pagination :currentPage="pageInfo.page" :page-size="pageInfo.size" background
           :page-sizes="[10, 15, 20, 25, 30]" layout="sizes, total, prev, pager, next" :total="pageInfo.total"
           @current-change="handleCurrentChange" @size-change="handleSizeChange" />
       </template>

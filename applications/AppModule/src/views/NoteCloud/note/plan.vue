@@ -35,9 +35,7 @@
       </template>
     </el-table>
     <div class="common-pagination">
-      <el-pagination :current-page="pageParams.page" :page-size="pageParams.size" :page-sizes="[10, 20, 50, 100]"
-        :small="small" layout="->,total, sizes, prev, pager, next, jumper" :total="pageParams.total"
-        @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+      <com-pagination :current-page="pageParams.page" :page-size="pageParams.size" :total="pageParams.total" @size-change="handleSizeChange" @current-change="handleCurrentChange"/>
     </div>
     <editPlanDialog :dialog="updateDialog" @close="handelCloseEditDialog" />
     <plan-drawer :drawer="drawer" />

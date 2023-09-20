@@ -6,8 +6,6 @@
             <el-form-item class="content-item" label="日期" v-slot="date" prop="date">
                 <el-date-picker v-model="props.dialog.form.date" type="datetime" placeholder="请选择日期"
                     value-format="YYYY-MM-DD hh:mm:ss" />
-                <!-- <el-date-picker v-model="props.dialog.form.date" type="date" placeholder="请选择日期" format="YYYY-MM-DD "
-                    value-format="YYYY-MM-DD" /> -->
             </el-form-item>
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
