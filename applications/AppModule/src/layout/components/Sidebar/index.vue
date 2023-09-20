@@ -73,7 +73,7 @@ const logo =
 
   &:not(.el-menu--collapse) {
     width: 200px;
-    min-height: 400px;
+    min-height: 200px;
   }
 
   .el-icon:not(.el-sub-menu__icon-arrow) {

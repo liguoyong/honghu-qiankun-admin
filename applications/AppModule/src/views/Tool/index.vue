@@ -42,7 +42,29 @@ const configList = reactive([
             description: '全球最大的技术问答社区'
         }]
     },
-    { label: '学习专区', data: [] },
+    {
+        label: '学习专区', data: [{
+            icon: 'http://cxy521.com/static/img/index/study/cn.ico',
+            url: 'https://www.runoob.com/',
+            title: '菜鸟教程',
+            description: '学的不仅是技术，更是梦想！'
+        }, {
+            icon: 'http://cxy521.com/static/img/index/study/github.svg',
+            url: 'https://github.com/',
+            title: 'GitHub',
+            description: '世界最大的开源代码共享社区'
+        }, {
+            icon: 'http://cxy521.com/static/img/index/study/gitee.png',
+            url: 'https://gitee.com/',
+            title: 'Gitee',
+            description: '中国最大的开源代码共享社区'
+        }, {
+            icon: 'http://cxy521.com/static/img/index/study/w3.png',
+            url: 'https://www.w3school.com.cn/',
+            title: 'W3school',
+            description: '全球最大的中文 Web 技术教程'
+        }]
+    },
     { label: '摸鱼专区', data: [] },
     { label: '资源专区', data: [] },
     { label: '私活专区', data: [] }])
