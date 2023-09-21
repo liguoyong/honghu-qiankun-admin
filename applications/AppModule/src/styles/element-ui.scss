@@ -4,8 +4,10 @@
     border: 1px solid var(--table-header-border-color);
     border-bottom: none;
   }
+
   border: 1px solid var(--table-header-border-color);
   border-bottom: none;
+
   .el-table__header {
     th.el-table__cell {
       border-bottom-color: var(--table-header-border-color);
@@ -13,10 +15,12 @@
       font-weight: normal;
     }
   }
+
   th.el-table__cell.is-leaf {
     border-bottom-color: var(--table-header-border-color);
   }
 }
+
 // 分页器调整
 .el-pagination {
   .el-pager li.is-active {
@@ -24,40 +28,54 @@
     color: #fff;
   }
 }
+
+// 模态框
 .el-dialog {
   .el-dialog__header {
     padding-bottom: 24px;
+
     .el-dialog__title {
       font-family: PingFang SC;
       font-size: 20px;
       font-weight: bold;
       color: #031321;
     }
+
     .el-dialog__headerbtn {
       width: 24px;
       height: 24px;
       right: 30px;
       top: 26px;
+
       .el-dialog__close {
         font-size: 24px;
         color: #606266;
       }
     }
   }
+
   .el-dialog__body {
     padding-top: 0px;
     padding-bottom: 0px;
   }
+
   .el-dialog__footer {
     padding-top: 24px;
     padding-bottom: 24px;
   }
 }
+
+// 抽屉
 .el-drawer {
   .el-drawer__header {
     margin-bottom: 24px;
   }
+
   .el-descriptions__label.el-descriptions__cell:not(.is-bordered-label).is-vertical-label {
     font-weight: bold;
   }
+}
+
+.el-popper.tooltipPopperClass {
+  max-width: 40vw;
 }

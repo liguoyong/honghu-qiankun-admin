@@ -16,10 +16,11 @@
                 </el-icon>新增笔记
             </el-button>
         </div>
-        <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail">
-            <el-table-column prop="id" label="id" fixed width="150"/>
-            <el-table-column prop="title" label="标题" />
-            <el-table-column prop="desc" label="描述" />
+        <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail"
+            :tooltip-options="tooltipOptions">
+            <el-table-column prop="id" label="id" fixed width="150" />
+            <el-table-column prop="title" label="标题" show-overflow-tooltip />
+            <el-table-column prop="desc" label="描述" show-overflow-tooltip />
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
             </el-table-column>
@@ -51,6 +52,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import editNoteDialog from './components/editNoteDialog.vue'
 import noteDrawer from './components/NoteDrawer.vue'
+import { tooltipOptions } from '@/utils/common'
 const ruleForm = reactive({
     title: ''
 })
@@ -80,6 +82,7 @@ const onSearch = () => {
     console.log('submit!')
     getList()
 }
+// const tooltipOptions = ref({ enterable: true, effect: 'light', 'popperClass': 'tooltipPopperClass', placement: 'bottom', showArrow: true, hideAfter: 200, popperOptions: { strategy: 'fixed' } })
 const tableData = ref([])
 const getList = async () => {
     const response = await getNotesList({ ...ruleForm, ...pageParams })

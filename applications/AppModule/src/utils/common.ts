@@ -1,0 +1,2 @@
+// 列表tooltip提示配置
+export const tooltipOptions = { enterable: true, effect: 'light', 'popperClass': 'tooltipPopperClass', placement: 'bottom', showArrow: true, hideAfter: 200, popperOptions: { strategy: 'fixed' } }
