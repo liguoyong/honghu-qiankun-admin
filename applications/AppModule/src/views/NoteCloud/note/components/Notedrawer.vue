@@ -9,7 +9,12 @@
                     <el-descriptions-item label="标题：">{{ props.drawer.data.title }}</el-descriptions-item>
                     <el-descriptions-item label="描述：">{{ props.drawer.data.desc }}</el-descriptions-item>
                     <el-descriptions-item label="内容：">
-                        <div v-html="props.drawer.data.content"></div>
+                        <div class="ql-container ql-snow" style="border:none;">
+                            <div class="ql-editor">
+                                <div v-html="props.drawer.data.content"></div>
+                            </div>
+                        </div>
+                        <!-- <div v-html="props.drawer.data.content"></div> -->
                     </el-descriptions-item>
                 </el-descriptions>
             </div>
@@ -43,6 +48,7 @@ const direction = ref('rtl')
 .noteDrawer {
     .el-drawer__header {
         margin-bottom: 0;
+
         h4 {
             font-size: 20px;
             color: #031321;

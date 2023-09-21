@@ -20,6 +20,8 @@ import { FormOption } from '@/components/form/index'
 import { QuillEditor } from '@vueup/vue-quill'
 import { updateNote, createNote } from '@/api/note'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import '@vueup/vue-quill/dist/vue-quill.core.css'
+import 'highlight.js/styles/github.css' // 导入 highlight.js 的 CSS 样式
 interface RuleForm {
     title: string,
     desc: string,
@@ -43,8 +45,8 @@ const formRef = ref()
 const myQuillEditor2 = ref()
 
 const formOptions = computed<FormOption[]>(() => [
-    { label: '标题', prop: 'title', required: true },
-    { label: '描述', prop: 'desc', required: true },
+    { label: '标题', prop: 'title', required: true, props: {'show-word-limit': true, 'maxlength': 50} },
+    { label: '描述', prop: 'desc', required: true, props: {'show-word-limit': true, 'maxlength': 100} },
     { label: '内容', prop: 'content', required: true, slot: 'content' },
 ])
 const rules = reactive<FormRules<RuleForm>>({
@@ -64,6 +66,7 @@ const data = reactive({
         modules: {
             toolbar: [
                 ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
                 [{ 'size': ['small', false, 'large', 'huge'] }],
                 [{ 'font': [] }],
                 [{ 'align': [] }],

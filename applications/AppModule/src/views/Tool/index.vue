@@ -74,7 +74,7 @@ const handelToUrl = (url: string) => {
     window.open(url, '_blank')
 }
 </script>
-<style>
+<style lang="scss" scoped>
 .tool-container {
     .tool-tab-container {
         display: flex;

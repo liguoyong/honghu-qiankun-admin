@@ -17,8 +17,9 @@
             </el-button>
         </div>
         <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail">
-            <el-table-column prop="id" label="id" />
+            <el-table-column prop="id" label="id" fixed width="150"/>
             <el-table-column prop="title" label="标题" />
+            <el-table-column prop="desc" label="描述" />
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
             </el-table-column>

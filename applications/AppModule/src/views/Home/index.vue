@@ -1,6 +1,19 @@
 <template>
   <div class="layout-wrapper">
-    <el-calendar v-model="value" />
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <div class="grid-content ep-bg-purple" />
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content ep-bg-purple" />
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content ep-bg-purple">
+          <el-calendar v-model="value" />
+        </div>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 <script setup lang="ts">
@@ -23,5 +36,4 @@ const value = ref(new Date());
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
-}
-</style>
+}</style>
