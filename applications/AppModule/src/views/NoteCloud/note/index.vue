@@ -50,7 +50,7 @@ import { getNotesList, getDeleteNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import editNoteDialog from './components/editNoteDialog.vue'
-import noteDrawer from './components/Notedrawer.vue'
+import noteDrawer from './components/NoteDrawer.vue'
 const ruleForm = reactive({
     title: ''
 })

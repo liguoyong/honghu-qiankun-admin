@@ -1,6 +1,7 @@
 <template>
   <el-dialog
     v-model="show"
+    custom-class="commonDialog"
     :close-on-click-modal="closeOnClickModal"
     :title="title"
     draggable
@@ -68,4 +69,11 @@ const onConfirm = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" >
+.commonDialog {
+  .el-dialog__body {
+    max-height: 60vh;
+    overflow: auto;
+  }
+}
+</style>

@@ -35,7 +35,7 @@ const title = '鸿鹄云平台'
   overflow: hidden;
   &.expand {
     .sidebar-logo-link {
-      margin-left: 30px;
+      margin-left: 12px;
       padding-left: 0;
     }
   }

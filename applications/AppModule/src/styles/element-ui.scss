@@ -26,7 +26,7 @@
 }
 .el-dialog {
   .el-dialog__header {
-    padding-bottom: 0;
+    padding-bottom: 24px;
     .el-dialog__title {
       font-family: PingFang SC;
       font-size: 20px;
@@ -45,10 +45,19 @@
     }
   }
   .el-dialog__body {
-    padding-top: 28px;
-    padding-bottom: 6px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   .el-dialog__footer {
+    padding-top: 24px;
     padding-bottom: 24px;
+  }
+}
+.el-drawer {
+  .el-drawer__header {
+    margin-bottom: 24px;
+  }
+  .el-descriptions__label.el-descriptions__cell:not(.is-bordered-label).is-vertical-label {
+    font-weight: bold;
   }
 }
