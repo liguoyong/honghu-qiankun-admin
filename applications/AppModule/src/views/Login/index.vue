@@ -64,7 +64,7 @@ const rules = reactive<FormRules<RuleForm>>({
 })
 const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate((valid: Boolean, fields: string[]) => {
     if (valid) {
       getLogin({ username: loginForm.userName, password: loginForm.password }).then(async res => {
         const { code, data } = res
@@ -79,7 +79,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           } else {
             router.push({ 'name': 'home' })
           }
-          // router.push({ 'name': 'home' })
         } else {
           ElMessage.error(res.msg || '')
         }

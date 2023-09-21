@@ -4,6 +4,7 @@ import Axios, {
   CustomParamsSerializer
 } from "axios";
 import {
+  ResponseType,
   AdminHttpError,
   RequestMethods,
   AdminHttpResponse,
@@ -166,7 +167,7 @@ class AdminHttp {
   }
 
   /** 单独抽离的post工具函数 */
-  public post<T, P>(
+  public post<T = any, P = ResponseType>(
     url: string,
     params?: AxiosRequestConfig<T>,
     config?: AdminHttpRequestConfig

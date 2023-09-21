@@ -14,6 +14,12 @@ export type RequestMethods = Extract<
   "get" | "post" | "put" | "delete" | "patch" | "option" | "head"
 >;
 
+export interface ResponseType {
+  code: number
+  data: any
+  msg: string
+}
+
 export interface AdminHttpError extends AxiosError {
   isCancelRequest?: boolean;
 }

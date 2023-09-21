@@ -122,7 +122,7 @@ const handleClickEdit = async (id: number) => {
     updateDialog.show = true
   }
 }
-const handelClickViewDetail = async (row) => {
+const handelClickViewDetail = async (row: { 'id': string, [key: string]: string }) => {
   const { code = 0, data = {} } = await getPlanDetail({ id: row.id })
   if (code === 200) {
     drawer.show = true

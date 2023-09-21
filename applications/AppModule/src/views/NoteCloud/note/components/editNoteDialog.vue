@@ -45,8 +45,8 @@ const formRef = ref()
 const myQuillEditor2 = ref()
 
 const formOptions = computed<FormOption[]>(() => [
-    { label: '标题', prop: 'title', required: true, props: {'show-word-limit': true, 'maxlength': 50} },
-    { label: '描述', prop: 'desc', required: true, props: {'show-word-limit': true, 'maxlength': 100} },
+    { label: '标题', prop: 'title', required: true, props: { 'show-word-limit': true, 'maxlength': 50 } },
+    { label: '描述', prop: 'desc', required: true, props: { 'show-word-limit': true, 'maxlength': 100 } },
     { label: '内容', prop: 'content', required: true, slot: 'content' },
 ])
 const rules = reactive<FormRules<RuleForm>>({

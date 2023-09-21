@@ -82,7 +82,6 @@ const onSearch = () => {
     console.log('submit!')
     getList()
 }
-// const tooltipOptions = ref({ enterable: true, effect: 'light', 'popperClass': 'tooltipPopperClass', placement: 'bottom', showArrow: true, hideAfter: 200, popperOptions: { strategy: 'fixed' } })
 const tableData = ref([])
 const getList = async () => {
     const response = await getNotesList({ ...ruleForm, ...pageParams })
@@ -96,7 +95,6 @@ getList()
 const transformTimeDate = (date: string) => {
     return date
 }
-console.log(tableData, 'tableData');
 
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return
@@ -124,7 +122,7 @@ const handleClickEdit = async (id: number) => {
         updateDialog.show = true
     }
 }
-const handelClickViewDetail = async (row) => {
+const handelClickViewDetail = async (row: { 'id': string, [key: string]: string }) => {
     const { code = 0, data = {} } = await getNoteDetail({ id: row.id })
     if (code === 200) {
         drawer.show = true
