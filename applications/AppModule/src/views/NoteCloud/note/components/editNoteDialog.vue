@@ -5,7 +5,7 @@
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
                 <div class="quill-container">
-                    <QuillEditor ref="myQuillEditor2" theme="snow" v-model:content="props.dialog.form.content"
+                    <QuillEditor ref="myQuillEditor2" theme="snow" :content="props.dialog.form.content"
                         :options="data.editorOption" contentType="html" @update:content="setValue()" />
                 </div>
             </el-form-item>

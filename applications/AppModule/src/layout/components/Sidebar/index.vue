@@ -2,7 +2,7 @@
   <logo />
   <div class="el-menu-slider-container">
     <el-scrollbar>
-      <el-menu :default-active="$route.path" background-color="#fff" text-color="031321" active-text-color="#1890ff"
+      <el-menu :default-active="$route.path" background-color="#fff" text-color="#031321" active-text-color="#1890ff"
         mode="vertical" router :collapse="isCollapse" @open="handleOpen" @close="handleClose">
         <sidebar-item v-for="item in routerData" :item="item" :key="item.path"></sidebar-item>
       </el-menu>
@@ -36,7 +36,7 @@ const getMenuList = function (data, basePath) {
   data = data.map((item) => {
     if (basePath) {
       // 拼接path
-      item.path = `${basePath}${item.path.indexOf("/") >= 0 || basePath === "/" ? "" : "/"
+      item.path = `${basePath}${item.path.startsWith("/") || basePath === "/" ? "" : "/"
         }${item.path}`;
     }
     if (item.children && item.children.length > 1) {

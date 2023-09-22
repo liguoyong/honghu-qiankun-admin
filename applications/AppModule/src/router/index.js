@@ -1,126 +1,170 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Layout from '../layout/index.vue'
-import _ from 'lodash'
+import { createRouter, createWebHistory } from "vue-router";
+import Layout from "../layout/index.vue";
+import _ from "lodash";
 
 export const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: "/",
+    name: "home",
     component: Layout,
-    redirect: { name: 'homePage' },
+    redirect: { name: "homePage" },
     meta: {
       title: "首页",
-      icon: 'House',
+      icon: "House",
     },
     children: [
       {
         path: "home",
         name: "homePage",
-        component: () => import(/* webpackChunkName: "home" */ '../views/Home/index.vue'),
+        component: () =>
+          import(/* webpackChunkName: "home" */ "../views/Home/index.vue"),
         meta: {
           title: "首页",
-        }
-      }
+        },
+      },
     ],
   },
   {
-    path: '/noteCloud',
-    name: 'noteCloud',
+    path: "/noteCloud",
+    name: "noteCloud",
     component: Layout,
     meta: {
       title: "笔记管理",
-      icon: "Management"
+      icon: "Management",
     },
-    children: [{
-      path: "note",
-      name: "noteCloud-note",
-      component: () => import(/* webpackChunkName: "notecloudnote" */ '../views/NoteCloud/note/index.vue'),
-      meta: {
-        title: "笔记",
-      }
-    }, {
-      path: "plan",
-      name: "noteCloud-plan",
-      component: () => import(/* webpackChunkName: "createNoteCloudPlan" */ '../views/NoteCloud/note/plan.vue'),
-      meta: {
-        title: "计划",
+    children: [
+      {
+        path: "note",
+        name: "noteCloud-note",
+        component: () =>
+          import(
+            /* webpackChunkName: "notecloudnote" */ "../views/NoteCloud/note/index.vue"
+          ),
+        meta: {
+          title: "笔记",
+        },
       },
-    }]
+      {
+        path: "plan",
+        name: "noteCloud-plan",
+        component: () =>
+          import(
+            /* webpackChunkName: "createNoteCloudPlan" */ "../views/NoteCloud/note/plan.vue"
+          ),
+        meta: {
+          title: "计划",
+        },
+      },
+    ],
   },
   {
-    path: '/operational',
-    name: 'operational',
+    path: "/operational",
+    name: "operational",
     component: Layout,
     meta: {
       title: "工具管理",
-      icon: "MostlyCloudy"
+      icon: "MostlyCloudy",
     },
-    children: [{
-      path: "tool",
-      name: "tool",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/Tool/index.vue'),
-      meta: {
-        title: "工具中心",
-      }
-    }, {
-      path: "cloud",
-      name: "operational-cloud",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
-      meta: {
-        title: "操作云中心",
-      }
-    },
-    {
-      path: "capability",
-      name: "operational-capability",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
-      meta: {
-        title: "赋能控制",
-      }
-    },
-    {
-      path: "designer",
-      name: "operational-designer",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/Operational/index.vue'),
-      meta: {
-        title: "设计器控制",
-      }
-    },
-    ]
-  }, {
-    path: '/user',
-    name: 'user',
+    children: [
+      {
+        path: "tool",
+        name: "tool",
+        component: () =>
+          import(
+            /* webpackChunkName: "operational" */ "../views/Tool/index.vue"
+          ),
+        meta: {
+          title: "工具中心",
+        },
+      },
+      {
+        path: "tool/json",
+        name: "toolJSON",
+        hidden: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "toolJSON" */ "../views/Tool/components/json.vue"
+          ),
+        meta: {
+          title: "工具中心-json",
+        },
+      },
+      {
+        path: "cloud",
+        name: "operational-cloud",
+        component: () =>
+          import(
+            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
+          ),
+        meta: {
+          title: "操作云中心",
+        },
+      },
+      {
+        path: "capability",
+        name: "operational-capability",
+        component: () =>
+          import(
+            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
+          ),
+        meta: {
+          title: "赋能控制",
+        },
+      },
+      {
+        path: "designer",
+        name: "operational-designer",
+        component: () =>
+          import(
+            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
+          ),
+        meta: {
+          title: "设计器控制",
+        },
+      },
+    ],
+  },
+  {
+    path: "/user",
+    name: "user",
     component: Layout,
     meta: {
       title: "用户管理",
-      icon: "User"
+      icon: "User",
     },
-    children: [{
-      path: "list",
-      name: "operational-list",
-      component: () => import(/* webpackChunkName: "operational" */ '../views/User/index.vue'),
-      meta: {
-        title: "用户列表",
+    children: [
+      {
+        path: "list",
+        name: "operational-list",
+        component: () =>
+          import(
+            /* webpackChunkName: "operational" */ "../views/User/index.vue"
+          ),
+        meta: {
+          title: "用户列表",
+        },
       },
-    }]
+    ],
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login/index.vue'),
+    path: "/login",
+    name: "login",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/Login/index.vue"),
     hidden: true,
     meta: {
-      title: "登录"
-    }
+      title: "登录",
+    },
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/Register/index.vue'),
+    path: "/register",
+    name: "register",
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register/index.vue"),
     hidden: true,
     meta: {
-      title: "注册"
-    }
+      title: "注册",
+    },
   },
   // Register
 ];

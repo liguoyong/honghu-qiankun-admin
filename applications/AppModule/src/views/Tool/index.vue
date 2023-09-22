@@ -1,9 +1,10 @@
 <template>
     <div class="layout-wrapper tool-container">
-        <el-tabs :tab-position="tabPosition" style="height: 200px" class="demo-tabs">
+        <el-tabs :tab-position="tabPosition" class="demo-tabs">
             <el-tab-pane v-for="(item, index) in configList" :key="index" :label="item.label">
                 <div class="tool-tab-container" v-if="item.data.length">
-                    <div class="tool-tab-item" v-for="(it, id) in item.data" :key="id" @click="handelToUrl(it.url)">
+                    <div class="tool-tab-item" v-for="(it, id) in item.data" :key="id"
+                        @click="handelToUrl(it.url, it.target)">
                         <img class="tool-tab-img" :src="it.icon" alt="" srcset="" />
                         <div class="tool-tab-title">{{ it.title || '' }}</div>
                         <div class="tool-tab-description">{{ it.description || '' }}</div>
@@ -18,28 +19,43 @@
 </template>
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const configList = reactive([
+    {
+        label: '办公专区', data: [{
+            icon: 'https://img1.baidu.com/it/u=281324014,160585262&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+            url: '/operational/tool/json',
+            title: 'JSON格式化',
+            description: '格式化JSON数据',
+            target: '_self',
+        }]
+    },
     {
         label: '技术专区', data: [{
             icon: 'http://cxy521.com/static/img/index/tech/cnblogs.png',
             url: 'https://www.cnblogs.com/',
             title: '博客园',
-            description: '开发者的网上家园'
+            description: '开发者的网上家园',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/tech/csdn.png',
             url: 'https://www.csdn.net/',
             title: 'CSDN',
-            description: '中文最大的技术社区'
+            description: '中文最大的技术社区',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/tech/juejin.png',
             url: 'https://juejin.cn/',
             title: '掘金',
-            description: '一个帮助开发者成长的社区'
+            description: '一个帮助开发者成长的社区',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/tech/stackoverflow.svg',
             url: 'https://stackoverflow.com/',
             title: 'StackOverflow',
-            description: '全球最大的技术问答社区'
+            description: '全球最大的技术问答社区',
+            target: '_blank',
         }]
     },
     {
@@ -47,22 +63,26 @@ const configList = reactive([
             icon: 'http://cxy521.com/static/img/index/study/cn.ico',
             url: 'https://www.runoob.com/',
             title: '菜鸟教程',
-            description: '学的不仅是技术，更是梦想！'
+            description: '学的不仅是技术，更是梦想！',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/study/github.svg',
             url: 'https://github.com/',
             title: 'GitHub',
-            description: '世界最大的开源代码共享社区'
+            description: '世界最大的开源代码共享社区',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/study/gitee.png',
             url: 'https://gitee.com/',
             title: 'Gitee',
-            description: '中国最大的开源代码共享社区'
+            description: '中国最大的开源代码共享社区',
+            target: '_blank',
         }, {
             icon: 'http://cxy521.com/static/img/index/study/w3.png',
             url: 'https://www.w3school.com.cn/',
             title: 'W3school',
-            description: '全球最大的中文 Web 技术教程'
+            description: '全球最大的中文 Web 技术教程',
+            target: '_blank',
         }]
     },
     { label: '摸鱼专区', data: [] },
@@ -70,8 +90,13 @@ const configList = reactive([
     { label: '私活专区', data: [] }])
 const tabPosition = ref('right')
 // 跳转页面
-const handelToUrl = (url: string) => {
-    window.open(url, '_blank')
+const handelToUrl = (url: string, target: undefined | string) => {
+    if (target === '_self') {
+        router.push(url)
+    } else {
+        window.open(url, '_blank')
+    }
+
 }
 </script>
 <style lang="scss" scoped>
