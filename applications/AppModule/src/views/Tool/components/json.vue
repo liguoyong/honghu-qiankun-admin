@@ -115,7 +115,11 @@ export default {
                     this.textarea = ''
                     break;
                 case 'Download':
-                    this.exportData(this.jsonData);
+                    !this.jsonData && ElMessage({
+                        type: 'warning',
+                        message: '暂无数据'
+                    })
+                    this.jsonData && this.exportData(this.jsonData);
                     break;
                 default: break;
             }
