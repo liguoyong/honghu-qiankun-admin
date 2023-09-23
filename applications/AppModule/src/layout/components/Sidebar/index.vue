@@ -2,8 +2,8 @@
   <logo />
   <div class="el-menu-slider-container">
     <el-scrollbar>
-      <el-menu :default-active="$route.path" background-color="#fff" text-color="#031321" active-text-color="#1890ff"
-        mode="vertical" router :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+      <el-menu v-model="activeMenu" :default-active="activeMenu" background-color="#fff" text-color="#031321"
+        active-text-color="#1890ff" mode="vertical" router :collapse="isCollapse" @open="handleOpen" @close="handleClose">
         <sidebar-item v-for="item in routerData" :item="item" :key="item.path"></sidebar-item>
       </el-menu>
     </el-scrollbar>
@@ -11,17 +11,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import SidebarItem from "./SidebarItem.vue";
 import Logo from "./Logo.vue";
 import { routes } from "@/router/index.js";
+import { useRoute } from 'vue-router'
 import { useAppStore } from "@/store/app.js";
+const route = useRoute()
+
 const appStore = useAppStore();
 import _ from "lodash";
-console.log(routes, "routes");
+console.log(routes, "routes", route, 'route');
 const { isCollapse } = storeToRefs(appStore);
-
+console.log(route, 'routerouterouterouterouterouterouterouterouterouterouterouterouterouterouterouterouteroute');
+const activeMenu = ref(route.meta.activeMenu || route.path)
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath);
 };
@@ -57,8 +61,14 @@ const getMenuList = function (data, basePath) {
 const menuData = _.cloneDeep(routes);
 const routerData = getMenuList(menuData);
 console.log(routerData, "routerData");
-const logo =
-  "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png";
+const logo = "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png";
+watch(route, (newRoute, oldRoute) => {
+  // 只在初始化时执行一次回调函数
+  const { activeMenu } = newRoute
+  activeMenu ? activeMenu.value = activeMenu : ''
+})
+
+
 </script>
 
 <style lang="scss">

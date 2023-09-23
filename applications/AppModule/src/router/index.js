@@ -87,6 +87,7 @@ export const routes = [
           ),
         meta: {
           title: "工具中心-json",
+          activeMenu: '/operational/tool'
         },
       },
       {

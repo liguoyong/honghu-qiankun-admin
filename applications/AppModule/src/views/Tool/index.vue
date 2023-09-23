@@ -2,8 +2,8 @@
     <div class="layout-wrapper tool-container">
         <el-tabs :tab-position="tabPosition" class="demo-tabs">
             <el-tab-pane v-for="(item, index) in configList" :key="index" :label="item.label">
-                <div class="tool-tab-container" v-if="item.data.length">
-                    <div class="tool-tab-item" v-for="(it, id) in item.data" :key="id"
+                <div class="tool-tab-container" v-if="item.children.length">
+                    <div class="tool-tab-item" v-for="(it, id) in item.children" :key="id"
                         @click="handelToUrl(it.url, it.target)">
                         <img class="tool-tab-img" :src="it.icon" alt="" srcset="" />
                         <div class="tool-tab-title">{{ it.title || '' }}</div>
@@ -23,7 +23,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const configList = reactive([
     {
-        label: '办公专区', data: [{
+        label: '办公专区', children: [{
             icon: 'https://img1.baidu.com/it/u=281324014,160585262&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
             url: '/operational/tool/json',
             title: 'JSON格式化',
@@ -32,7 +32,7 @@ const configList = reactive([
         }]
     },
     {
-        label: '技术专区', data: [{
+        label: '技术专区', children: [{
             icon: 'http://cxy521.com/static/img/index/tech/cnblogs.png',
             url: 'https://www.cnblogs.com/',
             title: '博客园',
@@ -59,7 +59,7 @@ const configList = reactive([
         }]
     },
     {
-        label: '学习专区', data: [{
+        label: '学习专区', children: [{
             icon: 'http://cxy521.com/static/img/index/study/cn.ico',
             url: 'https://www.runoob.com/',
             title: '菜鸟教程',
@@ -85,9 +85,30 @@ const configList = reactive([
             target: '_blank',
         }]
     },
-    { label: '摸鱼专区', data: [] },
-    { label: '资源专区', data: [] },
-    { label: '私活专区', data: [] }])
+    {
+        label: '框架专区', children: [{
+            icon: 'http://www.alloyteam.com/nav/static/images/vue-favicon.png',
+            url: 'https://cn.vuejs.org/',
+            title: 'Vue',
+            description: '构建数据驱动的web界面的渐进式框架',
+            target: '_blank',
+        },{
+            icon: 'http://www.alloyteam.com/nav/static/images/react-favicon.png',
+            url: 'https://react.dev/',
+            title: 'React',
+            description: '用于构建用户界面的Javscript库',
+            target: '_blank',
+        },{
+            icon: 'https://www.midwayjs.org/img/logo.svg',
+            url: 'https://www.midwayjs.org/',
+            title: 'Midway',
+            description: '基于渐进式理念研发的 Node.js 框架',
+            target: '_blank',
+        }]
+    },
+    { label: '摸鱼专区', children: [] },
+    { label: '资源专区', children: [] },
+    { label: '私活专区', children: [] }])
 const tabPosition = ref('right')
 // 跳转页面
 const handelToUrl = (url: string, target: undefined | string) => {

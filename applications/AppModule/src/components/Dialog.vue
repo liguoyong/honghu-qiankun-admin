@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="show"
-    custom-class="commonDialog"
+    class="commonDialog"
     :close-on-click-modal="closeOnClickModal"
     :title="title"
     draggable
