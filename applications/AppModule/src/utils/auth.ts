@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import storageSession from './storage.ts';
+import storageSession from './storage';
 export interface DataInfo<T> {
     /** token */
     accessToken: string;

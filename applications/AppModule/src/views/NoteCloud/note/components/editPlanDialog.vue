@@ -90,8 +90,6 @@ const setValue = () => {
 }
 onMounted(() => {
     myQuillEditor2.value && toRaw(myQuillEditor2.value).setHTML(props.dialog.form.content)
-    console.log(props.dialog.form, 'props.dialog.form');
-
 });
 function handleSubmit() {
     const form = {

@@ -44,3 +44,8 @@ export const refreshTokenApi = (data?: object) => {
 export const getUserInfo = async (data?: object) => {
   return await http.request<UserResult>("post", "/api/user/info", { data });
 };
+
+// 更新用户信息
+export const updateUserInfo = async (data?: object) => {
+  return await http.request<UserResult>("post", "/api/user/update", { data });
+};

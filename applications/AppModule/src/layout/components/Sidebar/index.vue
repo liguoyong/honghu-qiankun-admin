@@ -22,9 +22,7 @@ const route = useRoute()
 
 const appStore = useAppStore();
 import _ from "lodash";
-console.log(routes, "routes", route, 'route');
 const { isCollapse } = storeToRefs(appStore);
-console.log(route, 'routerouterouterouterouterouterouterouterouterouterouterouterouterouterouterouterouteroute');
 const activeMenu = ref(route.meta.activeMenu || route.path)
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath);
@@ -60,12 +58,11 @@ const getMenuList = function (data, basePath) {
 };
 const menuData = _.cloneDeep(routes);
 const routerData = getMenuList(menuData);
-console.log(routerData, "routerData");
 const logo = "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png";
 watch(route, (newRoute, oldRoute) => {
   // 只在初始化时执行一次回调函数
-  const { activeMenu } = newRoute
-  activeMenu ? activeMenu.value = activeMenu : ''
+  const activeMenuPath = newRoute.meta.activeMenu || ''
+  activeMenuPath ? activeMenu.value = activeMenuPath : ''
 })
 
 

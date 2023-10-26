@@ -1,16 +1,18 @@
 import { defineStore } from 'pinia'
-import {getUserInfo} from '../api/user'
+import { getUserInfo } from '../api/user'
 
 // 第一个参数是应用程序中 store 的唯一 id
 export const useUsersStore = defineStore('users', {
   // 其它配置项
   state: () => {
     return {
-      username: "",
+      username: '',
       password: '',
       roles: '',
       avatar: '',
-      userId: "",
+      userId: '',
+      phone: '',
+      email: ''
     }
   },
   getters: {
@@ -22,11 +24,11 @@ export const useUsersStore = defineStore('users', {
       this.roles = data.roles
       this.avatar = data.avatar
       this.userId = data.userId
+      this.phone = data.phone
     },
     async GET_USER_INFO() {
-       const userInfo = await getUserInfo()
-       console.log(userInfo, 'userInfo');
-       this.SET_USER_INFO(userInfo.data)
+      const userInfo = await getUserInfo()
+      this.SET_USER_INFO(userInfo.data)
     }
   }
 })

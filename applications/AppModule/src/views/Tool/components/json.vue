@@ -1,5 +1,6 @@
 <template>
     <div class="layout-wrapper json-contianer">
+        <com-page-header title="JSON格式化" @back="goBack" />
         <el-row :gutter="24">
             <el-col :span="12">
                 <el-input type="textarea" autosize placeholder="请输入内容" v-model="textarea">
@@ -32,8 +33,7 @@ import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 import data from '../../../../package.json'
 import { ElMessage } from 'element-plus'
-import clipboard3 from 'vue-clipboard3'
-const { toClipboard } = clipboard3()
+import { copyText } from '@/utils/common'
 export default {
     components: {
         VueJsonPretty,
@@ -95,19 +95,7 @@ export default {
                     this.showLineNumber = data.active
                     break;
                 case 'DocumentCopy': // 复制文本
-                    try {
-                        await toClipboard(!this.prettyConfig[0].active ? JSON.stringify(this.jsonData) : this.coinData)
-                        ElMessage({
-                            type: 'success',
-                            message: '复制成功!'
-                        })
-                    } catch (err) {
-                        console.error(err)
-                        ElMessage({
-                            type: 'error',
-                            message: '复制失败，请手动复制'
-                        })
-                    }
+                    copyText(!this.prettyConfig[0].active ? JSON.stringify(this.jsonData) : this.coinDat)
                     break;
                 case 'DeleteFilled': // 清空内容
                     this.jsonData = ''
@@ -142,6 +130,9 @@ export default {
             // 释放URL资源
             URL.revokeObjectURL(a.href);
             a.remove();
+        },
+        goBack() {
+            this.$router.push('/operational/tool')
         }
     }
 };
@@ -158,7 +149,7 @@ export default {
     }
 
     .el-textarea :deep(.el-textarea__inner) {
-        height: 100% !important;
+        height: calc(100%  - 24px) !important;
     }
 
     .json-operator-container {

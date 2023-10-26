@@ -34,7 +34,6 @@ export default defineComponent({
     }
   },
   setup(props) {
-    // console.log(props.item, 'item', props.item.path);
   }
 });
 </script>

@@ -29,9 +29,16 @@
     {
       "name": "DesignerModule",
       "path": "../applications/DesignerModule",
-      "entry":"//localhost:2004",
-    "activeRule": "/operational/designer",
-      "appPort": 2004
+      "entry":"//localhost:21004",
+      "activeRule": "/design/index",
+      "appPort": 21004
+    },
+    {
+      "name": "ReactModule",
+      "path": "../applications/ReactModule",
+      "entry": "//localhost:2005",
+      "activeRule": "/react/list",
+      "appPort": 2005
     }
   ]
 }

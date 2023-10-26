@@ -4,6 +4,4 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { registerMicroApps, start,setDefaultMountApp } from 'qiankun';
-// setDefaultMountApp("/operational/cloud");
 </script>

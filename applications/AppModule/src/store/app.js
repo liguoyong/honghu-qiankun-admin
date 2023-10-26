@@ -9,4 +9,3 @@ export const useAppStore = defineStore('app', {
     }
   },
 })
-//  default useAppStore

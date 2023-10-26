@@ -31,8 +31,9 @@ const title = '鸿鹄云平台'
 <style lang="scss" scoped>
 .sidebar-logo-container {
   height: 64px;
-  background: var(--el-color-primary);
+  // background: var(--el-color-primary);
   overflow: hidden;
+  background: #387FF7;
   &.expand {
     .sidebar-logo-link {
       margin-left: 12px;

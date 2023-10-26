@@ -1,27 +1,3 @@
-<script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { storeToRefs } from 'pinia';
-import { useRouter, useRoute } from 'vue-router';
-import sidebar from './components/Sidebar/index.vue'
-import { useAppStore } from "@/store/app.js"
-import { useUsersStore } from "@/store/user.js"
-import {removeToken} from "@/utils/auth"
-const userStore = useUsersStore()
-const appStore = useAppStore()
-const router = useRouter()
-const route = useRoute()
-const { isCollapse } = storeToRefs(appStore)
-
-const handleChangeCollapse = function (collapse) {
-  appStore.isCollapse = collapse
-}
-const logout = () => {
-  console.log(route.path, 'path');
-  removeToken()
-  let path = route.path
-  router.push({ path: '/login', query: { redirect: path } })
-}
-</script>
 <template>
   <div class="common-layout">
     <el-container>
@@ -30,16 +6,16 @@ const logout = () => {
       </el-aside>
       <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
         <el-header>
-          <el-icon class="collapseIcon" v-if="isCollapse" @click="handleChangeCollapse(false)">
-            <Expand />
-          </el-icon>
-          <el-icon class="expandIcon" v-else @click="handleChangeCollapse(true)">
-            <Fold />
-          </el-icon>
+          <div class="common-header-left">
+            <svg-icon name="hamburger" class="el-icon hamburger-icon" :class="{ 'isCollapse': isCollapse }"
+              @click="handleChangeCollapse(isCollapse)"></svg-icon>
+            <breadcrumb />
+          </div>
           <div class="common-right-menu">
             <el-dropdown trigger="hover">
               <span>
-                <el-icon>
+                <img class="avatar-icon" v-if="userStore.avatar" :src="userStore.avatar" alt="" srcset="" />
+                <el-icon v-else>
                   <Avatar />
                 </el-icon>
                 <span class="user-name">{{ userStore.username }}</span>
@@ -47,7 +23,7 @@ const logout = () => {
               <template #dropdown>
                 <el-dropdown-menu class="logout">
                   <el-dropdown-item @click="logout">
-                    退出系统
+                    <svg-icon name="logout_active"></svg-icon>退出系统
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -68,11 +44,37 @@ const logout = () => {
     </el-container>
   </div>
 </template>
+<script lang="ts" setup>
+import { defineComponent } from 'vue'
+import { storeToRefs } from 'pinia';
+import { useRouter, useRoute } from 'vue-router';
+import sidebar from './components/Sidebar/index.vue'
+import breadcrumb from './components/Breadcrumb.vue'
+import { useAppStore } from "@/store/app.js"
+import { useUsersStore } from "@/store/user.js"
+import { removeToken } from "@/utils/auth"
+const userStore = useUsersStore()
+const appStore = useAppStore()
+const router = useRouter()
+const route = useRoute()
+const { isCollapse } = storeToRefs(appStore)
+
+const handleChangeCollapse = function (collapse: boolean) {
+  console.log(collapse, 'collapse');
+  appStore.isCollapse = !collapse
+}
+const logout = () => {
+  removeToken()
+  let path = route.path
+  router.push({ path: '/login', query: { redirect: path } })
+}
+</script>
 <style lang="scss" scoped>
 .common-layout {
   width: 100%;
   height: 100vh;
   font-size: 14px;
+
   .common-layout-container {
     transition: all 0.3s;
     flex: 1;
@@ -85,7 +87,8 @@ const logout = () => {
 
   // header
   .el-header {
-    background: var(--el-color-primary);
+    // background: var(--el-color-primary);
+    background: linear-gradient(90deg, #387FF7 0%, #1890FF 99%);
     height: 64px;
     display: flex;
     vertical-align: middle;
@@ -98,6 +101,23 @@ const logout = () => {
       color: #fff;
       font-size: 20px;
       margin-left: 20px;
+      cursor: pointer;
+
+      &.isCollapse {
+        transform: rotate(180deg);
+      }
+    }
+
+    .common-header-left {
+      display: flex;
+
+      .hamburger-icon {
+        margin-right: 16px;
+      }
+
+      .el-breadcrumb {
+        line-height: 20px;
+      }
     }
 
     .common-right-menu {
@@ -105,6 +125,12 @@ const logout = () => {
       display: flex;
       align-items: center;
       margin-right: 30px;
+
+      .avatar-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
 
       span.user-name {
         margin-left: 6px;
@@ -124,6 +150,7 @@ const logout = () => {
     .app-container-view {
       height: 100%;
       background: #ffffff;
+      box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
     }
   }
 

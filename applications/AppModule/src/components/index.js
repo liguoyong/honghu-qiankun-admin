@@ -4,6 +4,7 @@ import ComTable from './table/Table.vue'
 import ComForm from './form/Form.vue'
 import ComDialog from './Dialog.vue'
 import ComPagination from './Pagination/index.vue'
+import ComPageHeader from './PageHeader/index.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const Components = {
@@ -13,6 +14,7 @@ const Components = {
   'com-form': ComForm,
   'com-dialog': ComDialog,
   'com-pagination': ComPagination,
+  'com-page-header': ComPageHeader,
 };
 
 // Object.keys()会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和正常循环遍历该对象时返回的顺序一致

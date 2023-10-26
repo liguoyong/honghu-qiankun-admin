@@ -83,9 +83,6 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
           ElMessage.error(res.msg || '')
         }
       })
-
-
-
       console.log('submit!')
     } else {
       console.log('error submit!', fields)

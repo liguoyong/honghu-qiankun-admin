@@ -78,7 +78,6 @@ const drawer = reactive({
   data: {}
 })
 const onSearch = () => {
-  console.log('submit!')
   getList()
 }
 const tableData = ref([])
@@ -94,7 +93,6 @@ getList()
 const transformTimeDate = (date: string) => {
   return date
 }
-console.log(tableData, 'tableData');
 
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -103,13 +101,11 @@ const resetForm = (formEl: FormInstance | undefined) => {
 }
 
 const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
   pageParams.size = val
   getList()
 }
 
 const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
   pageParams.page = val
   getList()
 }
@@ -129,7 +125,6 @@ const handelClickViewDetail = async (row: { 'id': string, [key: string]: string 
     drawer.title = '查看计划详情'
     drawer.data = data
   }
-  console.log(code, data, 'code, data')
 }
 const handelCreatePlan = () => {
   updateDialog.type = 'add'

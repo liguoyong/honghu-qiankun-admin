@@ -1,6 +1,6 @@
 <template>
     <div class="layout-wrapper">
-        <el-form :inline="true" :model="ruleForm" ref="noteFormRef" class="filter-container">
+        <el-form :inline="true" :model="ruleForm" ref="noteFormRef" @submit.prevent class="filter-container">
             <el-form-item label="标题" prop="title">
                 <el-input v-model="ruleForm.title" placeholder="请输入标题" clearable />
             </el-form-item>
@@ -44,8 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 
 import { getNotesList, getDeleteNote, getNoteDetail } from '@/api/note'
 import type { FormInstance, FormRules } from 'element-plus'
@@ -79,7 +78,6 @@ const drawer = reactive({
     data: {}
 })
 const onSearch = () => {
-    console.log('submit!')
     getList()
 }
 const tableData = ref([])
@@ -99,17 +97,17 @@ const transformTimeDate = (date: string) => {
 const resetForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return
     formEl.resetFields()
+    pageParams.page = 1
+    getList()
 }
 
 const handleSizeChange = (val: number) => {
-    console.log(`${val} items per page`)
     pageParams.page = 1
     pageParams.size = val
     getList()
 }
 
 const handleCurrentChange = (val: number) => {
-    console.log(`current page: ${val}`)
     pageParams.page = val
     getList()
 }
@@ -129,7 +127,6 @@ const handelClickViewDetail = async (row: { 'id': string, [key: string]: string 
         drawer.title = '查看笔记详情'
         drawer.data = data
     }
-    console.log(code, data, 'code, data')
 }
 const handelCreateNote = () => {
     updateDialog.type = 'add'

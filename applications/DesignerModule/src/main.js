@@ -15,7 +15,7 @@ let instance = null;
 function render(props = {}) {
   const { container } = props;
   router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? "/operational/designer" : "/",
+    base: window.__POWERED_BY_QIANKUN__ ? "/design/index" : "/",
     mode: "hash",
     routes,
   });

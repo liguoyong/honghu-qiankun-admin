@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getUrlKey }  from '@/utils/tool.js'
+import { getUrlKey }  from '@/utils/common'
 export default {
   name: 'error404',
   methods:{

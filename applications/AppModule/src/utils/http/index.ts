@@ -51,7 +51,6 @@ class AdminHttp {
   private static retryOriginalRequest(config: AdminHttpRequestConfig) {
     return new Promise(resolve => {
       AdminHttp.requests.push((token: string) => {
-        console.log('token', token, formatToken(token))
         config.headers["Authorization"] = formatToken(token);
         resolve(config);
       });
@@ -75,13 +74,10 @@ class AdminHttp {
         }
         /** 请求白名单，放置一些不需要token的接口（通过设置请求白名单，防止token过期后再请求造成的死循环问题） */
         const whiteList = ["/refreshToken", "/api/user/login"];
-        console.log(config, 'configconfigconfigconfigconfigconfigconfigconfigconfigconfigconfigconfigconfigconfigconfig');
-
         return whiteList.find(url => url === config.url)
           ? config
           : new Promise(resolve => {
             const data = getToken();
-            console.log(data, 'datadatadatadatadatadatadatadatadatadatadatadata');
 
             if (data) {
               config.headers["Authorization"] = formatToken(

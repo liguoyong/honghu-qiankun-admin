@@ -20,49 +20,150 @@ export const routes = [
           import(/* webpackChunkName: "home" */ "../views/Home/index.vue"),
         meta: {
           title: "首页",
+          activeMenu: '/'
         },
       },
     ],
   },
   {
-    path: "/noteCloud",
-    name: "noteCloud",
+    path: "/note",
+    name: "note",
     component: Layout,
+    redirect: { name: "NoteIndex" },
     meta: {
-      title: "笔记管理",
+      title: "笔记管理中心",
       icon: "Management",
     },
     children: [
       {
-        path: "note",
-        name: "noteCloud-note",
+        path: "index",
+        name: "NoteIndex",
         component: () =>
           import(
-            /* webpackChunkName: "notecloudnote" */ "../views/NoteCloud/note/index.vue"
+            /* webpackChunkName: "noteNote" */ "../views/NoteCloud/note/index.vue"
           ),
         meta: {
           title: "笔记",
+          activeMenu: '/note/index'
         },
       },
       {
         path: "plan",
-        name: "noteCloud-plan",
+        name: "notePlan",
         component: () =>
           import(
-            /* webpackChunkName: "createNoteCloudPlan" */ "../views/NoteCloud/note/plan.vue"
+            /* webpackChunkName: "notePlan" */ "../views/NoteCloud/note/plan.vue"
           ),
         meta: {
           title: "计划",
+          activeMenu: '/note/plan'
+        },
+      }
+    ],
+  },
+  {
+    path: "/life",
+    name: "noteCloud",
+    component: Layout,
+    redirect: { name: "lifePlan" },
+    meta: {
+      title: "生活管理中心",
+      icon: "GoodsFilled",
+    },
+    children: [
+      {
+        path: "plan",
+        name: "lifePlan",
+        component: () =>
+          import(
+            /* webpackChunkName: "lifePlan" */ "../views/Life/plan/index.vue"
+          ),
+        meta: {
+          title: "人生计划",
+          activeMenu: '/life/plan'
         },
       },
+      {
+        path: "pay",
+        name: "lifePay",
+        component: () =>
+          import(
+            /* webpackChunkName: "lifePay" */ "../views/Life/pay/index.vue"
+          ),
+        meta: {
+          title: "收支管理",
+          activeMenu: '/life/pay'
+        },
+      },
+      {
+        path: "bill",
+        name: "lifeBill",
+        component: () =>
+          import(
+            /* webpackChunkName: "lifeBill" */ "../views/Life/bill/index.vue"
+          ),
+        meta: {
+          title: "账单管理",
+          activeMenu: '/life/bill'
+        },
+      },
+    ],
+  },
+  {
+    path: "/work",
+    name: "workMgr",
+    component: Layout,
+    redirect: { name: "workTodo" },
+    meta: {
+      title: "办公管理中心",
+      icon: "GoodsFilled",
+    },
+    children: [
+      {
+        path: "todo",
+        name: "workTodo",
+        component: () =>
+          import(
+            /* webpackChunkName: "workTodo" */ "../views/Work/todo/index.vue"
+          ),
+        meta: {
+          title: "待办事项",
+          activeMenu: '/work/todo'
+        },
+      }
+    ],
+  },
+  {
+    path: "/design",
+    name: "designMgr",
+    component: Layout,
+    redirect: { name: "designIndex" },
+    meta: {
+      title: "设计管理中心",
+      icon: "GoodsFilled",
+    },
+    children: [
+      {
+        path: "index",
+        name: "designIndex",
+        component: () =>
+          import(
+            /* webpackChunkName: "designIndex" */ "../views/Design/design/index.vue"
+          ),
+        meta: {
+          title: "设计配置",
+          activeMenu: '/design/index'
+        },
+      }
     ],
   },
   {
     path: "/operational",
     name: "operational",
     component: Layout,
+    redirect: { name: "tool" },
     meta: {
-      title: "工具管理",
+      title: "工具管理中心",
       icon: "MostlyCloudy",
     },
     children: [
@@ -74,7 +175,7 @@ export const routes = [
             /* webpackChunkName: "operational" */ "../views/Tool/index.vue"
           ),
         meta: {
-          title: "工具中心",
+          title: "工具专区",
         },
       },
       {
@@ -91,36 +192,16 @@ export const routes = [
         },
       },
       {
-        path: "cloud",
-        name: "operational-cloud",
+        path: "tool/svg",
+        name: "toolSvgPreview",
+        hidden: true,
         component: () =>
           import(
-            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
+            /* webpackChunkName: "SvgPreviewJSON" */ "../views/Tool/components/SvgPreview.vue"
           ),
         meta: {
-          title: "操作云中心",
-        },
-      },
-      {
-        path: "capability",
-        name: "operational-capability",
-        component: () =>
-          import(
-            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
-          ),
-        meta: {
-          title: "赋能控制",
-        },
-      },
-      {
-        path: "designer",
-        name: "operational-designer",
-        component: () =>
-          import(
-            /* webpackChunkName: "operational" */ "../views/Operational/index.vue"
-          ),
-        meta: {
-          title: "设计器控制",
+          title: "svg预览",
+          activeMenu: '/operational/tool'
         },
       },
     ],
@@ -129,6 +210,7 @@ export const routes = [
     path: "/user",
     name: "user",
     component: Layout,
+    redirect: { name: "userList" },
     meta: {
       title: "用户管理",
       icon: "User",
@@ -136,15 +218,28 @@ export const routes = [
     children: [
       {
         path: "list",
-        name: "operational-list",
+        name: "userList",
         component: () =>
           import(
-            /* webpackChunkName: "operational" */ "../views/User/index.vue"
+            /* webpackChunkName: "userList" */ "../views/User/index.vue"
           ),
         meta: {
           title: "用户列表",
+          activeMenu: '/user/list'
         },
       },
+      {
+        path: 'info',
+        name: 'userInformation',
+        meta: {
+          title: '用户资料',
+          activeMenu: '/user/info'
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "userInformation" */ "../views/User/information/index.vue"
+          )
+      }
     ],
   },
   {
@@ -167,16 +262,10 @@ export const routes = [
       title: "注册",
     },
   },
-  // Register
 ];
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-// router.beforeEach((to, from, next) => {
-//   if (_.isEmpty(history.state.current)) {
-//     _.assign(history.state, { current: from.fullPath });
-//   }
-//   next();
-// });
+
 export default router;

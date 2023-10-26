@@ -1,5 +1,5 @@
 <template>
-    <el-drawer class="noteDrawer" v-model="props.drawer.show" :modal="false" size="578px" :direction="direction">
+    <el-drawer class="noteDrawer" v-model="props.drawer.show" size="578px" :direction="direction">
         <template #header>
             <h4>{{ props.drawer.title }}</h4>
         </template>
