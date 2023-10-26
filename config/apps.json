@@ -22,7 +22,7 @@
       "name": "UserManagementModule",
       "path": "../applications/UserManagementModule",
       "entry": "//localhost:2003/vue3Vite",
-      "activeRule": "/user",
+      "activeRule": "/user/list",
       "appPort": 2003
     },
     {

@@ -164,7 +164,7 @@ export const routes = [
             /* webpackChunkName: "designPathIndex" */ "../views/Design/design/index.vue"
           ),
         meta: {
-          title: "设计配置2",
+          title: "设计配置",
           activeMenu: '/design/index'
         },
       }
@@ -235,6 +235,19 @@ export const routes = [
         component: () =>
           import(
             /* webpackChunkName: "userList" */ "../views/User/index.vue"
+          ),
+        meta: {
+          title: "用户列表",
+          activeMenu: '/user/list'
+        },
+      },
+      {
+        path: "list/:path",
+        name: "userPathList",
+        hidden: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "userPathList" */ "../views/User/index.vue"
           ),
         meta: {
           title: "用户列表",

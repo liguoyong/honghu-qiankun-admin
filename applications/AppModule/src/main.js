@@ -56,5 +56,7 @@ registerMicroApps(apps, {
     }
   ]
 });
-// setDefaultMountApp("/");
+
+const defaultPath = apps.find(item => window.location.pathname.includes(item.activeRule))
+defaultPath && setDefaultMountApp(defaultPath.activeRule);
 start();
