@@ -11,6 +11,16 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   filenameHashing: true,
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/scss/variable.scss";`,
+      },
+      scss: {
+        additionalData: `@import "@/scss/variable.scss";`,
+      },
+    },
+  },
   devServer: {
     hot: true,
     disableHostCheck: true,
