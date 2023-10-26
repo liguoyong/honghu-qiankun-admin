@@ -294,7 +294,7 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  if (_.isEmpty(history.state.current)) {
+  if (_.isEmpty(history.state.current) && history.state.current !== '/') {
     _.assign(history.state, { current: from.fullPath });
   }
   next();
