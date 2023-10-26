@@ -36,7 +36,7 @@
       "name": "ReactModule",
       "path": "../applications/ReactModule",
       "entry": "//localhost:2005",
-      "activeRule": "/react/list",
+      "activeRule": "/user/react",
       "appPort": 2005
     }
   ]

@@ -255,6 +255,18 @@ export const routes = [
         },
       },
       {
+        path: 'react',
+        name: 'userReact',
+        meta: {
+          title: 'react',
+          activeMenu: '/user/react'
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "userReact" */ "../views/React/index.vue"
+          )
+      },
+      {
         path: 'info',
         name: 'userInformation',
         meta: {
