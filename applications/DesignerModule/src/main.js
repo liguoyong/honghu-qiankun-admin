@@ -1,31 +1,28 @@
-import "./public-path";
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-import Vue from "vue";
-import VueRouter from "vue-router";
-import App from "./App.vue";
-import routes from "./router";
-import store from "./store";
+import './public-path';
+import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import App from './App.vue';
+import routes from './router';
+import store from './store';
 
-Vue.config.productionTip = false;
-Vue.use(ElementUI);
 let router = null;
 let instance = null;
+let history = null;
+
 
 function render(props = {}) {
   const { container } = props;
-  router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? "/design/index" : "/",
-    mode: "hash",
+  history = createWebHistory(window.__POWERED_BY_QIANKUN__ ? '/design/index' : '/');
+  console.log(history, window.__POWERED_BY_QIANKUN__, "history");
+  router = createRouter({
+    history,
     routes,
   });
 
-  instance = new Vue({
-    router,
-    store,
-    render: (h) => h(App),
-  }).$mount(container ? container.querySelector("#app") : "#app");
-
+  instance = createApp(App);
+  instance.use(router);
+  instance.use(store);
+  instance.mount(container ? container.querySelector('#app') : '#app');
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -33,18 +30,38 @@ if (!window.__POWERED_BY_QIANKUN__) {
 }
 
 export async function bootstrap() {
-  console.log("[vue] vue app bootstraped");
+  console.log('%c ', 'color: green;', 'vue3.0 app bootstraped');
+}
+
+function storeTest(props) {
+  props.onGlobalStateChange &&
+    props.onGlobalStateChange(
+      (value, prev) => console.log(`[onGlobalStateChange - ${props.name}]:`, value, prev),
+      true,
+    );
+  props.setGlobalState &&
+    props.setGlobalState({
+      ignore: props.name,
+      user: {
+        name: props.name,
+      },
+    });
 }
 
 export async function mount(props) {
-  console.log("[vue] props from main framework", props);
-  Vue.prototype.$qiankun=props
+  storeTest(props);
   render(props);
+
+  instance.config.globalProperties.$onGlobalStateChange = props.onGlobalStateChange;
+  instance.config.globalProperties.$setGlobalState = props.setGlobalState;
+  //   console.log(instance.config.globalProperties.$route,"444444444");
 }
 
 export async function unmount() {
-  instance.$destroy();
-  instance.$el.innerHTML = "";
+  console.log("vue3被卸载了");
+  instance.unmount();
+  instance._container.innerHTML = '';
   instance = null;
   router = null;
+  history.destroy();
 }

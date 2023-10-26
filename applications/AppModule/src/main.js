@@ -56,5 +56,5 @@ registerMicroApps(apps, {
     }
   ]
 });
-setDefaultMountApp("/");
+// setDefaultMountApp("/");
 start();

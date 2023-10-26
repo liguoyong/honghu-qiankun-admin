@@ -1,6 +1,5 @@
 {
-  "apps": [
-    {
+  "apps": [{
       "name": "AppModule",
       "path": "../applications/AppModule",
       "appPort": 2000
@@ -8,7 +7,7 @@
     {
       "name": "CapabilityModule",
       "path": "../applications/CapabilityModule",
-      "entry":"//localhost:2001/vue3",
+      "entry": "//localhost:2001/vue3",
       "activeRule": "/operational/capability",
       "appPort": 2001
     },
@@ -22,16 +21,16 @@
     {
       "name": "UserManagementModule",
       "path": "../applications/UserManagementModule",
-      "entry":"//localhost:2003/vue3Vite",
+      "entry": "//localhost:2003/vue3Vite",
       "activeRule": "/user",
       "appPort": 2003
     },
     {
       "name": "DesignerModule",
       "path": "../applications/DesignerModule",
-      "entry":"//localhost:21004",
+      "entry": "//localhost:2004",
       "activeRule": "/design/index",
-      "appPort": 21004
+      "appPort": 2004
     },
     {
       "name": "ReactModule",

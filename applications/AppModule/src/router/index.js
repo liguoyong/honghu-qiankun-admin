@@ -10,7 +10,7 @@ export const routes = [
     redirect: { name: "homePage" },
     meta: {
       title: "首页",
-      icon: "House",
+      icon: "HomeFilled",
     },
     children: [
       {
@@ -116,7 +116,7 @@ export const routes = [
     redirect: { name: "workTodo" },
     meta: {
       title: "办公管理中心",
-      icon: "GoodsFilled",
+      icon: "SuitcaseLine",
     },
     children: [
       {
@@ -140,7 +140,7 @@ export const routes = [
     redirect: { name: "designIndex" },
     meta: {
       title: "设计管理中心",
-      icon: "GoodsFilled",
+      icon: "Present",
     },
     children: [
       {
@@ -152,6 +152,19 @@ export const routes = [
           ),
         meta: {
           title: "设计配置",
+          activeMenu: '/design/index'
+        },
+      },
+      {
+        path: "index/:path",
+        name: "designPathIndex",
+        hidden: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "designPathIndex" */ "../views/Design/design/index.vue"
+          ),
+        meta: {
+          title: "设计配置2",
           activeMenu: '/design/index'
         },
       }
@@ -267,5 +280,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  if (_.isEmpty(history.state.current)) {
+    _.assign(history.state, { current: from.fullPath });
+  }
+  next();
+});
 export default router;

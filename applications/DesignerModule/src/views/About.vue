@@ -1,22 +1,30 @@
 <template>
-  <div class="about">
+  <div class="about-content">
     <h1>This is about page</h1>
-     <h1>我是一级路由</h1>
-    <el-button type="primary" @click='clickTo'>跳转二级路由</el-button>
+    <test />
   </div>
 </template>
+
 <script>
+import { defineAsyncComponent } from 'vue'
+
 export default {
-  methods:{
-    clickTo(){
-      this.$router.push('//text-32')
-    }
-  }
-}
+  name: 'About',
+  components: {
+    test: defineAsyncComponent(() =>
+      import('./a.vue')
+    )
+  },
+  mounted() {
+    console.log(this.$route);
+  },
+  setup() { },
+};
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.about {
+.about-content {
   color: #7265e6;
 }
 </style>

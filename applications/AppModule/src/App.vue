@@ -44,7 +44,6 @@ export default {
     const user = useUsersStore();
     const app = useAppStore()
     console.log(user, app, "storestore");
-    /* 这里模拟主程序更改了全局变量 */
     setTimeout(() => {
       store.setGlobalState({
         ignore: '***********main',

@@ -1,68 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png"/>
-    <HelloWorld msg="Vue.js Demo"/>
-
-    <el-button @click="dialogVisible = true" type="text">Open Dialog</el-button>
-    <div>
-        <el-button @click="changeGlobState" type="text">改变全局变量</el-button>
-    </div>
-    <div>
-        <el-button @click="gotoDetail" type="text">跳到嵌套三级路由</el-button>
-    </div>
-
-
-    <el-dialog
-      :before-close="handleClose"
-      :visible.sync="dialogVisible"
-      title="Dialog"
-      width="30%">
-      <span>dialog message</span>
-      <span class="dialog-footer" slot="footer">
-        <el-button @click="dialogVisible = false">cancel</el-button>
-        <el-button @click="dialogVisible = false" type="primary">ok</el-button>
-      </span>
-    </el-dialog>
-  </div>
-
+  <img alt="Vue logo" src="../assets/logo.png" />
+  <HelloWorld msg="Vue.js Demo" @close="close"> </HelloWorld>
 </template>
 
 <script>
-  // @ is an alias to /src
-  import HelloWorld from '@/components/HelloWorld.vue';
+import HelloWorld from '@/components/HelloWorld.vue';
 
-  export default {
-    name: 'home',
-    components: {
-      HelloWorld,
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+  },
+  created() {
+    console.log('vue3home来了');
+  },
+  mounted() {
+    console.log(this.$route);
+  },
+  methods: {
+    close() {
+      console.log('close');
     },
-    data() {
-      return {
-        dialogVisible: false,
-      };
-    },
-    methods: {
-      gotoDetail(){
-        this.$router.push('/services/1')
-      },
-      handleClose(done) {
-        this.$confirm('Sure to close？')
-          .then(_ => {
-            done();
-          })
-          .catch(_ => {
-          });
-      },
-      changeGlobState(){
-            // 这里是主动改变主工程全局变量
-     this.$qiankun.setGlobalState &&
-    this.$qiankun.setGlobalState({
-      ignore: 'hhhhhh',
-      user: {
-        name: '我vue触发name',
-      },
-    });
-      }
-    },
-  };
+  },
+};
 </script>
+
+<style>
+/* #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+} */
+</style>

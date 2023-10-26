@@ -6,14 +6,18 @@ const AutoImport = require("unplugin-auto-import/webpack");
 const Components = require("unplugin-vue-components/webpack");
 const ElementPlus = require("unplugin-element-plus/webpack");
 const { ElementPlusResolver } = require("unplugin-vue-components/resolvers");
+import OptimizationPersist from "vite-plugin-optimize-persist";
+import PkgConfig from "vite-plugin-package-config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     svgBuilder('./src/icons/svg/'),
+    PkgConfig(),
+    OptimizationPersist(),
   ],
-  
+
   css: {
     preprocessorOptions: {
       scss: {
