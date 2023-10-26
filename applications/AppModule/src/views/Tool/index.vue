@@ -153,7 +153,14 @@ const configList = reactive([
 
         }]
     },
-    { label: '私活专区', children: [] }])
+    { label: '生活专区', children: [{
+            icon: 'https://img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg',
+            url: 'https://passer-by.com/relationship/',
+            title: '中国亲戚关系计算器',
+            description: '逢年过节遇到三姑六婆，拒绝叫不出口的尴尬！轻松搞定亲戚关系～',
+            target: '_blank',
+
+        }] }])
 const tabPosition = ref('right')
 // 跳转页面
 const handelToUrl = (url: string, target: undefined | string) => {
