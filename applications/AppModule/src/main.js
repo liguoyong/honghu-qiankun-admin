@@ -56,7 +56,9 @@ registerMicroApps(apps, {
     }
   ]
 });
-
-const defaultPath = apps.find(item => window.location.pathname.includes(item.activeRule))
-defaultPath && setDefaultMountApp(defaultPath.activeRule);
+window.addEventListener('load', function () {
+  console.log(document.getElementById('cnbi-viewport'), 'cnbi-viewport');
+  const defaultPath = apps.find(item => window.location.pathname.includes(item.activeRule))
+  defaultPath && setDefaultMountApp(defaultPath.activeRule);
+})
 start();
