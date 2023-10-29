@@ -1,0 +1,84 @@
+.Page-no-404{
+    position: relative;
+    height: calc(100vh - 64px);
+    background: rgb(145, 5, 198);
+    overflow: auto;
+    .page-no-main{
+        position: relative;
+        width: 80%;
+        height: 54.875rem;
+        background: rgb(255, 255, 255);
+        border-radius: 3.125rem;
+        margin:auto;
+        margin-top:2.5rem;
+        text-align: center;
+        position: relative;
+        .page-no-hey{
+            text-align: center;
+            .page-no-here{
+                color: rgb(74, 57, 147);
+                font-family: "Avenir Next";
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 36px;
+                text-align: center;
+            }
+        }
+        .page-no-hey-image{
+            width: 11.875rem;
+            height: 7.9375rem;
+            margin: 2.9375rem 0 1.1875rem 0;
+        }
+        p.page-no-here{
+            color: rgb(74, 57, 147);
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 2.25rem;
+            margin-bottom: 5.8125rem;
+        }
+        .page-no-center-main{
+            text-align: center;
+            top: -9.375rem;
+            position: relative;
+            .page-no-center-main-image{
+                position: relative;
+                height: 31rem;
+                max-width: 100%;
+            }
+        }
+        .page-no-cry-main{
+            // padding-top: 93px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 20.9375rem;
+            .page-no-cry-image{
+                width: 28.5625rem;
+                
+            }
+        }
+        .page-no-back-home{
+            position: absolute;
+            bottom: 0;
+            height: 12.5rem;
+            padding-top: 6.25rem;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            .back-home-button{
+                width: 12.875rem;
+                height: 3.5625rem;
+                top: 48.75rem;
+                left: 38.5rem;
+                border-radius: 10px;
+                box-sizing: border-box;
+                border: 1px solid rgb(0, 0, 0);
+                background: #fff;
+                text-align: center;
+                font-size: 20px;
+            }
+        }
+        
+        
+    }
+}
