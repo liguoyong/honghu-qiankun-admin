@@ -6,7 +6,8 @@ import {
   renderWithQiankun,
   qiankunWindow,
 } from "vite-plugin-qiankun/dist/helper";
-import "./index.css";
+import './assets/styles/index.css';
+import 'antd/dist/reset.css';
 let root = null;
 function render(el = document.getElementById("root")) {
   console.log(el, 'el');

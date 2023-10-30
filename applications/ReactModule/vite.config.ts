@@ -7,8 +7,15 @@ console.log(name, 'asddddddddddddddddname');
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
   plugins: [
-    // react(),
+    react(),
     qiankun(name, { // 微应用名字，与主应用注册的微应用名字保持一致
       useDevMode: true
     })
