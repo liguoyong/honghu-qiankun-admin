@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    react(),
+    // react(),
     qiankun(name, { // 微应用名字，与主应用注册的微应用名字保持一致
       useDevMode: true
     })
