@@ -1,31 +1,22 @@
-import { lazy } from "react";
-import Home from "../views/index";
-// const Home = lazy(
-//   () => import(/* webpackChunkName: "index" */ "@/views/index/index.tsx")
-// );
-const NullPage = lazy(
-  () => import(/* webpackChunkName: "404" */ "@/views/404/index.tsx")
-);
-const routes = [
+import Home from '../views/index/index.tsx';
+import Editor from '../views/editor/index.tsx'
+import Err404 from '../views/404/index.tsx'
+const routers = [
   {
-    path: "/",
-    exact: true,
+    title: '首页',
+    path: '/',
     component: Home,
   },
   {
-    path: "/index",
-    component: Home,
-    meta: {
-      title: "首页",
-    },
+    title: '编辑器',
+    path: '/editor',
+    component: Editor,
   },
   {
-    path: "*",
-    component: NullPage,
-    meta: {
-      title: "404",
-    },
-  },
+  	title: '找不到页面',
+    path: '/404',
+    component: Err404,
+  }
 ];
 
-export default routes;
+export default routers;

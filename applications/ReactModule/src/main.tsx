@@ -9,6 +9,8 @@ import {
 import "./index.css";
 let root = null;
 function render(el = document.getElementById("root")) {
+  console.log(el, 'el');
+  
   root = createRoot(el);
   root.render(<App />);
   console.log(root, "rootrootrootrootrootrootrootroot");
