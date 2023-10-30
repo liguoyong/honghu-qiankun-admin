@@ -36,6 +36,13 @@ const configList = reactive([
             title: 'SVG预览',
             description: 'SVG预览',
             target: '_self',
+        },
+        {
+            icon: 'https://img2.baidu.com/it/u=3058861405,730789891&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+            url: '/operational/tool/shell',
+            title: 'shell',
+            description: 'shell命令行',
+            target: '_self',
         }]
         // https://p2.itc.cn/images01/20210707/61e2e18662c447148f244dc969d12dc0.png
     },
@@ -153,14 +160,16 @@ const configList = reactive([
 
         }]
     },
-    { label: '生活专区', children: [{
+    {
+        label: '生活专区', children: [{
             icon: 'https://img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg',
             url: 'https://passer-by.com/relationship/',
             title: '中国亲戚关系计算器',
             description: '逢年过节遇到三姑六婆，拒绝叫不出口的尴尬！轻松搞定亲戚关系～',
             target: '_blank',
 
-        }] }])
+        }]
+    }])
 const tabPosition = ref('right')
 // 跳转页面
 const handelToUrl = (url: string, target: undefined | string) => {

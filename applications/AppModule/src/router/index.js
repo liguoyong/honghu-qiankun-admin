@@ -217,6 +217,19 @@ export const routes = [
           activeMenu: '/operational/tool'
         },
       },
+      {
+        path: "tool/shell",
+        name: "toolShell",
+        hidden: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "toolShell" */ "../views/Tool/components/shell.vue"
+          ),
+        meta: {
+          title: "shell",
+          activeMenu: '/operational/tool'
+        },
+      },
     ],
   },
   {
