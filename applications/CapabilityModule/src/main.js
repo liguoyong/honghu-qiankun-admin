@@ -4,6 +4,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import routes from './router';
 import store from './store';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import '@/assets/icon-font/iconfont.css'
+import '@/assets/icon-font/iconfont.css'
+import 'viewerjs/dist/viewer.css'
+
+import VueViewer from 'v-viewer'
+import i18n from './i18n.js'
 
 let router = null;
 let instance = null;
@@ -13,7 +21,7 @@ let history = null;
 function render(props = {}) {
   const { container } = props;
   history = createWebHistory(window.__POWERED_BY_QIANKUN__ ? '/operational/capability' : '/');
-  console.log(history,window.__POWERED_BY_QIANKUN__ ,"history");
+  console.log(history, window.__POWERED_BY_QIANKUN__, "history");
   router = createRouter({
     history,
     routes,
@@ -21,6 +29,7 @@ function render(props = {}) {
 
   instance = createApp(App);
   instance.use(router);
+  instance.use(VueViewer).use(i18n);
   instance.use(store);
   instance.mount(container ? container.querySelector('#app') : '#app');
 }
@@ -54,11 +63,11 @@ export async function mount(props) {
 
   instance.config.globalProperties.$onGlobalStateChange = props.onGlobalStateChange;
   instance.config.globalProperties.$setGlobalState = props.setGlobalState;
-//   console.log(instance.config.globalProperties.$route,"444444444");
+  //   console.log(instance.config.globalProperties.$route,"444444444");
 }
 
 export async function unmount() {
-    console.log("vue3被卸载了");
+  console.log("vue3被卸载了");
   instance.unmount();
   instance._container.innerHTML = '';
   instance = null;

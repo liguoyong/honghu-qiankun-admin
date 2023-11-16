@@ -9,7 +9,7 @@
   <div class="main">
 
     <!-- 侧边菜单 -->
-    <ul class="main-meau">
+    <!-- <ul class="main-meau">
       <img
         class="w40 auto-center mt10 mb30 radius"
         :src="project.logo"
@@ -25,7 +25,7 @@
           </li>
         </router-link>
       </template>
-    </ul>
+    </ul> -->
 
     <!-- 内容 -->
     <div class="main-body">

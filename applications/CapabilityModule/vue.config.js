@@ -11,6 +11,7 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   filenameHashing: true,
+  transpileDependencies: ['simple-mind-map'],
   devServer: {
     hot: true,
     disableHostCheck: true,
