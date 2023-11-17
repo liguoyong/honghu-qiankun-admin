@@ -294,6 +294,16 @@ export const routes = [
     ],
   },
   {
+    path: "/xmind",
+    name: "xmind",
+    component: () =>
+      import(/* webpackChunkName: "xmind" */ "../views/Tool/capability/index.vue"),
+    hidden: true,
+    meta: {
+      title: "思维导图",
+    },
+  },
+  {
     path: "/login",
     name: "login",
     component: () =>

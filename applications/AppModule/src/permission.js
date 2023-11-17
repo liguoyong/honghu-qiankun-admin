@@ -6,7 +6,7 @@ import { ElMessage } from "element-plus";
 import { getToken } from "@/utils/auth"; // get token from cookie
 
 
-const whiteList = ["/login", "/auth-redirect"]; // no redirect whitelist
+const whiteList = ["/login", "/auth-redirect", "/xmind"]; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
     const hasToken = getToken();

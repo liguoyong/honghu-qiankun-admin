@@ -3,7 +3,6 @@ import { resolve } from "path";
 import { name } from './package.json'
 import react from "@vitejs/plugin-react";
 import qiankun from 'vite-plugin-qiankun'
-console.log(name, 'asddddddddddddddddname');
 
 // https://vitejs.dev/config/
 export default defineConfig({
