@@ -1,16 +1,9 @@
 <template>
   <div class="nodeIconToolbar" ref="nodeIconToolbar" :style="style" @click.stop.passive v-show="showNodeIconToolbar">
     <div class="iconListBox">
-      <div
-        class="icon"
-        v-for="icon in iconList"
-        :key="icon.name"
-        v-html="getHtml(icon.icon)"
-        :class="{
-          selected: nodeIconList.includes(iconType + '_' + icon.name)
-        }"
-        @click="setIcon(icon.name)"
-      ></div>
+      <div class="icon" v-for="icon in iconList" :key="icon.name" v-html="getHtml(icon.icon)" :class="{
+        selected: nodeIconList.includes(iconType + '_' + icon.name)
+      }" @click="setIcon(icon.name)"></div>
     </div>
     <div class="btnBox">
       <span class="btn iconfont iconshanchu" @click="deleteIcon"></span>
@@ -155,11 +148,13 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
   .iconListBox {
     width: 100%;
     height: 180px;
     overflow-y: auto;
     padding: 10px;
+
     .icon {
       width: 24px;
       height: 24px;
@@ -167,14 +162,17 @@ export default {
       cursor: pointer;
       position: relative;
       float: left;
-      /deep/ img {
+
+      :deep(img) {
         width: 100%;
         height: 100%;
       }
-      /deep/ svg {
+
+      :deep(svg) {
         width: 100%;
         height: 100%;
       }
+
       &.selected {
         &::after {
           content: '';
@@ -189,6 +187,7 @@ export default {
       }
     }
   }
+
   .btnBox {
     width: 100%;
     height: 30px;
@@ -197,6 +196,7 @@ export default {
     align-items: center;
     border-top: 1px solid #eee;
     flex-shrink: 0;
+
     .btn {
       cursor: pointer;
       color: rgba(26, 26, 26, 0.8);

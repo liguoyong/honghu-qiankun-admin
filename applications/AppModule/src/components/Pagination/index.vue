@@ -1,8 +1,8 @@
 <template>
-    <el-pagination :page-sizes="pageSizes" :page-size="pageSize" :layout="layout" :small="small"
-        :total="total" v-bind="$attrs"/>
+    <el-pagination :page-sizes="pageSizes" :page-size="pageSize" :layout="layout" :small="small" :total="total"
+        :current-page="currentPage" v-bind="$attrs" />
 </template>
-  
+
 <script>
 import { ref } from 'vue';
 

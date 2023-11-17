@@ -3,16 +3,9 @@
     <div class="item" v-for="item in nodeIconList" :key="item.name">
       <div class="title">{{ item.name }}</div>
       <div class="list">
-        <div
-          class="icon"
-          v-for="icon in item.list"
-          :key="icon.name"
-          v-html="getHtml(icon.icon)"
-          :class="{
-            selected: iconList.includes(item.type + '_' + icon.name)
-          }"
-          @click="setIcon(item.type, icon.name)"
-        ></div>
+        <div class="icon" v-for="icon in item.list" :key="icon.name" v-html="getHtml(icon.icon)" :class="{
+          selected: iconList.includes(item.type + '_' + icon.name)
+        }" @click="setIcon(item.type, icon.name)"></div>
       </div>
     </div>
   </el-dialog>
@@ -88,7 +81,7 @@ export default {
 
 <style lang="less" scoped>
 .nodeDialog {
-  /deep/ .el-dialog__body {
+  :deep(.el-dialog__body) {
     padding: 0 20px;
   }
 
@@ -115,11 +108,13 @@ export default {
         margin-bottom: 10px;
         cursor: pointer;
         position: relative;
-        /deep/ img {
+
+        :deep(img) {
           width: 100%;
           height: 100%;
         }
-        /deep/ svg {
+
+        :deep(svg) {
           width: 100%;
           height: 100%;
         }

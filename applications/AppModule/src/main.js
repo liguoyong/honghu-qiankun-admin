@@ -7,7 +7,6 @@ import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { createPinia } from 'pinia'
 import 'element-plus/dist/index.css'
-import shell from 'vue-shell'
 // import "nprogress/nprogress.css";
 import router from './router'
 
@@ -21,7 +20,7 @@ const mainApp = createApp(App)
 const pinia = createPinia()
 registerComponents(mainApp)
 // mainApp.component('svg-icon', SvgIcon)
-mainApp.use(router).use(pinia).use(shell).use(ElementPlus, { locale: zhCn }).mount('#mainapp')
+mainApp.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).mount('#mainapp')
 import './permission'
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading
 // function loader(loading) {

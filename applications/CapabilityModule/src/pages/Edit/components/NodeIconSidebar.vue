@@ -11,16 +11,9 @@
           <div class="item" v-for="item in nodeIconList" :key="item.name">
             <div class="title">{{ item.name }}</div>
             <div class="list">
-              <div
-                class="icon"
-                v-for="icon in item.list"
-                :key="icon.name"
-                v-html="getHtml(icon.icon)"
-                :class="{
-                  selected: iconList.includes(item.type + '_' + icon.name)
-                }"
-                @click="setIcon(item.type, icon.name)"
-              ></div>
+              <div class="icon" v-for="icon in item.list" :key="icon.name" v-html="getHtml(icon.icon)" :class="{
+                selected: iconList.includes(item.type + '_' + icon.name)
+              }" @click="setIcon(item.type, icon.name)"></div>
             </div>
           </div>
         </div>
@@ -29,15 +22,9 @@
           <div class="item" v-for="item in nodeImageList" :key="item.name">
             <div class="title">{{ item.name }}</div>
             <div class="list">
-              <div
-                class="icon"
-                v-for="image in item.list"
-                :key="image.url"
-                :class="{
-                  selected: nodeImage === image.url
-                }"
-                @click="setImage(image)"
-              >
+              <div class="icon" v-for="image in item.list" :key="image.url" :class="{
+                selected: nodeImage === image.url
+              }" @click="setImage(image)">
                 <img :src="image.url" alt="" />
               </div>
             </div>
@@ -147,27 +134,33 @@ export default {
 <style lang="less" scoped>
 .box {
   padding: 0 20px;
+
   &.isDark {
     .title {
       color: #fff;
     }
   }
+
   .title {
     font-size: 16px;
     font-weight: 500;
     color: #333;
   }
+
   .boxContent {
     .iconBox {
       .item {
         margin-bottom: 20px;
         font-weight: bold;
+
         .title {
           margin-bottom: 10px;
         }
+
         .list {
           display: flex;
           flex-wrap: wrap;
+
           .icon {
             width: 24px;
             height: 24px;
@@ -175,14 +168,17 @@ export default {
             margin-bottom: 10px;
             cursor: pointer;
             position: relative;
-            /deep/ img {
+
+            :deep(img) {
               width: 100%;
               height: 100%;
             }
-            /deep/ svg {
+
+            :deep(svg) {
               width: 100%;
               height: 100%;
             }
+
             &.selected {
               &::after {
                 content: '';
@@ -199,15 +195,19 @@ export default {
         }
       }
     }
+
     .imageBox {
       margin-bottom: 20px;
       font-weight: bold;
+
       .title {
         margin-bottom: 10px;
       }
+
       .list {
         display: flex;
         flex-wrap: wrap;
+
         .icon {
           width: 50px;
           height: 50px;
@@ -215,11 +215,13 @@ export default {
           margin-bottom: 10px;
           cursor: pointer;
           position: relative;
-          /deep/ img {
+
+          :deep(img) {
             width: 100%;
             height: 100%;
             object-fit: contain;
           }
+
           &.selected {
             &::after {
               content: '';
