@@ -1,8 +1,15 @@
 <template>
     <div class="lifePay-container layout-wrapper">
         <el-form :inline="true" :model="ruleForm" ref="noteFormRef" @submit.prevent class="filter-container">
-            <el-form-item label="标题" prop="title">
-                <el-input v-model="ruleForm.title" placeholder="请输入标题" clearable />
+            <el-form-item label="交易分类" prop="payType">
+                <el-select v-model="ruleForm.payType" clearable placeholder="请选择分类">
+                    <el-option v-for="item in payTypeOptions" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+            </el-form-item>
+            <el-form-item label="收/支" prop="consume">
+                <el-select v-model="ruleForm.consume" clearable placeholder="请选择分类">
+                    <el-option v-for="item in consumeOptions" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSearch">查询</el-button>
@@ -70,10 +77,12 @@ import editPayDialog from '../components/editPayDialog.vue'
 import * as XLSX from 'xlsx'
 import { tooltipOptions } from '@/utils/common'
 import { getBillsList } from '@/api/bills'
+import { objectPick } from '@vueuse/shared'
 const tableData = ref([])
 const noteFormRef = ref<FormInstance>()
 const ruleForm = reactive({
-    title: ''
+    payType: '',
+    consume: ''
 })
 
 const pageParams = reactive({
@@ -86,16 +95,59 @@ const PayDialog = reactive({
     show: false,
     data: []
 })
+const payTypeOptions = reactive([{
+    value: '投资理财',
+    label: '投资理财'
+}, {
+    value: '交通出行',
+    label: '交通出行'
+}, {
+    value: '餐饮美食',
+    label: '餐饮美食'
+}, {
+    value: '转账红包',
+    label: '转账红包'
+}, {
+    value: '日用百货',
+    label: '日用百货'
+}, {
+    value: '爱车养车',
+    label: '爱车养车'
+}, {
+    value: '文化休闲',
+    label: '文化休闲'
+}, {
+    value: '信用借还',
+    label: '信用借还'
+}, {
+    value: '服饰装扮',
+    label: '服饰装扮'
+}])
+
+const consumeOptions = reactive([{
+    value: '不计收支',
+    label: '不计收支'
+}, {
+    value: '支出',
+    label: '支出'
+}, {
+    value: '收入',
+    label: '收入'
+}])
 
 const handelClickViewDetail = async () => {
 
 }
 
 const getList = async () => {
-    const response = await getBillsList({ ...pageParams })
+    const response = await getBillsList({ ...pageParams, ...ruleForm })
     if (response.code == 200) {
         const { list = [], total } = response.data
         tableData.value = response.data.list
+        const types = response.data.list.map((it: { payType: any }) => it.payType)
+        const consume = response.data.list.map((it: { consume: any }) => it.consume)
+        console.log(Array.from(new Set(types)), Array.from(new Set(consume)));
+
         pageParams.total = total
     }
 }
@@ -121,6 +173,10 @@ const resetForm = (formEl: FormInstance | undefined) => {
         page: 1,
         size: 10,
         total: 0
+    })
+    Object.assign(ruleForm, {
+        payType: '',
+        consume: ''
     })
     getList()
 }
@@ -163,17 +219,18 @@ const handleChange = (file: { raw: Blob }) => {
                 return row
             }
         })
-        const index = formattedData.findIndex(item => item[0] === '----------------------微信支付账单明细列表--------------------')
+        const index = formattedData.findIndex((item: string[]) => item[0] === '----------------------微信支付账单明细列表--------------------')
         const endIndex = formattedData.length
         const list = formattedData.slice(index + 2, endIndex)
-        tableData.value = list.map(item => {
+        tableData.value = list.map((item: [any, any, any, any, any, any, any, any, any, any, any]) => {
             // ['交易时间', '交易类型', '交易对方', '商品', '收/支', '金额(元)', '支付方式', '当前状态', '交易单号', '商户单号', '备注']
             const [
                 payTime,
                 payType,
                 payUser,
                 goods,
-                consume, amount,
+                consume,
+                amount,
                 payWay,
                 status,
                 transactionNumber,
@@ -185,7 +242,8 @@ const handleChange = (file: { raw: Blob }) => {
                 payType,
                 payUser,
                 goods,
-                consume, amount,
+                consume,
+                amount,
                 payWay,
                 status,
                 transactionNumber,
@@ -227,7 +285,7 @@ const handleALiChange = (file: { raw: Blob }) => {
         const endIndex = formattedData.length
         const list = formattedData.slice(1, endIndex)
         PayDialog.show = true
-        PayDialog.data = list.map(item => {
+        PayDialog.data = list.map((item: [any, any, any, any, any, any, any, any, any, any, any, any]) => {
             // ['交易时间', '交易类型', '交易对方', '商品', '收/支', '金额(元)', '支付方式', '当前状态', '交易单号', '商户单号', '备注']
             const [
                 payTime,
