@@ -8,7 +8,7 @@ const SIMPLE_MIND_MAP_LANG = 'SIMPLE_MIND_MAP_LANG'
 const SIMPLE_MIND_MAP_LOCAL_CONFIG = 'SIMPLE_MIND_MAP_LOCAL_CONFIG'
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 克隆思维导图数据，去除激活状态
  */
 const copyMindMapTreeData = (tree, root) => {
@@ -24,7 +24,7 @@ const copyMindMapTreeData = (tree, root) => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 获取缓存的思维导图数据
  */
 export const getData = () => {
@@ -41,7 +41,7 @@ export const getData = () => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 存储思维导图数据
  */
 export const storeData = data => {
@@ -57,7 +57,7 @@ export const storeData = data => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 存储思维导图配置数据
  */
 export const storeConfig = config => {
@@ -76,7 +76,7 @@ export const storeConfig = config => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 存储语言
  */
 export const storeLang = lang => {
@@ -84,7 +84,7 @@ export const storeLang = lang => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 获取存储的语言
  */
 export const getLang = () => {
@@ -97,7 +97,7 @@ export const getLang = () => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 存储本地配置
  */
 export const storeLocalConfig = config => {
@@ -105,7 +105,7 @@ export const storeLocalConfig = config => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 获取本地配置
  */
 export const getLocalConfig = () => {

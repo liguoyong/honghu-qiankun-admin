@@ -1,5 +1,5 @@
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 全屏事件检测
  */
 const getOnfullscreEnevt = () => {
@@ -17,7 +17,7 @@ const getOnfullscreEnevt = () => {
 export const fullscrrenEvent = getOnfullscreEnevt()
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 全屏
  */
 export const fullScreen = element => {
@@ -31,7 +31,7 @@ export const fullScreen = element => {
 }
 
 /**
- * @Author: lgy
+ * @Author: 黄原寅
  * @Desc: 文件转buffer
  */
 export const fileToBuffer = file => {

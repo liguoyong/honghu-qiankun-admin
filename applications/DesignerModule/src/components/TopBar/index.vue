@@ -40,7 +40,6 @@
 import RealTimeView from "./RealTimeView.vue";
 import SaveDialog from "@/components/SaveDialog";
 import QrDialog from "@/components/QrDialog";
-import jrQrcode from "jr-qrcode";
 import { mapGetters, mapMutations } from "vuex";
 import { editProject } from "@/api/project";
 

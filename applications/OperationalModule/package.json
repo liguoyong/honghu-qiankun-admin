@@ -2,10 +2,10 @@
   "name": "OperationalModule",
   "version": "0.0.1",
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "dev": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build"
+    "start": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.17.3",

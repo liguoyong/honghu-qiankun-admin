@@ -1,20 +1,26 @@
-import './public-path';
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
-import App from './App.vue';
-import routes from './router';
-import store from './store';
+import App from './App.vue'
+import routes from './router'
+import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import '@/assets/icon-font/iconfont.css'
 import '@/assets/icon-font/iconfont.css'
 import 'viewerjs/dist/viewer.css'
-
 import VueViewer from 'v-viewer'
 import i18n from './i18n.js'
+// import VConsole from 'vconsole'
+// const vConsole = new VConsole()
+
+// const app = createApp(App)
+
+// app.config.productionTip = false
+
+// app.use(ElementPlus).use(VueViewer).use(store).use(router).use(i18n).mount('#app')
 
 let router = null;
-let instance = null;
+let app = null;
 let history = null;
 
 
@@ -27,11 +33,9 @@ function render(props = {}) {
     routes,
   });
 
-  instance = createApp(App);
-  instance.use(router);
-  instance.use(VueViewer).use(i18n);
-  instance.use(store);
-  instance.mount(container ? container.querySelector('#app') : '#app');
+  app = createApp(App);
+  app.use(router).use(VueViewer).use(i18n).use(store).use(ElementPlus);
+  app.mount(container ? container.querySelector('#app') : '#app');
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -74,3 +78,4 @@ export async function unmount() {
   router = null;
   history.destroy();
 }
+
