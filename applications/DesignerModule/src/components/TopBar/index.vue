@@ -20,10 +20,8 @@
 
         <el-button size="small ml10" @click="show = true">实时预览</el-button>
 
-        <el-button size="small f-white bg-theme" @click="openSave"
-          >保存</el-button
-        >
-        
+        <el-button size="small f-white bg-theme" @click="openSave">保存</el-button>
+
         <el-button size="small ml10" @click="onLogout">退出</el-button>
       </div>
     </div>
@@ -40,6 +38,7 @@
 import RealTimeView from "./RealTimeView.vue";
 import SaveDialog from "@/components/SaveDialog";
 import QrDialog from "@/components/QrDialog";
+import jrQrcode from "jr-qrcode";
 import { mapGetters, mapMutations } from "vuex";
 import { editProject } from "@/api/project";
 
@@ -92,7 +91,7 @@ export default {
         type: "warning",
       }).then(() => {
         this.openSave(true);
-      }).catch(()=>{
+      }).catch(() => {
         this.openQr()
       })
     },

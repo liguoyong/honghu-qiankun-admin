@@ -86,7 +86,7 @@ customThemeList.forEach(item => {
 })
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 编辑区域
  */
 export default {
@@ -245,7 +245,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 获取思维导图数据，实际应该调接口获取
      */
     getData() {
@@ -262,7 +262,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 存储数据当数据有变时
      */
     bindSaveEvent() {
@@ -280,7 +280,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 手动保存
      */
     manualSave() {
@@ -298,7 +298,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 初始化
      */
     init() {
@@ -353,38 +353,38 @@ export default {
       this.mindMap.keyCommand.addShortcut('Control+s', () => {
         this.manualSave()
       })
-      // 转发事件
-      ;[
-        'node_active',
-        'data_change',
-        'view_data_change',
-        'back_forward',
-        'node_contextmenu',
-        'node_click',
-        'draw_click',
-        'expand_btn_click',
-        'svg_mousedown',
-        'mouseup',
-        'mode_change',
-        'node_tree_render_end',
-        'rich_text_selection_change',
-        'transforming-dom-to-images',
-        'generalization_node_contextmenu'
-      ].forEach(event => {
-        this.getMindMap().on(event, (...args) => {
-          if (['node_contextmenu', 'node_active', 'rich_text_selection_change'].includes(event)) {
-            bus.emit(event, args)
-          } else {
-            bus.emit(event, ...args)
-          }
+        // 转发事件
+        ;[
+          'node_active',
+          'data_change',
+          'view_data_change',
+          'back_forward',
+          'node_contextmenu',
+          'node_click',
+          'draw_click',
+          'expand_btn_click',
+          'svg_mousedown',
+          'mouseup',
+          'mode_change',
+          'node_tree_render_end',
+          'rich_text_selection_change',
+          'transforming-dom-to-images',
+          'generalization_node_contextmenu'
+        ].forEach(event => {
+          this.getMindMap().on(event, (...args) => {
+            if (['node_contextmenu', 'node_active', 'rich_text_selection_change'].includes(event)) {
+              bus.emit(event, args)
+            } else {
+              bus.emit(event, ...args)
+            }
+          })
         })
-      })
       this.bindSaveEvent()
       window.mindMap = this.mindMap
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 动态设置思维导图数据
      */
     setData(data) {
@@ -399,7 +399,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 重新渲染
      */
     reRender() {
@@ -407,7 +407,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 执行命令
      */
     execCommand(args) {
@@ -415,7 +415,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 导出
      */
     async export(args) {
@@ -427,7 +427,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 修改导出内边距
      */
     onPaddingChange(data) {
@@ -435,7 +435,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 显示新特性提示
      */
     showNewFeatureInfo() {
@@ -453,7 +453,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 加载节点富文本编辑插件
      */
     addRichTextPlugin() {
@@ -462,7 +462,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 移除节点富文本编辑插件
      */
     removeRichTextPlugin() {

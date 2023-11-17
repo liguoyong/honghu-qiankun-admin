@@ -84,18 +84,6 @@ export const routes = [
         },
       },
       {
-        path: "pay",
-        name: "lifePay",
-        component: () =>
-          import(
-            /* webpackChunkName: "lifePay" */ "../views/Life/pay/index.vue"
-          ),
-        meta: {
-          title: "收支管理",
-          activeMenu: '/life/pay'
-        },
-      },
-      {
         path: "bill",
         name: "lifeBill",
         component: () =>

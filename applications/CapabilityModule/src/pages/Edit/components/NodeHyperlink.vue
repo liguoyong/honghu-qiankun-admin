@@ -21,7 +21,7 @@
 import { ref, onMounted } from 'vue'
 import bus from '@/utils/bus.js'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 节点超链接内容设置
  */
 const dialogVisible = ref(false)
@@ -49,7 +49,7 @@ onMounted(() => {
 })
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 取消
  */
 const cancel = () => {
@@ -59,7 +59,7 @@ const cancel = () => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc:  确定
  */
 const confirm = () => {
@@ -85,6 +85,7 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     .name {
       display: block;
       width: 50px;

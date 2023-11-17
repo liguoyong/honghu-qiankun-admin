@@ -1,14 +1,7 @@
 <template>
-  <el-dialog
-    custom-class="nodeDialog"
-    v-model="dialogVisible"
-    :title="$t('export.title')"
-    width="700px"
-    v-loading.fullscreen.lock="loading"
-    :element-loading-text="loadingText"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)"
-  >
+  <el-dialog custom-class="nodeDialog" v-model="dialogVisible" :title="$t('export.title')" width="700px"
+    v-loading.fullscreen.lock="loading" :element-loading-text="loadingText" element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)">
     <div class="exportContainer" :class="{ isDark: isDark }">
       <div class="nameInputBox">
         <span class="name">{{ $t('export.filename') }}</span>
@@ -27,13 +20,8 @@
         }}</el-checkbox>
       </div>
       <div class="downloadTypeList">
-        <div
-          class="downloadTypeItem"
-          v-for="item in downTypeList2"
-          :key="item.type"
-          :class="{ active: exportType === item.type }"
-          @click="exportType = item.type"
-        >
+        <div class="downloadTypeItem" v-for="item in downTypeList2" :key="item.type"
+          :class="{ active: exportType === item.type }" @click="exportType = item.type">
           <div class="icon iconfont" :class="[item.icon, item.type]"></div>
           <div class="info">
             <div class="name">{{ item.name }}</div>
@@ -55,7 +43,7 @@
 
 <script setup>
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 导出功能
  */
 import { onMounted, ref, computed } from 'vue'
@@ -95,7 +83,7 @@ const onPaddingChange = () => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 取消导出
  */
 const cancel = () => {
@@ -103,7 +91,7 @@ const cancel = () => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc:  确定导出
  */
 const confirm = () => {
@@ -148,6 +136,7 @@ export default {
     .downloadTypeList {
       .downloadTypeItem {
         background-color: #363b3f;
+
         .info {
           .name {
             color: hsla(0, 0%, 100%, 0.9);
@@ -166,21 +155,27 @@ export default {
       margin-right: 10px;
     }
   }
+
   .paddingInputBox {
     margin-bottom: 10px;
+
     .name {
       margin-right: 10px;
     }
   }
+
   .tip {
     margin-top: 10px;
+
     &.warning {
       color: #f56c6c;
     }
   }
+
   .downloadTypeList {
     display: flex;
     flex-wrap: wrap;
+
     .downloadTypeItem {
       width: 200px;
       height: 88px;
@@ -194,37 +189,47 @@ export default {
       align-items: center;
       cursor: pointer;
       border: 2px solid transparent;
+
       &.active {
         border-color: #409eff;
       }
+
       .icon {
         font-size: 30px;
         margin-right: 10px;
+
         &.png {
           color: #ffc038;
         }
+
         &.pdf {
           color: #ff6c4d;
         }
+
         &.md {
           color: #2b2b2b;
         }
+
         &.json {
           color: #12c87e;
         }
+
         &.svg {
           color: #4380ff;
         }
+
         &.smm {
           color: #409eff;
         }
       }
+
       .info {
         .name {
           color: #1a1a1a;
           font-size: 15px;
           margin-bottom: 5px;
         }
+
         .desc {
           color: #999;
           font-size: 12px;

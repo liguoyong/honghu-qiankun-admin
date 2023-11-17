@@ -12,11 +12,8 @@
       <MouseAction :isDark="isDark" :mindMap="mindMap"></MouseAction>
     </div>
     <div class="item">
-      <el-tooltip
-        effect="dark"
-        :content="openMiniMap ? $t('navigatorToolbar.closeMiniMap') : $t('navigatorToolbar.openMiniMap')"
-        placement="top"
-      >
+      <el-tooltip effect="dark"
+        :content="openMiniMap ? $t('navigatorToolbar.closeMiniMap') : $t('navigatorToolbar.openMiniMap')" placement="top">
         <div class="btn iconfont icondaohang1" @click="toggleMiniMap"></div>
       </el-tooltip>
     </div>
@@ -28,7 +25,8 @@
         @change="readonlyChange"
       >
       </el-switch> -->
-      <el-tooltip effect="dark" :content="isReadonly ? $t('navigatorToolbar.edit') : $t('navigatorToolbar.readonly')" placement="top">
+      <el-tooltip effect="dark" :content="isReadonly ? $t('navigatorToolbar.edit') : $t('navigatorToolbar.readonly')"
+        placement="top">
         <div class="btn iconfont" :class="[isReadonly ? 'iconyanjing' : 'iconbianji1']" @click="readonlyChange"></div>
       </el-tooltip>
     </div>
@@ -46,7 +44,7 @@
 
 <script setup>
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 导航器工具栏
  */
 import { ref, onMounted, defineProps, computed } from 'vue'
@@ -115,29 +113,35 @@ export default {
   font-size: 12px;
   display: flex;
   align-items: center;
+
   &.isDark {
     background: #262a2e;
+
     .item {
       a {
         color: hsla(0, 0%, 100%, 0.6);
       }
+
       .btn {
         color: hsla(0, 0%, 100%, 0.6);
       }
     }
   }
+
   .item {
     margin-right: 20px;
 
     &:last-of-type {
       margin-right: 0;
     }
+
     .btn {
       cursor: pointer;
       font-size: 18px;
     }
   }
 }
+
 @media screen and (max-width: 502px) {
   .navigatorContainer {
     left: 20px;

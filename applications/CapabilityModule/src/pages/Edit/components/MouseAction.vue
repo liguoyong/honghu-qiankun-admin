@@ -1,12 +1,9 @@
 <template>
   <div class="mouseActionContainer" :class="{ isDark: isDark }">
-    <el-tooltip
-      class="item"
-      effect="dark"
-      :content="useLeftKeySelectionRightKeyDrag ? $t('mouseAction.tip2') : $t('mouseAction.tip1')"
-      placement="top"
-    >
-      <div class="btn iconfont" :class="[useLeftKeySelectionRightKeyDrag ? 'iconmouseR' : 'iconmouseL']" @click="toggleAction"></div>
+    <el-tooltip class="item" effect="dark"
+      :content="useLeftKeySelectionRightKeyDrag ? $t('mouseAction.tip2') : $t('mouseAction.tip1')" placement="top">
+      <div class="btn iconfont" :class="[useLeftKeySelectionRightKeyDrag ? 'iconmouseR' : 'iconmouseL']"
+        @click="toggleAction"></div>
     </el-tooltip>
   </div>
 </template>
@@ -14,7 +11,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 鼠标操作设置
  */
 export default {
@@ -54,6 +51,7 @@ export default {
 .mouseActionContainer {
   display: flex;
   align-items: center;
+
   &.isDark {
     .btn {
       color: hsla(0, 0%, 100%, 0.6);
@@ -62,10 +60,12 @@ export default {
 
   .item {
     margin-right: 12px;
+
     &:last-of-type {
       margin-right: 0;
     }
   }
+
   .btn {
     cursor: pointer;
     font-size: 18px;

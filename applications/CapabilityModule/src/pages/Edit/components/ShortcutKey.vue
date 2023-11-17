@@ -17,7 +17,7 @@
 
 <!-- <script setup>
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 快捷键功能
  */
 import { ref, onMounted, nextTick, computed } from 'vue'
@@ -74,15 +74,18 @@ export default {
 <style lang="less" scoped>
 .box {
   padding: 0 20px;
+
   &.isDark {
     .title {
       color: #fff;
     }
+
     .list {
       .item {
         .icon {
           color: hsla(0, 0%, 100%, 0.6);
         }
+
         .name {
           color: hsla(0, 0%, 100%, 0.6);
         }

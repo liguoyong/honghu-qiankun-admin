@@ -7,7 +7,7 @@
     {
       "name": "CapabilityModule",
       "path": "../applications/CapabilityModule",
-      "entry": "//localhost:2001/vue3",
+      "entry": "//localhost:2001",
       "activeRule": "/xmind",
       "appPort": 2001
     },

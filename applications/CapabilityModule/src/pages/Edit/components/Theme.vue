@@ -4,13 +4,8 @@
       <el-tabs v-model="activeName">
         <el-tab-pane v-for="group in groupList" :key="group.name" :label="group.name" :name="group.name"></el-tab-pane>
       </el-tabs>
-      <div
-        class="themeItem"
-        v-for="item in currentList"
-        :key="item.value"
-        @click="useTheme(item)"
-        :class="{ active: item.value === theme }"
-      >
+      <div class="themeItem" v-for="item in currentList" :key="item.value" @click="useTheme(item)"
+        :class="{ active: item.value === theme }">
         <div class="imgBox">
           <img :src="themeMap[item.value]" alt="" />
         </div>
@@ -22,7 +17,7 @@
 
 <script setup>
 /**
- * @Author: 黄原寅寅
+ * @Author: lgy寅
  * @Desc: 主题
  */
 import { ref, defineProps, onMounted, computed, watch } from 'vue'
@@ -122,7 +117,7 @@ const initGroup = () => {
 }
 
 /**
- * @Author: 黄原寅寅
+ * @Author: lgy寅
  * @Desc: 使用主题
  */
 const useTheme = item => {
@@ -170,11 +165,13 @@ const handleDark = () => {
 .themeList {
   padding: 20px;
   padding-top: 0;
+
   &.isDark {
     .name {
       color: #fff;
     }
   }
+
   .themeItem {
     width: 100%;
     cursor: pointer;
@@ -183,21 +180,27 @@ const handleDark = () => {
     padding-bottom: 20px;
     transition: all 0.2s;
     border: 1px solid transparent;
+
     &:last-of-type {
       border: none;
     }
+
     &:hover {
       box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
     }
+
     &.active {
       border: 1px solid #67c23a;
     }
+
     .imgBox {
       width: 100%;
+
       img {
         width: 100%;
       }
     }
+
     .name {
       text-align: center;
       font-size: 14px;

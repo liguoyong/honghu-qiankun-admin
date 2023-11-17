@@ -11,7 +11,7 @@
 
 <script setup>
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 全屏
  */
 import { defineProps, onMounted, watch } from 'vue'
@@ -63,14 +63,17 @@ export default {
 .fullscreenContainer {
   display: flex;
   align-items: center;
+
   &.isDark {
     .btn {
       color: hsla(0, 0%, 100%, 0.6);
     }
   }
+
   div:first-child {
     margin-right: 12px;
   }
+
   .btn {
     cursor: pointer;
   }

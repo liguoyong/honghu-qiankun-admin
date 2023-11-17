@@ -19,7 +19,7 @@ import { mapState, mapMutations } from 'vuex'
 import bus from '@/utils/bus.js'
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 侧边栏容器
  */
 export default {
@@ -76,13 +76,16 @@ export default {
   display: flex;
   flex-direction: column;
   transition: all 0.3s;
+
   &.isDark {
     background-color: #262a2e;
     border-left-color: hsla(0, 0%, 100%, 0.1);
+
     .sidebarHeader {
       border-bottom-color: hsla(0, 0%, 100%, 0.1);
       color: #fff;
     }
+
     .closeBtn {
       color: #fff;
     }

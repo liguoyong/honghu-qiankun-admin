@@ -2,9 +2,8 @@
   <div class="imgUploadContainer">
     <div class="imgUploadPanel">
       <div class="upBtn" v-if="!value">
-        <label for="imgUploadInput" class="imgUploadInputArea" @dragenter.stop.prevent @dragover.stop.prevent @drop.stop.prevent="onDrop"
-          >点击此处选择图片、或拖动图片到此</label
-        >
+        <label for="imgUploadInput" class="imgUploadInputArea" @dragenter.stop.prevent @dragover.stop.prevent
+          @drop.stop.prevent="onDrop">点击此处选择图片、或拖动图片到此</label>
         <input type="file" accept="image/*" id="imgUploadInput" @change="onImgUploadInputChange" />
       </div>
       <div v-if="value" class="uploadInfoBox">
@@ -41,7 +40,7 @@ export default {
   },
   methods: {
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 图片选择事件
      */
     onImgUploadInputChange(e) {
@@ -51,7 +50,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 拖动上传图片
      */
     onDrop(e) {
@@ -61,7 +60,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 选择图片
      */
     selectImg(file) {
@@ -74,7 +73,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 获取图片大小
      */
     getSize() {
@@ -97,7 +96,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 删除图片
      */
     deleteImg() {

@@ -52,7 +52,8 @@
       <div class="item">
         {{ $t('contextmenu.expandTo') }}
         <div class="subItems listBox">
-          <div class="item" v-for="(item, index) in expandList" :key="item" @click="exec('UNEXPAND_TO_LEVEL', false, index + 1)">
+          <div class="item" v-for="(item, index) in expandList" :key="item"
+            @click="exec('UNEXPAND_TO_LEVEL', false, index + 1)">
             {{ item }}
           </div>
         </div>
@@ -77,7 +78,7 @@
 import bus from '@/utils/bus.js'
 import { mapState, mapMutations } from 'vuex'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 右键菜单
  */
 export default {
@@ -161,7 +162,7 @@ export default {
   methods: {
     ...mapMutations(['setLocalConfig']),
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 节点右键显示
      */
     // mitt只能传一个参数
@@ -174,7 +175,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 鼠标按下事件
      */
     onMousedown(e) {
@@ -187,7 +188,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 鼠标松开事件
      */
     onMouseup(e) {
@@ -203,7 +204,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 画布右键显示
      */
     show2(e) {
@@ -214,7 +215,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 隐藏
      */
     hide() {
@@ -225,7 +226,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 执行命令
      */
     exec(key, disabled, ...args) {

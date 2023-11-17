@@ -1,14 +1,9 @@
 <template>
-  <div
-    class="noteContentViewer"
-    ref="noteContentViewer"
-    :style="{
-      left: this.left + 'px',
-      top: this.top + 'px',
-      visibility: show ? 'visible' : 'hidden'
-    }"
-    @click.stop
-  ></div>
+  <div class="noteContentViewer" ref="noteContentViewer" :style="{
+    left: this.left + 'px',
+    top: this.top + 'px',
+    visibility: show ? 'visible' : 'hidden'
+  }" @click.stop></div>
 </template>
 
 <script>
@@ -16,7 +11,7 @@ import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer'
 import '@toast-ui/editor/dist/toastui-editor-viewer.css'
 import bus from '@/utils/bus.js'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 节点备注内容显示
  */
 export default {
@@ -46,7 +41,7 @@ export default {
   },
   methods: {
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 显示备注浮层
      */
     onShowNoteContent([content, left, top]) {
@@ -57,14 +52,14 @@ export default {
       this.show = true
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 隐藏备注浮层
      */
     hideNoteContent() {
       this.show = false
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 初始化编辑器
      */
     initEditor() {
@@ -86,15 +81,18 @@ export default {
   border-radius: 5px;
   max-height: 300px;
   overflow-y: auto;
+
   &::-webkit-scrollbar {
     width: 7px;
     height: 7px;
   }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 7px;
     background-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
+
   &::-webkit-scrollbar-track {
     box-shadow: none;
     background: transparent;

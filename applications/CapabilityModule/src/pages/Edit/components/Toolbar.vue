@@ -3,123 +3,75 @@
     <div class="toolbar">
       <!-- 节点操作 -->
       <div class="toolbarBlock">
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: readonly || backEnd
-          }"
-          @click="emit('execCommand', 'BACK')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: readonly || backEnd
+        }" @click="emit('execCommand', 'BACK')">
           <span class="icon iconfont iconhoutui-shi"></span>
           <span class="text">{{ $t('toolbar.undo') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: readonly || forwardEnd
-          }"
-          @click="emit('execCommand', 'FORWARD')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: readonly || forwardEnd
+        }" @click="emit('execCommand', 'FORWARD')">
           <span class="icon iconfont iconqianjin1"></span>
           <span class="text">{{ $t('toolbar.redo') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0 || !hasRoot || hasGeneralization
-          }"
-          @click="emit('execCommand', 'INSERT_NODE')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0 || !hasRoot || hasGeneralization
+        }" @click="emit('execCommand', 'INSERT_NODE')">
           <span class="icon iconfont iconjiedian"></span>
           <span class="text">{{ $t('toolbar.insertSiblingNode') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0 || hasGeneralization
-          }"
-          @click="emit('execCommand', 'INSERT_CHILD_NODE')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0 || hasGeneralization
+        }" @click="emit('execCommand', 'INSERT_CHILD_NODE')">
           <span class="icon iconfont icontianjiazijiedian"></span>
           <span class="text">{{ $t('toolbar.insertChildNode') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="emit('execCommand', 'REMOVE_NODE')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="emit('execCommand', 'REMOVE_NODE')">
           <span class="icon iconfont iconshanchu"></span>
           <span class="text">{{ $t('toolbar.deleteNode') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="emit('showNodeImage')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="emit('showNodeImage')">
           <span class="icon iconfont iconimage"></span>
           <span class="text">{{ $t('toolbar.image') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="showNodeIcon"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="showNodeIcon">
           <span class="icon iconfont iconxiaolian"></span>
           <span class="text">{{ $t('toolbar.icon') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="emit('showNodeLink')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="emit('showNodeLink')">
           <span class="icon iconfont iconchaolianjie"></span>
           <span class="text">{{ $t('toolbar.link') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="emit('showNodeNote')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="emit('showNodeNote')">
           <span class="icon iconfont iconflow-Mark"></span>
           <span class="text">{{ $t('toolbar.note') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0
-          }"
-          @click="emit('showNodeTag')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0
+        }" @click="emit('showNodeTag')">
           <span class="icon iconfont iconbiaoqian"></span>
           <span class="text">{{ $t('toolbar.tag') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0 || !hasRoot || hasGeneralization
-          }"
-          @click="emit('execCommand', 'ADD_GENERALIZATION')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0 || !hasRoot || hasGeneralization
+        }" @click="emit('execCommand', 'ADD_GENERALIZATION')">
           <span class="icon iconfont icongaikuozonglan"></span>
           <span class="text">{{ $t('toolbar.summary') }}</span>
         </div>
-        <div
-          class="toolbarBtn"
-          :class="{
-            disabled: activeNodes.length <= 0 || hasGeneralization
-          }"
-          @click="emit('createAssociativeLine')"
-        >
+        <div class="toolbarBtn" :class="{
+          disabled: activeNodes.length <= 0 || hasGeneralization
+        }" @click="emit('createAssociativeLine')">
           <span class="icon iconfont iconlianjiexian"></span>
           <span class="text">{{ $t('toolbar.associativeLine') }}</span>
         </div>
@@ -196,7 +148,7 @@ import { getData } from '../../../api'
 import bus from '@/utils/bus.js'
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 工具栏
  */
 let fileHandle = null
@@ -263,21 +215,21 @@ export default {
       this.setActiveSidebar('nodeIconSidebar')
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 监听模式切换
      */
     onModeChange(mode) {
       this.readonly = mode === 'readonly'
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 监听节点激活
      */
     onNodeActive(...args) {
       this.activeNodes = args[0][1]
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 监听前进后退
      */
     onBackForward(index, len) {
@@ -285,7 +237,7 @@ export default {
       this.forwardEnd = index >= len - 1
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 监听本地文件读写
      */
     onWriteLocalFile(content) {
@@ -295,7 +247,7 @@ export default {
       }, 1000)
     },
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 打开本地文件
      */
     async openLocalFile() {
@@ -335,7 +287,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 读取本地文件
      */
     async readFile() {
@@ -356,7 +308,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 渲染读取的数据
      */
     setData(str) {
@@ -382,7 +334,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 写入本地文件
      */
     async writeLocalFile(content) {
@@ -399,7 +351,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 创建本地文件
      */
     async createNewLocalFile() {
@@ -407,7 +359,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 另存为
      */
     async saveLocalFile() {
@@ -416,7 +368,7 @@ export default {
     },
 
     /**
-     * @Author: 黄原寅
+     * @Author: lgy
      * @Desc: 创建本地文件
      */
     async createLocalFile(content) {
@@ -462,14 +414,17 @@ export default {
   &.isDark {
     .toolbar {
       color: hsla(0, 0%, 100%, 0.9);
+
       .toolbarBlock {
         background-color: #262a2e;
       }
+
       .toolbarBtn {
         .icon {
           background: transparent;
           border-color: transparent;
         }
+
         &:hover {
           &:not(.disabled) {
             .icon {
@@ -477,12 +432,14 @@ export default {
             }
           }
         }
+
         &.disabled {
           color: #54595f;
         }
       }
     }
   }
+
   .toolbar {
     position: fixed;
     left: 50%;
@@ -558,6 +515,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 1040px) {
   .toolbarContainer {
     .toolbar {

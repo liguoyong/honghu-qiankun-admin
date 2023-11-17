@@ -1,16 +1,12 @@
 <template>
-  <div class="sidebarTriggerContainer" @click.stop :class="{ hasActive: show && activeSidebar, show: show, isDark: isDark }">
+  <div class="sidebarTriggerContainer" @click.stop
+    :class="{ hasActive: show && activeSidebar, show: show, isDark: isDark }">
     <div class="toggleShowBtn" :class="{ hide: !show }" @click="show = !show">
       <span class="iconfont iconjiantouyou"></span>
     </div>
     <div class="trigger">
-      <div
-        class="triggerItem"
-        v-for="item in triggerList"
-        :key="item.value"
-        :class="{ active: activeSidebar === item.value }"
-        @click="trigger(item)"
-      >
+      <div class="triggerItem" v-for="item in triggerList" :key="item.value"
+        :class="{ active: activeSidebar === item.value }" @click="trigger(item)">
         <div class="triggerIcon iconfont" :class="[item.icon]"></div>
         <div class="triggerName">{{ item.name }}</div>
       </div>
@@ -22,7 +18,7 @@
 import { mapState, mapMutations } from 'vuex'
 import { sidebarTriggerList } from '@/config'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 侧边栏触发器
  */
 export default {
@@ -55,11 +51,14 @@ export default {
   transition: all 0.3s;
   top: 50%;
   transform: translateY(-50%);
+
   &.isDark {
     .trigger {
       background-color: #262a2e;
+
       .triggerItem {
         color: hsla(0, 0%, 100%, 0.6);
+
         &:hover {
           background-color: hsla(0, 0%, 100%, 0.05);
         }
@@ -70,9 +69,11 @@ export default {
   &.show {
     right: 0;
   }
+
   &.hasActive {
     right: 305px;
   }
+
   .toggleShowBtn {
     position: absolute;
     left: -6px;
@@ -89,20 +90,25 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 4px;
+
     &.hide {
       left: -8px;
+
       span {
         transform: rotateZ(180deg);
       }
     }
+
     &:hover {
       left: -18px;
     }
+
     span {
       color: #fff;
       transition: all 0.1s;
     }
   }
+
   .trigger {
     position: relative;
     width: 60px;
@@ -111,6 +117,7 @@ export default {
     box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.06);
     border-radius: 6px;
     overflow: hidden;
+
     .triggerItem {
       height: 60px;
       display: flex;
@@ -121,17 +128,21 @@ export default {
       color: #464646;
       user-select: none;
       white-space: nowrap;
+
       &:hover {
         background-color: #ededed;
       }
+
       &.active {
         color: #409eff;
         font-weight: bold;
       }
+
       .triggerIcon {
         font-size: 18px;
         margin-bottom: 5px;
       }
+
       .triggerName {
         font-size: 13px;
       }

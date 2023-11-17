@@ -1,15 +1,7 @@
 <template>
   <el-dialog custom-class="importNodeDialog" v-model="dialogVisible" :title="$t('import.title')" width="600px">
-    <el-upload
-      ref="upload"
-      action="x"
-      :file-list="fileList"
-      :auto-upload="false"
-      :multiple="false"
-      :on-change="onChange"
-      :limit="1"
-      :on-exceed="onExceed"
-    >
+    <el-upload ref="upload" action="x" :file-list="fileList" :auto-upload="false" :multiple="false" :on-change="onChange"
+      :limit="1" :on-exceed="onExceed">
       <el-button slot="trigger" size="default" type="primary">{{ $t('import.selectFile') }}</el-button>
       <div slot="tip" class="el-upload__tip">{{ $t('import.supportFile') }}</div>
     </el-upload>
@@ -24,7 +16,7 @@
 
 <script setup>
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 导入功能
  */
 import { onMounted, ref, watch } from 'vue'
@@ -57,7 +49,7 @@ onMounted(() => {
 })
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 文件选择
  */
 const onChange = file => {
@@ -74,7 +66,7 @@ const onChange = file => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 数量超出限制
  */
 const onExceed = () => {
@@ -85,7 +77,7 @@ const onExceed = () => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 取消
  */
 const cancel = () => {
@@ -93,7 +85,7 @@ const cancel = () => {
 }
 
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 确定导入
  */
 const confirm = () => {
@@ -117,7 +109,7 @@ const confirm = () => {
   cancel()
 }
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 处理.smm文件
  */
 const handleSmm = file => {
@@ -145,7 +137,7 @@ const handleSmm = file => {
   cancel()
 }
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 处理.xmind文件
  */
 const handleXmind = async file => {
@@ -166,7 +158,7 @@ const handleXmind = async file => {
   }
 }
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 处理.xlsx文件
  */
 const handleExcel = async file => {
@@ -231,7 +223,7 @@ const handleExcel = async file => {
   }
 }
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 处理markdown文件
  */
 const handleMd = async file => {

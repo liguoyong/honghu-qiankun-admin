@@ -1,13 +1,8 @@
 <template>
   <Sidebar ref="sidebar" :title="$t('strusture.title')">
     <div class="layoutList" :class="{ isDark: isDark }">
-      <div
-        class="layoutItem"
-        v-for="item in layoutList"
-        :key="item.value"
-        @click="useLayout(item)"
-        :class="{ active: item.value === layout }"
-      >
+      <div class="layoutItem" v-for="item in layoutList" :key="item.value" @click="useLayout(item)"
+        :class="{ active: item.value === layout }">
         <div class="imgBox">
           <img :src="layoutImgMap[item.value]" alt="" />
         </div>
@@ -26,7 +21,7 @@ import bus from '@/utils/bus.js'
 import { mapState, useStore } from 'vuex'
 import { layoutImgMap } from '@/config/constant.js'
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 结构
  */
 const props = defineProps({
@@ -63,7 +58,7 @@ onMounted(() => {
   })
 })
 /**
- * @Author: 黄原寅
+ * @Author: lgy
  * @Desc: 使用主题
  */
 const useLayout = layout => {
@@ -86,11 +81,13 @@ export default {
 <style lang="less" scoped>
 .layoutList {
   padding: 20px;
+
   &.isDark {
     .name {
       color: #fff;
     }
   }
+
   .layoutItem {
     width: 100%;
     cursor: pointer;
