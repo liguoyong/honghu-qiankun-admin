@@ -12,6 +12,13 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
+                <div class="block">
+                    <el-date-picker v-model="ruleForm.dateRange" type="daterange" unlink-panels range-separator="至"
+                        start-placeholder="开始时间" end-placeholder="结束时间" :shortcuts="shortcuts" :size="size"
+                        value-format="YYYY-MM-DD HH:mm:ss" />
+                </div>
+            </el-form-item>
+            <el-form-item>
                 <el-button type="primary" @click="onSearch">查询</el-button>
                 <el-button @click="resetForm(noteFormRef)">重置</el-button>
             </el-form-item>
@@ -82,7 +89,8 @@ const tableData = ref([])
 const noteFormRef = ref<FormInstance>()
 const ruleForm = reactive({
     payType: '',
-    consume: ''
+    consume: '',
+    dateRange: ''
 })
 
 const pageParams = reactive({
@@ -140,7 +148,9 @@ const handelClickViewDetail = async () => {
 }
 
 const getList = async () => {
-    const response = await getBillsList({ ...pageParams, ...ruleForm })
+    const { payType = '', consume = '', dateRange: [startTime, endTime] = ['', ''] } = ruleForm
+    const searchParams = { payType, consume, startTime, endTime }
+    const response = await getBillsList({ ...pageParams, ...searchParams })
     if (response.code == 200) {
         const { list = [], total } = response.data
         tableData.value = response.data.list
@@ -172,7 +182,8 @@ const resetForm = (formEl: FormInstance | undefined) => {
     Object.assign(pageParams, {
         page: 1,
         size: 10,
-        total: 0
+        total: 0,
+        dateRange: ''
     })
     Object.assign(ruleForm, {
         payType: '',
@@ -325,6 +336,38 @@ const closeDialog = () => {
     pageParams.page = 1
     getList()
 }
+
+const size = ref<'default' | 'large' | 'small'>('default')
+
+const shortcuts = [
+    {
+        text: 'Last week',
+        value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            return [start, end]
+        },
+    },
+    {
+        text: 'Last month',
+        value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            return [start, end]
+        },
+    },
+    {
+        text: 'Last 3 months',
+        value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            return [start, end]
+        },
+    },
+]
 
 </script>
 <style lang="scss" scoped>
