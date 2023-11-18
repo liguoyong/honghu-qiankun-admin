@@ -13,7 +13,7 @@
             </el-form-item>
             <el-form-item>
                 <div class="block">
-                    <el-date-picker v-model="ruleForm.dateRange" type="daterange" unlink-panels range-separator="至"
+                    <el-date-picker v-model="dateRange" type="daterange" unlink-panels range-separator="至"
                         start-placeholder="开始时间" end-placeholder="结束时间" :shortcuts="shortcuts" :size="size"
                         value-format="YYYY-MM-DD HH:mm:ss" />
                 </div>
@@ -87,10 +87,10 @@ import { getBillsList } from '@/api/bills'
 import { objectPick } from '@vueuse/shared'
 const tableData = ref([])
 const noteFormRef = ref<FormInstance>()
+const dateRange: any = ref(null)
 const ruleForm = reactive({
     payType: '',
-    consume: '',
-    dateRange: ''
+    consume: ''
 })
 
 const pageParams = reactive({
@@ -148,14 +148,13 @@ const handelClickViewDetail = async () => {
 }
 
 const getList = async () => {
-    const { payType = '', consume = '', dateRange: [startTime, endTime] = ['', ''] } = ruleForm
-    const searchParams = { payType, consume, startTime, endTime }
-    const response = await getBillsList({ ...pageParams, ...searchParams })
+    const [startTime = '', endTime = ''] = dateRange.value || []
+    const response = await getBillsList({ ...pageParams, ...ruleForm, startTime, endTime })
     if (response.code == 200) {
         const { list = [], total } = response.data
-        tableData.value = response.data.list
-        const types = response.data.list.map((it: { payType: any }) => it.payType)
-        const consume = response.data.list.map((it: { consume: any }) => it.consume)
+        tableData.value = list
+        const types = list.map((it: { payType: any }) => it.payType)
+        const consume = list.map((it: { consume: any }) => it.consume)
         console.log(Array.from(new Set(types)), Array.from(new Set(consume)));
 
         pageParams.total = total
@@ -182,9 +181,9 @@ const resetForm = (formEl: FormInstance | undefined) => {
     Object.assign(pageParams, {
         page: 1,
         size: 10,
-        total: 0,
-        dateRange: ''
+        total: 0
     })
+    dateRange.value = null
     Object.assign(ruleForm, {
         payType: '',
         consume: ''
