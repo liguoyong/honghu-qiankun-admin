@@ -2,9 +2,12 @@ const path = require('path')
 const { name } = require('./package');
 
 module.exports = {
+  publicPath: '/',
   outputDir: 'dist', // 打包dist所在路径
+  assetsDir: 'static',
   lintOnSave: false,
   productionSourceMap: false,
+  filenameHashing: true,
   transpileDependencies: ['simple-mind-map'],
   devServer: {
     hot: true,
