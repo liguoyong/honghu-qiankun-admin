@@ -43,12 +43,13 @@
                     </el-icon>导入支付宝账单
                 </el-button>
             </el-upload>
-            <el-button type="primary" style="margin-left: 8px;">账单数据分析</el-button>
+            <el-button type="primary" style="margin-left: 8px;" @click="handelClickBillAnalysis">账单数据分析</el-button>
 
         </div>
         <!-- 交易时间	交易分类	交易对方	对方账号	商品说明	收/支	金额	收/付款方式	交易状态	交易订单号	商家订单号	备注 -->
-        <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail"
-            :tooltip-options="tooltipOptions">
+        <el-table ref="multipleTableRef" :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail"
+            :tooltip-options="tooltipOptions" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55" />
             <el-table-column prop="transactionNumber" label="订单编号" />
             <el-table-column prop="payTime" label="交易时间" />
             <el-table-column prop="payType" label="交易分类" />
@@ -74,13 +75,29 @@
                 @size-change="handleSizeChange" @current-change="handleCurrentChange" />
         </div>
         <editPayDialog :dialog="PayDialog" @close="closeDialog" />
+        <editPayDrawer :drawer="drawer" />
     </div>
 </template>
 <script lang="ts" setup>
+interface bill {
+    payTime: string
+    payType: string
+    payUser: string
+    payAccount: string
+    goods: string
+    consume: string
+    amount: string
+    payWay: string
+    status: string
+    transactionNumber: string
+    commercialOrder: string,
+    remark: string
+}
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import editPayDialog from '../components/editPayDialog.vue'
+import editPayDrawer from '../components/editPayDrawer.vue'
 import * as XLSX from 'xlsx'
 import { tooltipOptions } from '@/utils/common'
 import { getBillsList } from '@/api/bills'
@@ -88,6 +105,15 @@ import { objectPick } from '@vueuse/shared'
 const tableData = ref([])
 const noteFormRef = ref<FormInstance>()
 const dateRange: any = ref(null)
+const multipleTableRef = ref()
+const multipleSelection = ref<bill[]>([])
+
+const drawer = reactive({
+    show: false,
+    title: '查看详情',
+    data: {}
+})
+
 const ruleForm = reactive({
     payType: '',
     consume: ''
@@ -147,6 +173,11 @@ const handelClickViewDetail = async () => {
 
 }
 
+const handleSelectionChange = (val: bill[]) => {
+    multipleSelection.value = val
+    console.log(multipleSelection, multipleSelection.value, ' multipleSelection.value');
+}
+
 const getList = async () => {
     const [startTime = '', endTime = ''] = dateRange.value || []
     const response = await getBillsList({ ...pageParams, ...ruleForm, startTime, endTime })
@@ -192,6 +223,12 @@ const resetForm = (formEl: FormInstance | undefined) => {
 }
 
 const handelCreateNote = () => {
+}
+
+// 账单分析
+const handelClickBillAnalysis = () =>{
+    drawer.show = true
+    drawer.data = multipleSelection.value
 }
 
 const beforeUpload = (file: { type: any }) => {
@@ -340,7 +377,7 @@ const size = ref<'default' | 'large' | 'small'>('default')
 
 const shortcuts = [
     {
-        text: 'Last week',
+        text: '近一周',
         value: () => {
             const end = new Date()
             const start = new Date()
@@ -349,7 +386,7 @@ const shortcuts = [
         },
     },
     {
-        text: 'Last month',
+        text: '近一月',
         value: () => {
             const end = new Date()
             const start = new Date()
@@ -358,7 +395,7 @@ const shortcuts = [
         },
     },
     {
-        text: 'Last 3 months',
+        text: '近三月',
         value: () => {
             const end = new Date()
             const start = new Date()
