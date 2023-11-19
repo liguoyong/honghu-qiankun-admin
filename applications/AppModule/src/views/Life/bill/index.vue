@@ -72,7 +72,8 @@
         </el-table>
         <div class="common-pagination">
             <com-pagination :current-page="pageParams.page" :page-size="pageParams.size" :total="pageParams.total"
-                @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+                @size-change="handleSizeChange" :pageSizes="[10, 20, 50, 100, 1000]"
+                @current-change="handleCurrentChange" />
         </div>
         <editPayDialog :dialog="PayDialog" @close="closeDialog" />
         <editPayDrawer :drawer="drawer" />
@@ -226,7 +227,11 @@ const handelCreateNote = () => {
 }
 
 // 账单分析
-const handelClickBillAnalysis = () =>{
+const handelClickBillAnalysis = () => {
+    if (!multipleSelection.value.length) {
+        ElMessage.info('请选择账单')
+        return
+    }
     drawer.show = true
     drawer.data = multipleSelection.value
 }

@@ -11,6 +11,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@vueup/vue-quill": "^1.0.0-alpha.40",
     "axios": "^1.4.0",
+    "echarts": "^5.4.3",
     "element-plus": "^2.3.7",
     "highlight.js": "^11.8.0",
     "js-cookie": "^3.0.5",
