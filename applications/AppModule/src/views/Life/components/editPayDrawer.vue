@@ -5,23 +5,17 @@
         </template>
         <template #default>
             <div>
-                <el-descriptions :column="1" title="" direction="vertical">
-                    <el-descriptions-item label="标题：">
-                        <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
-                    </el-descriptions-item>
-                    <el-descriptions-item label="标题：">
-                        <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
-                    </el-descriptions-item>
-                    <el-descriptions-item label="标题：">
-                        <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
-                    </el-descriptions-item>
-                    <el-descriptions-item label="标题：">
-                        <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
-                    </el-descriptions-item>
-                    <el-descriptions-item label="标题：">
-                        <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
+                <el-descriptions :column="3" title="收/支总和" border direction="horizontal">
+                    <el-descriptions-item label="不计收支">kooriookami</el-descriptions-item>
+                    <el-descriptions-item label="支出">18100000000</el-descriptions-item>
+                    <el-descriptions-item label="收入">18100000000</el-descriptions-item>
+                </el-descriptions>
+                <el-descriptions title="占比" style="margin-top:20px;" direction="vertical">
+                    <el-descriptions-item label="">
+                        <pie-chart />
                     </el-descriptions-item>
                 </el-descriptions>
+                <div id="chartContainer" ref="chartContainer" style="height:300px;"></div>
             </div>
         </template>
         <!-- <template #footer>
@@ -36,6 +30,7 @@
 import { ref, watch, nextTick, onMounted } from 'vue'
 import * as echarts from 'echarts';
 import 'echarts/lib/chart/line'; // 导入折线图
+import pieChart from './pieChart.vue'
 const chartContainer = ref()
 const props = defineProps({
     drawer: {
