@@ -1,7 +1,8 @@
 <template>
-  <div style="width: 582px;">
-    <org-transfer :props="propsOptions" :value="value" @input="changeVal" :default-checked-keys="[]" node-key="id"
-      :data="orgData" clearable />
+  <div style="width: 516px;">
+    <org-transfer ref="transferRef" :props="propsOptions" :titles="['全部收起', '全部收起']" :value="value" @input="changeVal"
+      :default-checked-keys="[]" placeholder="请输入组织名称进行查询" node-key="id" :data="orgData" clearable />
+    <el-button @click="handleSubmit">提交</el-button>
   </div>
 </template>
   
@@ -50,6 +51,9 @@ export default {
     changeVal(val) {
       console.log('val', val);
       this.value = val
+    },
+    handleSubmit() {
+      console.log(this.value, this.$refs.transferRef, 'this.$refs.transferRef');
     }
   }
 }

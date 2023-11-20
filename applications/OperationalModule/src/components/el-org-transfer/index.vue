@@ -1,7 +1,8 @@
 <template>
     <div class="el-org-transfer">
         <div class="el-org-input">
-            <el-input prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal" placeholder="请输入" />
+            <el-input ref="searchRef" prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal"
+                :placeholder="placeholder" />
             <!-- <el-input prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal" placeholder="请输入" /> -->
         </div>
         <div class="el-transfer">
@@ -13,14 +14,14 @@
             </transfer-panel>
             <div class="el-transfer__buttons">
                 <el-button type="primary" :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
-                    @click.native="addToLeft" :disabled="rightChecked.length === 0">
-                    <i class="el-icon-arrow-left"></i>
-                    <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
-                </el-button>
-                <el-button type="primary" :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
                     @click.native="addToRight" :disabled="leftChecked.length === 0">
                     <span v-if="buttonTexts[1] !== undefined">{{ buttonTexts[1] }}</span>
                     <i class="el-icon-arrow-right"></i>
+                </el-button>
+                <el-button type="primary" :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
+                    @click.native="addToLeft" :disabled="rightChecked.length === 0">
+                    <i class="el-icon-arrow-left"></i>
+                    <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
                 </el-button>
                 <slot name="btns"></slot>
             </div>
@@ -139,7 +140,11 @@ export default {
             type: String,
             default: 'original'
         },
-        nodeKey: String
+        nodeKey: String,
+        placeholder: {
+            type: String,
+            default: '请选择'
+        }
     },
 
     data() {
@@ -158,21 +163,21 @@ export default {
 
         sourceData() {
             return this.data
-            
-            if(this.leftChecked.length) {
+
+            if (this.leftChecked.length) {
                 return this.filterTreeDataNoExit(this.data, this.value || [])
             } else {
                 return this.data
             }
-            
+
         },
 
         targetData() {
             if (this.targetOrder === 'original') {
-                console.log(this.value,'this.value');
                 return this.filterTreeData(this.data, this.value)
                 // return this.data.filter(item => this.value.indexOf(item[this.props.key]) > -1);
             } else {
+                return []
                 // 目标
                 // return this.value.reduce((arr, cur) => {
                 //     const val = this.dataObj[cur];
@@ -218,19 +223,20 @@ export default {
 
         addToLeft() {
             let currentValue = this.value.slice();
-            this.rightChecked.forEach(item => {
-                const index = currentValue.indexOf(item);
-                if (index > -1) {
-                    currentValue.splice(index, 1);
-                }
-            });
+            // this.rightChecked.forEach(item => {
+            //     const index = currentValue.indexOf(item);
+            //     if (index > -1) {
+            //         currentValue.splice(index, 1);
+            //     }
+            // });
+            currentValue = Array.from(new Set(currentValue.concat(this.rightChecked)))
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'left', this.rightChecked);
+            this.setCheckedKeys(this.value)
         },
 
         addToRight() {
             // this.filterTreeData()
-            console.log(this.leftChecked,this.value,'this.leftChecked');
             let currentValue = this.value.slice();
             // const itemsToBeMoved = [];
             // const key = this.props.key;
@@ -250,7 +256,7 @@ export default {
             currentValue = Array.from(new Set(currentValue.concat(this.leftChecked)))
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'right', this.leftChecked);
-            console.log(this.value,'value');
+            this.setCheckedKeys(this.value)
         },
 
         clearQuery(which) {
@@ -290,8 +296,20 @@ export default {
                 }
             }
             return nodeList.length ? nodeList : [];
-        }
-
+        },
+        setCheckedKeys() {
+            // this.$nextTick(() => {
+            //     this.$refs.rightPanel.$refs.transferTree.setCheckedKeys(this.value);
+            // })
+        },
     }
 };
 </script>
+<style lang="scss">
+.el-transfer__buttons {
+    .el-button+.el-button {
+        display: block;
+        margin-left: 0;
+    }
+}
+</style>

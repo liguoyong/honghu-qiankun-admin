@@ -1,8 +1,9 @@
 <template>
   <div class="el-transfer-panel">
     <p class="el-transfer-panel__header">
-      <el-checkbox v-model="allChecked" @change="handleAllCheckedChange" :indeterminate="isIndeterminate">
-        {{ title }}
+      <el-checkbox v-model="allChecked" @change="handleAllCheckedChange" :disabled="!data.length"
+        :indeterminate="isIndeterminate" @click.prevent>
+        <div style="display: inline-block;" @click.stop="collapseAll">{{ title }}</div>
         <span>{{ checkedSummary }}</span>
       </el-checkbox>
     </p>
@@ -26,8 +27,8 @@
           <option-content :option="item"></option-content>
         </el-checkbox>
       </el-checkbox-group> -->
-      <el-tree :props="props" v-show="!hasNoMatch && data.length > 0" :data="data" v-bind="$attrs" show-checkbox
-        @check-change="handleCheckChange">
+      <el-tree ref="transferTree" :props="props" v-show="!hasNoMatch && data.length > 0" :data="data" v-bind="$attrs"
+        :node-key="nodeKey" show-checkbox @check-change="handleCheckChange">
       </el-tree>
       <p class="el-transfer-panel__empty" v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
       <p class="el-transfer-panel__empty" v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
@@ -134,7 +135,6 @@ export default {
       }
     },
     data(val, oldVal) {
-      console.log('dataaaaaaaaaaaaaaaaaaaa', val);
       // const checked = [];
       // const filteredDataKeys = this.filteredData.map(item => item[this.keyProp]);
       // this.checked.forEach(item => {
@@ -166,10 +166,6 @@ export default {
         this.checked = checked;
       }
     }
-  },
-  mounted() {
-    console.log(this.data, this.hasNoMatch, this.props, 'dddddddddddddddd');
-    console.log(this.data.length === 0 && !this.hasNoMatch);
   },
   computed: {
     filteredData() {
@@ -251,14 +247,17 @@ export default {
       }
     },
     handleCheckChange(data, checked, indeterminate) {
-      console.log(data, checked, indeterminate, this.nodeKey);
       if (checked) {
         this.checkedIds.push(data[this.nodeKey])
       } else {
         this.checkedIds = this.checkedIds.filter(item => item !== data[this.nodeKey])
       }
-      console.log(this.checkedIds,'this.checkedIds');
-    }
+    },
+    collapseAll() {
+      // 获取 el-tree 实例
+      const tree = this.$refs.transferTree;
+      tree.store._getAllNodes().forEach(v => v.expanded = false)
+    },
   }
 };
 </script>
