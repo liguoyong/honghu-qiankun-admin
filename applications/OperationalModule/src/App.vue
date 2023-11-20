@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link>
       |
       <router-link to="/about">About</router-link>
-      <router-link to="/about1">About1</router-link>
+      |
+      <router-link to="/cascader">cascader</router-link>
     </div>
     <router-view />
   </div>
@@ -13,8 +14,11 @@
 export default {
   mounted() {
     /* 这里假设 */
-    console.log(this.$qiankun.getGlobalState(),"8999999")
+    // console.log(this.$qiankun.getGlobalState(),"8999999")
 // 这里主工程改变值后这里会得到响应
+    if(!this.$qiankun) {
+      return
+    }
   this.$qiankun.onGlobalStateChange &&
     this.$qiankun.onGlobalStateChange(
       (value, prev) =>
