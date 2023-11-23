@@ -1,0 +1,1408 @@
+[
+    {
+      "id": 1945,
+      "parentId": 0,
+      "orgName": "cvag",
+      "orgPath": "1945",
+      "orgPathName": "cvag"
+    },
+    {
+      "id": 1892,
+      "parentId": 0,
+      "orgName": "新增测试2",
+      "orgPath": "1892",
+      "orgPathName": "新增测试2"
+    },
+    {
+      "id": 1891,
+      "parentId": 0,
+      "orgName": "新增测试",
+      "orgPath": "1891",
+      "orgPathName": "新增测试",
+      "children": [
+        {
+          "id": 1901,
+          "parentId": 1891,
+          "orgName": "新增测试的测试1",
+          "orgPath": "1891/1901",
+          "orgPathName": "新增测试/新增测试的测试1",
+          "children": [
+            {
+              "id": 1902,
+              "parentId": 1901,
+              "orgName": "新增测试的测试的测试",
+              "orgPath": "1891/1901/1902",
+              "orgPathName": "新增测试/新增测试的测试1/新增测试的测试的测试"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1861,
+      "parentId": 0,
+      "orgName": "qqq1234",
+      "orgPath": "1861",
+      "orgPathName": "qqq1234",
+      "children": [
+        {
+          "id": 1882,
+          "parentId": 1861,
+          "orgName": "qqq1234-6",
+          "orgPath": "1861/1882",
+          "orgPathName": "qqq1234/qqq1234-6"
+        }
+      ]
+    },
+    {
+      "id": 151,
+      "parentId": 0,
+      "orgName": "二级1",
+      "orgPath": "151",
+      "orgPathName": "二级1"
+    },
+    {
+      "id": 1718,
+      "parentId": 0,
+      "orgName": "二级机构_cd01",
+      "orgPath": "1703/1718",
+      "orgPathName": "测试/二级机构_cd01",
+      "children": [
+        {
+          "id": 1721,
+          "parentId": 1718,
+          "orgName": "三级机构_01",
+          "orgPath": "1703/1718/1721",
+          "orgPathName": "测试/二级机构_cd01/三级机构_01"
+        }
+      ]
+    },
+    {
+      "id": 1719,
+      "parentId": 0,
+      "orgName": "二级机构_02",
+      "orgPath": "1703/1719",
+      "orgPathName": "测试/二级机构_02"
+    },
+    {
+      "id": 1720,
+      "parentId": 0,
+      "orgName": "二级机构_03",
+      "orgPath": "1703/1720",
+      "orgPathName": "测试/二级机构_03"
+    },
+    {
+      "id": 1,
+      "parentId": 0,
+      "orgName": "中国移动集团",
+      "orgPath": "1",
+      "orgPathName": "中国移动集团",
+      "children": [
+        {
+          "id": 1793,
+          "parentId": 1,
+          "orgName": "测试数据权限租户",
+          "orgPath": "1793",
+          "orgPathName": "测试数据权限租户",
+          "children": [
+            {
+              "id": 1794,
+              "parentId": 1793,
+              "orgName": "财务部",
+              "orgPath": "1793/1794",
+              "orgPathName": "测试数据权限租户/财务部"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "parentId": 1,
+          "orgName": "开发租户12",
+          "orgPath": "2",
+          "orgPathName": "开发租户12",
+          "children": [
+            {
+              "id": 1884,
+              "parentId": 2,
+              "orgName": "测试1",
+              "orgPath": "1/2/1884",
+              "orgPathName": "中国移动集团/开发租户12/测试1"
+            },
+            {
+              "id": 1872,
+              "parentId": 2,
+              "orgName": "开发租户-5",
+              "orgPath": "1/2/1872",
+              "orgPathName": "中国移动集团/开发租户12/开发租户-5"
+            },
+            {
+              "id": 1871,
+              "parentId": 2,
+              "orgName": "开发租户-4",
+              "orgPath": "1/2/1871",
+              "orgPathName": "中国移动集团/开发租户12/开发租户-4"
+            },
+            {
+              "id": 1870,
+              "parentId": 2,
+              "orgName": "开发租户-3",
+              "orgPath": "1/2/1870",
+              "orgPathName": "中国移动集团/开发租户12/开发租户-3"
+            },
+            {
+              "id": 1869,
+              "parentId": 2,
+              "orgName": "开发租户-2",
+              "orgPath": "1/2/1869",
+              "orgPathName": "中国移动集团/开发租户12/开发租户-2"
+            },
+            {
+              "id": 1868,
+              "parentId": 2,
+              "orgName": "开发租户-1",
+              "orgPath": "1/2/1868",
+              "orgPathName": "中国移动集团/开发租户12/开发租户-1"
+            },
+            {
+              "id": 1717,
+              "parentId": 2,
+              "orgName": "测试部门",
+              "orgPath": "2/1717",
+              "orgPathName": "开发租户12/测试部门",
+              "children": [
+                {
+                  "id": 1766,
+                  "parentId": 1717,
+                  "orgName": "开发组",
+                  "orgPath": "2/1717/1766",
+                  "orgPathName": "开发租户12/测试部门/开发组"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "parentId": 1,
+          "orgName": "测试租户",
+          "orgPath": "1/3",
+          "orgPathName": "测试租户",
+          "children": [
+            {
+              "id": 1886,
+              "parentId": 3,
+              "orgName": "很长很长很长很长很长很长很长很长很长很长很长很长很长的名字测",
+              "orgPath": "1/3/1886",
+              "orgPathName": "中国移动集团/测试租户/很长很长很长很长很长很长很长很长很长很长很长很长很长的名字测"
+            },
+            {
+              "id": 1885,
+              "parentId": 3,
+              "orgName": "测试1",
+              "orgPath": "1/3/1885",
+              "orgPathName": "中国移动集团/测试租户/测试1"
+            },
+            {
+              "id": 1877,
+              "parentId": 3,
+              "orgName": "测试租户-2",
+              "orgPath": "1/3/1877",
+              "orgPathName": "中国移动集团/测试租户/测试租户-2"
+            },
+            {
+              "id": 1876,
+              "parentId": 3,
+              "orgName": "测试租户-1",
+              "orgPath": "1/3/1876",
+              "orgPathName": "中国移动集团/测试租户/测试租户-1"
+            }
+          ]
+        },
+        {
+          "id": 1795,
+          "parentId": 1,
+          "orgName": "test001",
+          "orgPath": "1795",
+          "orgPathName": "test001"
+        },
+        {
+          "id": 4,
+          "parentId": 1,
+          "orgName": "测试是否可以删除租户",
+          "orgPath": "4",
+          "orgPathName": "测试是否可以删除租户"
+        },
+        {
+          "id": 1796,
+          "parentId": 1,
+          "orgName": "a",
+          "orgPath": "1796",
+          "orgPathName": "a"
+        },
+        {
+          "id": 1797,
+          "parentId": 1,
+          "orgName": "苏州研发中心",
+          "orgPath": "1797",
+          "orgPathName": "苏州研发中心",
+          "children": [
+            {
+              "id": 1799,
+              "parentId": 1797,
+              "orgName": "人力资源部",
+              "orgPath": "1797/1799",
+              "orgPathName": "苏州研发中心/人力资源部"
+            },
+            {
+              "id": 1809,
+              "parentId": 1797,
+              "orgName": "测试部",
+              "orgPath": "1797/1809",
+              "orgPathName": "苏州研发中心/测试部"
+            },
+            {
+              "id": 1813,
+              "parentId": 1797,
+              "orgName": "PaaS产品部",
+              "orgPath": "1797/1813",
+              "orgPathName": "苏州研发中心/PaaS产品部"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "parentId": 1,
+          "orgName": "广东公司",
+          "orgPath": "8",
+          "orgPathName": "广东公司",
+          "children": [
+            {
+              "id": 9,
+              "parentId": 8,
+              "orgName": "广州分公司",
+              "orgPath": "8月9日",
+              "orgPathName": "广东公司/广州分公司",
+              "children": [
+                {
+                  "id": 10,
+                  "parentId": 9,
+                  "orgName": "广州分公司财务部",
+                  "orgPath": "2008/9/10",
+                  "orgPathName": "广东公司/广州分公司/广州分公司财务部"
+                },
+                {
+                  "id": 11,
+                  "parentId": 9,
+                  "orgName": "广州分公司内审部",
+                  "orgPath": "2008/9/11",
+                  "orgPathName": "广东公司/广州分公司/广州分公司内审部"
+                }
+              ]
+            },
+            {
+              "id": 12,
+              "parentId": 8,
+              "orgName": "深圳分公司",
+              "orgPath": "8月12日",
+              "orgPathName": "广东公司/深圳分公司"
+            },
+            {
+              "id": 14,
+              "parentId": 8,
+              "orgName": "财务部",
+              "orgPath": "8月14日",
+              "orgPathName": "广东公司/财务部"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "parentId": 1,
+          "orgName": "华云",
+          "orgPath": "16",
+          "orgPathName": "华云"
+        },
+        {
+          "id": 1296,
+          "parentId": 1,
+          "orgName": "浙江公司",
+          "orgPath": "1296",
+          "orgPathName": "浙江公司",
+          "children": [
+            {
+              "id": 1802,
+              "parentId": 1296,
+              "orgName": "宁波分公司",
+              "orgPath": "1296/1802",
+              "orgPathName": "浙江公司/宁波分公司",
+              "children": [
+                {
+                  "id": 1803,
+                  "parentId": 1802,
+                  "orgName": "政企客户部",
+                  "orgPath": "1296/1802/1803",
+                  "orgPathName": "浙江公司/宁波分公司/政企客户部",
+                  "children": [
+                    {
+                      "id": 1804,
+                      "parentId": 1803,
+                      "orgName": "综合业务室",
+                      "orgPath": "1296/1802/1803/1804",
+                      "orgPathName": "浙江公司/宁波分公司/政企客户部/综合业务室"
+                    }
+                  ]
+                },
+                {
+                  "id": 1805,
+                  "parentId": 1802,
+                  "orgName": "人力资源部",
+                  "orgPath": "1296/1802/1805",
+                  "orgPathName": "浙江公司/宁波分公司/人力资源部"
+                }
+              ]
+            },
+            {
+              "id": 1806,
+              "parentId": 1296,
+              "orgName": "网络部",
+              "orgPath": "1296/1806",
+              "orgPathName": "浙江公司/网络部",
+              "children": [
+                {
+                  "id": 1807,
+                  "parentId": 1806,
+                  "orgName": "网络优化中心",
+                  "orgPath": "1296/1806/1807",
+                  "orgPathName": "浙江公司/网络部/网络优化中心",
+                  "children": [
+                    {
+                      "id": 1808,
+                      "parentId": 1807,
+                      "orgName": "规划评估部",
+                      "orgPath": "1296/1806/1807/1808",
+                      "orgPathName": "浙江公司/网络部/网络优化中心/规划评估部"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 1297,
+              "parentId": 1296,
+              "orgName": "信息技术部",
+              "orgPath": "1296/1297",
+              "orgPathName": "浙江公司/信息技术部",
+              "children": [
+                {
+                  "id": 1800,
+                  "parentId": 1297,
+                  "orgName": "综合部",
+                  "orgPath": "1296/1297/1800",
+                  "orgPathName": "浙江公司/信息技术部/综合部",
+                  "children": [
+                    {
+                      "id": 1801,
+                      "parentId": 1800,
+                      "orgName": "行政安保中心",
+                      "orgPath": "1296/1297/1800/1801",
+                      "orgPathName": "浙江公司/信息技术部/综合部/行政安保中心"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "parentId": 1,
+          "orgName": "集团公司",
+          "orgPath": "1/17",
+          "orgPathName": "集团公司"
+        },
+        {
+          "id": 18,
+          "parentId": 1,
+          "orgName": "uui",
+          "orgPath": "18",
+          "orgPathName": "uui"
+        },
+        {
+          "id": 19,
+          "parentId": 1,
+          "orgName": "qwert",
+          "orgPath": "19",
+          "orgPathName": "qwert"
+        },
+        {
+          "id": 20,
+          "parentId": 1,
+          "orgName": "7272",
+          "orgPath": "20",
+          "orgPathName": "7272"
+        },
+        {
+          "id": 1817,
+          "parentId": 1,
+          "orgName": "信息港中心",
+          "orgPath": "1817",
+          "orgPathName": "信息港中心",
+          "children": [
+            {
+              "id": 1818,
+              "parentId": 1817,
+              "orgName": "APP开发运营中心",
+              "orgPath": "1817/1818",
+              "orgPathName": "信息港中心/APP开发运营中心"
+            },
+            {
+              "id": 1819,
+              "parentId": 1817,
+              "orgName": "历史部门",
+              "orgPath": "1817/1819",
+              "orgPathName": "信息港中心/历史部门",
+              "children": [
+                {
+                  "id": 1820,
+                  "parentId": 1819,
+                  "orgName": "中国移动国际信息港建设中心综合部（党委办公室）",
+                  "orgPath": "1817/1819/1820",
+                  "orgPathName": "信息港中心/历史部门/中国移动国际信息港建设中心综合部（党委办公室）"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1824,
+          "parentId": 1,
+          "orgName": "河南公司",
+          "orgPath": "1824",
+          "orgPathName": "河南公司",
+          "children": [
+            {
+              "id": 1825,
+              "parentId": 1824,
+              "orgName": "开封分公司",
+              "orgPath": "1824/1825",
+              "orgPathName": "河南公司/开封分公司",
+              "children": [
+                {
+                  "id": 1826,
+                  "parentId": 1825,
+                  "orgName": "市场经营部",
+                  "orgPath": "1824/1825/1826",
+                  "orgPathName": "河南公司/开封分公司/市场经营部",
+                  "children": [
+                    {
+                      "id": 1827,
+                      "parentId": 1826,
+                      "orgName": "客户服务中心",
+                      "orgPath": "1824/1825/1826/1827",
+                      "orgPathName": "河南公司/开封分公司/市场经营部/客户服务中心"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1828,
+          "parentId": 1,
+          "orgName": "开发人员测试租户1",
+          "orgPath": "1828",
+          "orgPathName": "开发人员测试租户1"
+        },
+        {
+          "id": 1829,
+          "parentId": 1,
+          "orgName": "租户",
+          "orgPath": "1829",
+          "orgPathName": "租户"
+        },
+        {
+          "id": 1830,
+          "parentId": 1,
+          "orgName": "cs1",
+          "orgPath": "1830",
+          "orgPathName": "cs1"
+        },
+        {
+          "id": 1831,
+          "parentId": 1,
+          "orgName": "新增租户",
+          "orgPath": "1831",
+          "orgPathName": "新增租户"
+        },
+        {
+          "id": 86,
+          "parentId": 1,
+          "orgName": "北京公司",
+          "orgPath": "86",
+          "orgPathName": "北京公司",
+          "children": [
+            {
+              "id": 87,
+              "parentId": 86,
+              "orgName": "信息系统部",
+              "orgPath": "86/87",
+              "orgPathName": "北京公司/信息系统部"
+            },
+            {
+              "id": 88,
+              "parentId": 86,
+              "orgName": "工程建设部",
+              "orgPath": "86/88",
+              "orgPathName": "北京公司/工程建设部"
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "parentId": 1,
+          "orgName": "u78",
+          "orgPath": "90",
+          "orgPathName": "u78",
+          "children": [
+            {
+              "id": 1713,
+              "parentId": 90,
+              "orgName": "u78_2",
+              "orgPath": "90/1713",
+              "orgPathName": "u78/u78_2"
+            },
+            {
+              "id": 1714,
+              "parentId": 90,
+              "orgName": "u78_2_01",
+              "orgPath": "90/1714",
+              "orgPathName": "u78/u78_2_01"
+            },
+            {
+              "id": 1715,
+              "parentId": 90,
+              "orgName": "u78_2_02",
+              "orgPath": "90/1715",
+              "orgPathName": "u78/u78_2_02"
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "parentId": 1,
+          "orgName": "深圳公司",
+          "orgPath": "91",
+          "orgPathName": "深圳公司",
+          "children": [
+            {
+              "id": 124,
+              "parentId": 91,
+              "orgName": "北京融昱公司",
+              "orgPath": "91/124",
+              "orgPathName": "深圳公司/北京融昱公司"
+            },
+            {
+              "id": 128,
+              "parentId": 91,
+              "orgName": "承德分公司",
+              "orgPath": "91/128",
+              "orgPathName": "深圳公司/承德分公司",
+              "children": [
+                {
+                  "id": 123,
+                  "parentId": 128,
+                  "orgName": "河北公司",
+                  "orgPath": "91/128/123",
+                  "orgPathName": "深圳公司/承德分公司/河北公司",
+                  "children": [
+                    {
+                      "id": 126,
+                      "parentId": 123,
+                      "orgName": "石家庄分公司",
+                      "orgPath": "91/128/123/126",
+                      "orgPathName": "深圳公司/承德分公司/河北公司/石家庄分公司",
+                      "children": [
+                        {
+                          "id": 127,
+                          "parentId": 126,
+                          "orgName": "石家庄分公司财务部",
+                          "orgPath": "91/128/123/126/127",
+                          "orgPathName": "深圳公司/承德分公司/河北公司/石家庄分公司/石家庄分公司财务部"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": 125,
+                  "parentId": 128,
+                  "orgName": "北京融昱公司财务室",
+                  "orgPath": "91/128/125",
+                  "orgPathName": "深圳公司/承德分公司/北京融昱公司财务室"
+                },
+                {
+                  "id": 129,
+                  "parentId": 128,
+                  "orgName": "承德分公司财务部",
+                  "orgPath": "91/128/129",
+                  "orgPathName": "深圳公司/承德分公司/承德分公司财务部"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 110,
+          "parentId": 1,
+          "orgName": "测试公司",
+          "orgPath": "110",
+          "orgPathName": "测试公司"
+        },
+        {
+          "id": 122,
+          "parentId": 1,
+          "orgName": "开发测试2212",
+          "orgPath": "122",
+          "orgPathName": "开发测试2212"
+        },
+        {
+          "id": 1700,
+          "parentId": 1,
+          "orgName": "测试RPA",
+          "orgPath": "1700",
+          "orgPathName": "测试RPA",
+          "children": [
+            {
+              "id": 1722,
+              "parentId": 1700,
+              "orgName": "测试二级_01",
+              "orgPath": "1700/1722",
+              "orgPathName": "测试RPA/测试二级_01"
+            },
+            {
+              "id": 1723,
+              "parentId": 1700,
+              "orgName": "测试二级_02uuu",
+              "orgPath": "1700/1723",
+              "orgPathName": "测试RPA/测试二级_02uuu"
+            },
+            {
+              "id": 1724,
+              "parentId": 1700,
+              "orgName": "测试二级_03",
+              "orgPath": "1700/1724",
+              "orgPathName": "测试RPA/测试二级_03"
+            },
+            {
+              "id": 1725,
+              "parentId": 1700,
+              "orgName": "测试二级_04",
+              "orgPath": "1700/1725",
+              "orgPathName": "测试RPA/测试二级_04"
+            },
+            {
+              "id": 1769,
+              "parentId": 1700,
+              "orgName": "测试二级01",
+              "orgPath": "1700/1769",
+              "orgPathName": "测试RPA/测试二级01"
+            },
+            {
+              "id": 1770,
+              "parentId": 1700,
+              "orgName": "测试二级",
+              "orgPath": "1700/1770",
+              "orgPathName": "测试RPA/测试二级",
+              "children": [
+                {
+                  "id": 1771,
+                  "parentId": 1770,
+                  "orgName": "测试三级",
+                  "orgPath": "1700/1770/1771",
+                  "orgPathName": "测试RPA/测试二级/测试三级"
+                },
+                {
+                  "id": 1772,
+                  "parentId": 1770,
+                  "orgName": "测试二级",
+                  "orgPath": "1700/1770/1772",
+                  "orgPathName": "测试RPA/测试二级/测试二级"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1701,
+          "parentId": 1,
+          "orgName": "zzzbenz",
+          "orgPath": "1701",
+          "orgPathName": "zzzbenz",
+          "children": [
+            {
+              "id": 1749,
+              "parentId": 1701,
+              "orgName": "test2",
+              "orgPath": "1701/1749",
+              "orgPathName": "zzzbenz/test2"
+            }
+          ]
+        },
+        {
+          "id": 1702,
+          "parentId": 1,
+          "orgName": "信息技术中心-old",
+          "orgPath": "1702",
+          "orgPathName": "信息技术中心",
+          "children": [
+            {
+              "id": 1810,
+              "parentId": 1702,
+              "orgName": "大数据BG",
+              "orgPath": "1702/1810",
+              "orgPathName": "信息技术中心/大数据BG",
+              "children": [
+                {
+                  "id": 1811,
+                  "parentId": 1810,
+                  "orgName": "大数据应用部",
+                  "orgPath": "1702/1810/1811",
+                  "orgPathName": "信息技术中心/大数据BG/大数据应用部"
+                }
+              ]
+            },
+            {
+              "id": 1812,
+              "parentId": 1702,
+              "orgName": "内审部",
+              "orgPath": "1702/1812",
+              "orgPathName": "信息技术中心/内审部"
+            },
+            {
+              "id": 1727,
+              "parentId": 1702,
+              "orgName": "政企业务支撑中心",
+              "orgPath": "1702/1727",
+              "orgPathName": "信息技术中心/政企业务支撑中心",
+              "children": [
+                {
+                  "id": 1730,
+                  "parentId": 1727,
+                  "orgName": "支撑中心",
+                  "orgPath": "1702/1727/1730",
+                  "orgPathName": "信息技术中心/政企业务支撑中心/支撑中心"
+                },
+                {
+                  "id": 1731,
+                  "parentId": 1727,
+                  "orgName": "测试中心",
+                  "orgPath": "1702/1727/1731",
+                  "orgPathName": "信息技术中心/政企业务支撑中心/测试中心"
+                },
+                {
+                  "id": 1732,
+                  "parentId": 1727,
+                  "orgName": "开发中心",
+                  "orgPath": "1702/1727/1732",
+                  "orgPathName": "信息技术中心/政企业务支撑中心/开发中心"
+                },
+                {
+                  "id": 1733,
+                  "parentId": 1727,
+                  "orgName": "服务中心",
+                  "orgPath": "1702/1727/1733",
+                  "orgPathName": "信息技术中心/政企业务支撑中心/服务中心"
+                }
+              ]
+            },
+            {
+              "id": 1790,
+              "parentId": 1702,
+              "orgName": "研发创新中心",
+              "orgPath": "1702/1790",
+              "orgPathName": "信息技术中心/研发创新中心"
+            }
+          ]
+        },
+        {
+          "id": 1716,
+          "parentId": 1,
+          "orgName": "测试部门",
+          "orgPath": "1/1716",
+          "orgPathName": "超级租户/测试部门",
+          "children": [
+            {
+              "id": 1734,
+              "parentId": 1716,
+              "orgName": "开发小组",
+              "orgPath": "1/1716/1734",
+              "orgPathName": "超级租户/测试部门/开发小组"
+            },
+            {
+              "id": 1735,
+              "parentId": 1716,
+              "orgName": "测试小组",
+              "orgPath": "1/1716/1735",
+              "orgPathName": "超级租户/测试部门/测试小组"
+            },
+            {
+              "id": 1736,
+              "parentId": 1716,
+              "orgName": "运维小组",
+              "orgPath": "1/1716/1736",
+              "orgPathName": "超级租户/测试部门/运维小组"
+            },
+            {
+              "id": 1737,
+              "parentId": 1716,
+              "orgName": "上级部门",
+              "orgPath": "1/1716/1737",
+              "orgPathName": "超级租户/测试部门/上级部门"
+            }
+          ]
+        },
+        {
+          "id": 1728,
+          "parentId": 1,
+          "orgName": "kingtest",
+          "orgPath": "1728",
+          "orgPathName": "kingtest"
+        },
+        {
+          "id": 1729,
+          "parentId": 1,
+          "orgName": "test2",
+          "orgPath": "1729",
+          "orgPathName": "test2"
+        },
+        {
+          "id": 1738,
+          "parentId": 1,
+          "orgName": "test",
+          "orgPath": "1738",
+          "orgPathName": "test"
+        },
+        {
+          "id": 1743,
+          "parentId": 1,
+          "orgName": "test1111",
+          "orgPath": "1743",
+          "orgPathName": "test1111",
+          "children": [
+            {
+              "id": 1776,
+              "parentId": 1743,
+              "orgName": "test2",
+              "orgPath": "1743/1776",
+              "orgPathName": "test1111/test2",
+              "children": [
+                {
+                  "id": 1779,
+                  "parentId": 1776,
+                  "orgName": "test3",
+                  "orgPath": "1743/1776/1779",
+                  "orgPathName": "test1111/test2/test3",
+                  "children": [
+                    {
+                      "id": 1781,
+                      "parentId": 1779,
+                      "orgName": "test4",
+                      "orgPath": "1743/1776/1779/1781",
+                      "orgPathName": "test1111/test2/test3/test4"
+                    },
+                    {
+                      "id": 1783,
+                      "parentId": 1779,
+                      "orgName": "test42",
+                      "orgPath": "1743/1776/1779/1783",
+                      "orgPathName": "test1111/test2/test3/test42"
+                    },
+                    {
+                      "id": 1784,
+                      "parentId": 1779,
+                      "orgName": "test43",
+                      "orgPath": "1743/1776/1779/1784",
+                      "orgPathName": "test1111/test2/test3/test43"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 1782,
+              "parentId": 1743,
+              "orgName": "54",
+              "orgPath": "1743/1782",
+              "orgPathName": "test1111/54"
+            }
+          ]
+        },
+        {
+          "id": 1747,
+          "parentId": 1,
+          "orgName": "集团总部old",
+          "orgPath": "1747",
+          "orgPathName": "集团总部",
+          "children": [
+            {
+              "id": 1821,
+              "parentId": 1747,
+              "orgName": "财务部",
+              "orgPath": "1747/1821",
+              "orgPathName": "集团总部/财务部",
+              "children": [
+                {
+                  "id": 1822,
+                  "parentId": 1821,
+                  "orgName": "总部财务处",
+                  "orgPath": "1747/1821/1822",
+                  "orgPathName": "集团总部/财务部/总部财务处"
+                }
+              ]
+            },
+            {
+              "id": 1823,
+              "parentId": 1747,
+              "orgName": "办公室（党组办公室|董事会办公室）",
+              "orgPath": "1747/1823",
+              "orgPathName": "集团总部/办公室（党组办公室|董事会办公室）"
+            }
+          ]
+        },
+        {
+          "id": 1748,
+          "parentId": 1,
+          "orgName": "湖北省稽核租户",
+          "orgPath": "1748",
+          "orgPathName": "湖北省稽核租户"
+        },
+        {
+          "id": 1750,
+          "parentId": 1,
+          "orgName": "财务部",
+          "orgPath": "1/1750",
+          "orgPathName": "超级租户/财务部"
+        },
+        {
+          "id": 1751,
+          "parentId": 1,
+          "orgName": "测试组",
+          "orgPath": "1751",
+          "orgPathName": "测试组"
+        },
+        {
+          "id": 1752,
+          "parentId": 1,
+          "orgName": "test1",
+          "orgPath": "1752",
+          "orgPathName": "test1"
+        },
+        {
+          "id": 1753,
+          "parentId": 1,
+          "orgName": "海南战队",
+          "orgPath": "1753",
+          "orgPathName": "海南战队"
+        },
+        {
+          "id": 1754,
+          "parentId": 1,
+          "orgName": "海口战地",
+          "orgPath": "1754",
+          "orgPathName": "海口战地"
+        },
+        {
+          "id": 1755,
+          "parentId": 1,
+          "orgName": "三亚战队",
+          "orgPath": "1755",
+          "orgPathName": "三亚战队"
+        },
+        {
+          "id": 1756,
+          "parentId": 1,
+          "orgName": "地方大师傅士大夫",
+          "orgPath": "1756",
+          "orgPathName": "地方大师傅士大夫"
+        },
+        {
+          "id": 1757,
+          "parentId": 1,
+          "orgName": "士大夫胜多负少",
+          "orgPath": "1757",
+          "orgPathName": "士大夫胜多负少"
+        },
+        {
+          "id": 1758,
+          "parentId": 1,
+          "orgName": "dsfd",
+          "orgPath": "1758",
+          "orgPathName": "dsfd"
+        },
+        {
+          "id": 1759,
+          "parentId": 1,
+          "orgName": "超级运营团队",
+          "orgPath": "1759",
+          "orgPathName": "超级运营团队",
+          "children": [
+            {
+              "id": 1760,
+              "parentId": 1759,
+              "orgName": "超级运营子团队",
+              "orgPath": "1759/1760",
+              "orgPathName": "超级运营团队/超级运营子团队"
+            }
+          ]
+        },
+        {
+          "id": 1761,
+          "parentId": 1,
+          "orgName": "kingtest33",
+          "orgPath": "1761",
+          "orgPathName": "kingtest33"
+        },
+        {
+          "id": 1762,
+          "parentId": 1,
+          "orgName": "kingtdagee",
+          "orgPath": "1762",
+          "orgPathName": "kingtdagee",
+          "children": [
+            {
+              "id": 1764,
+              "parentId": 1762,
+              "orgName": "king111111",
+              "orgPath": "1762/1764",
+              "orgPathName": "kingtdagee/king111111",
+              "children": [
+                {
+                  "id": 1765,
+                  "parentId": 1764,
+                  "orgName": "2222",
+                  "orgPath": "1762/1764/1765",
+                  "orgPathName": "kingtdagee/king111111/2222"
+                }
+              ]
+            },
+            {
+              "id": 1775,
+              "parentId": 1762,
+              "orgName": "渠道运营中心",
+              "orgPath": "1762/1775",
+              "orgPathName": "kingtdagee/渠道运营中心"
+            }
+          ]
+        },
+        {
+          "id": 1763,
+          "parentId": 1,
+          "orgName": "荆州分公司",
+          "orgPath": "1763",
+          "orgPathName": "荆州分公司"
+        },
+        {
+          "id": 1767,
+          "parentId": 1,
+          "orgName": "测试",
+          "orgPath": "1767",
+          "orgPathName": "测试"
+        },
+        {
+          "id": 1768,
+          "parentId": 1,
+          "orgName": "测试123",
+          "orgPath": "1768",
+          "orgPathName": "测试123"
+        },
+        {
+          "id": 1785,
+          "parentId": 1,
+          "orgName": "123",
+          "orgPath": "1785",
+          "orgPathName": "123"
+        },
+        {
+          "id": 1786,
+          "parentId": 1,
+          "orgName": "kingtest1010",
+          "orgPath": "1786",
+          "orgPathName": "kingtest1010"
+        },
+        {
+          "id": 1787,
+          "parentId": 1,
+          "orgName": "CMIT区块链平台",
+          "orgPath": "1787",
+          "orgPathName": "CMIT区块链平台"
+        },
+        {
+          "id": 1788,
+          "parentId": 1,
+          "orgName": "湖南公司",
+          "orgPath": "1788",
+          "orgPathName": "湖南公司",
+          "children": [
+            {
+              "id": 1789,
+              "parentId": 1788,
+              "orgName": "信息安全管理部",
+              "orgPath": "1788/1789",
+              "orgPathName": "湖南公司/信息安全管理部"
+            }
+          ]
+        },
+        {
+          "id": 1791,
+          "parentId": 1,
+          "orgName": "gong-test",
+          "orgPath": "1791",
+          "orgPathName": "gong-test"
+        },
+        {
+          "id": 1845,
+          "parentId": 1,
+          "orgName": "网络事业部",
+          "orgPath": "1/1845",
+          "orgPathName": "中国移动集团/网络事业部",
+          "children": [
+            {
+              "id": 1846,
+              "parentId": 1845,
+              "orgName": "网络监控室",
+              "orgPath": "1/1845/1846",
+              "orgPathName": "中国移动集团/网络事业部/网络监控室"
+            },
+            {
+              "id": 1855,
+              "parentId": 1845,
+              "orgName": "基础网络维护室",
+              "orgPath": "1/1845/1855",
+              "orgPathName": "中国移动集团/网络事业部/基础网络维护室"
+            }
+          ]
+        },
+        {
+          "id": 1839,
+          "parentId": 1,
+          "orgName": "财务公司",
+          "orgPath": "1/1839",
+          "orgPathName": "中国移动集团/财务公司"
+        },
+        {
+          "id": 1833,
+          "parentId": 1,
+          "orgName": "集团总部",
+          "orgPath": "1/1833",
+          "orgPathName": "中国移动集团/集团总部",
+          "children": [
+            {
+              "id": 1834,
+              "parentId": 1833,
+              "orgName": "信网项目部996",
+              "orgPath": "1/1833/1834",
+              "orgPathName": "中国移动集团/集团总部/信网项目部996",
+              "children": [
+                {
+                  "id": 1865,
+                  "parentId": 1834,
+                  "orgName": "你好",
+                  "orgPath": "1/1833/1834/1865",
+                  "orgPathName": "中国移动集团/集团总部/信网项目部996/你好"
+                },
+                {
+                  "id": 1864,
+                  "parentId": 1834,
+                  "orgName": "测试2",
+                  "orgPath": "1/1833/1834/1864",
+                  "orgPathName": "中国移动集团/集团总部/信网项目部996/测试2"
+                },
+                {
+                  "id": 1863,
+                  "parentId": 1834,
+                  "orgName": "测试1",
+                  "orgPath": "1/1833/1834/1863",
+                  "orgPathName": "中国移动集团/集团总部/信网项目部996/测试1"
+                },
+                {
+                  "id": 1862,
+                  "parentId": 1834,
+                  "orgName": "qq",
+                  "orgPath": "1/1833/1834/1862",
+                  "orgPathName": "中国移动集团/集团总部/信网项目部996/qq"
+                }
+              ]
+            },
+            {
+              "id": 1835,
+              "parentId": 1833,
+              "orgName": "财务部",
+              "orgPath": "1/1833/1835",
+              "orgPathName": "中国移动集团/集团总部/财务部",
+              "children": [
+                {
+                  "id": 1836,
+                  "parentId": 1835,
+                  "orgName": "内控管理处",
+                  "orgPath": "1/1833/1835/1836",
+                  "orgPathName": "中国移动集团/集团总部/财务部/内控管理处"
+                }
+              ]
+            },
+            {
+              "id": 1837,
+              "parentId": 1833,
+              "orgName": "市场经营部",
+              "orgPath": "1/1833/1837",
+              "orgPathName": "中国移动集团/集团总部/市场经营部",
+              "children": [
+                {
+                  "id": 1838,
+                  "parentId": 1837,
+                  "orgName": "产品中心产品管理室",
+                  "orgPath": "1/1833/1837/1838",
+                  "orgPathName": "中国移动集团/集团总部/市场经营部/产品中心产品管理室"
+                }
+              ]
+            },
+            {
+              "id": 1840,
+              "parentId": 1833,
+              "orgName": "客户服务部",
+              "orgPath": "1/1833/1840",
+              "orgPathName": "中国移动集团/集团总部/客户服务部",
+              "children": [
+                {
+                  "id": 1841,
+                  "parentId": 1840,
+                  "orgName": "客户服务协调中心",
+                  "orgPath": "1/1833/1840/1841",
+                  "orgPathName": "中国移动集团/集团总部/客户服务部/客户服务协调中心"
+                },
+                {
+                  "id": 1850,
+                  "parentId": 1840,
+                  "orgName": "质量标准处",
+                  "orgPath": "1/1833/1840/1850",
+                  "orgPathName": "中国移动集团/集团总部/客户服务部/质量标准处"
+                }
+              ]
+            },
+            {
+              "id": 1842,
+              "parentId": 1833,
+              "orgName": "发展战略部（改革办|慈善基金会）1",
+              "orgPath": "1/1833/1842",
+              "orgPathName": "中国移动集团/集团总部/发展战略部（改革办|慈善基金会）1",
+              "children": [
+                {
+                  "id": 1843,
+                  "parentId": 1842,
+                  "orgName": "中国移动慈善基金会执行机构",
+                  "orgPath": "1/1833/1842/1843",
+                  "orgPathName": "中国移动集团/集团总部/发展战略部（改革办|慈善基金会）1/中国移动慈善基金会执行机构",
+                  "children": [
+                    {
+                      "id": 1844,
+                      "parentId": 1843,
+                      "orgName": "慈善项目管理处",
+                      "orgPath": "1/1833/1842/1843/1844",
+                      "orgPathName": "中国移动集团/集团总部/发展战略部（改革办|慈善基金会）1/中国移动慈善基金会执行机构/慈善项目管理处"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 1851,
+              "parentId": 1833,
+              "orgName": "人力资源部（党组组织部）",
+              "orgPath": "1/1833/1851",
+              "orgPathName": "中国移动集团/集团总部/人力资源部（党组组织部）",
+              "children": [
+                {
+                  "id": 1852,
+                  "parentId": 1851,
+                  "orgName": "劳动组织处",
+                  "orgPath": "1/1833/1851/1852",
+                  "orgPathName": "中国移动集团/集团总部/人力资源部（党组组织部）/劳动组织处"
+                }
+              ]
+            },
+            {
+              "id": 1853,
+              "parentId": 1833,
+              "orgName": "办公室（党组办公室|董事会办公室）",
+              "orgPath": "1/1833/1853",
+              "orgPathName": "中国移动集团/集团总部/办公室（党组办公室|董事会办公室）",
+              "children": [
+                {
+                  "id": 1854,
+                  "parentId": 1853,
+                  "orgName": "董事会工作处",
+                  "orgPath": "1/1833/1853/1854",
+                  "orgPathName": "中国移动集团/集团总部/办公室（党组办公室|董事会办公室）/董事会工作处"
+                }
+              ]
+            },
+            {
+              "id": 1856,
+              "parentId": 1833,
+              "orgName": "内审部",
+              "orgPath": "1/1833/1856",
+              "orgPathName": "中国移动集团/集团总部/内审部",
+              "children": [
+                {
+                  "id": 1857,
+                  "parentId": 1856,
+                  "orgName": "数据审计处",
+                  "orgPath": "1/1833/1856/1857",
+                  "orgPathName": "中国移动集团/集团总部/内审部/数据审计处"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "parentId": 1,
+          "orgName": "信息技术中心",
+          "orgPath": "1/5",
+          "orgPathName": "中国移动集团/信息技术中心",
+          "children": [
+            {
+              "id": 1859,
+              "parentId": 5,
+              "orgName": "智慧中台部门",
+              "orgPath": "1/5/1859",
+              "orgPathName": "中国移动集团/信息技术中心/智慧中台部门"
+            },
+            {
+              "id": 6,
+              "parentId": 5,
+              "orgName": "研发创新中心",
+              "orgPath": "1/5/6",
+              "orgPathName": "中国移动集团/信息技术中心/研发创新中心",
+              "children": [
+                {
+                  "id": 1867,
+                  "parentId": 6,
+                  "orgName": "test1",
+                  "orgPath": "1/5/6/1867",
+                  "orgPathName": "中国移动集团/信息技术中心/研发创新中心/test1"
+                },
+                {
+                  "id": 7,
+                  "parentId": 6,
+                  "orgName": "sssss",
+                  "orgPath": "2005/6/7",
+                  "orgPathName": "测试是否可以删除组织机构/sss/sssss"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

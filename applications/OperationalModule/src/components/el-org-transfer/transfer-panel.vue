@@ -28,7 +28,7 @@
         </el-checkbox>
       </el-checkbox-group> -->
       <el-tree ref="transferTree" :props="props" v-show="!hasNoMatch && data.length > 0" :data="data" v-bind="$attrs"
-        :node-key="nodeKey" show-checkbox @check-change="handleCheckChange">
+        :node-key="nodeKey" :default-expanded-keys="[]" show-checkbox @check-change="handleCheckChange">
       </el-tree>
       <p class="el-transfer-panel__empty" v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
       <p class="el-transfer-panel__empty" v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
@@ -96,7 +96,8 @@ export default {
     filterMethod: Function,
     defaultChecked: Array,
     props: Object,
-    nodeKey: String
+    nodeKey: String,
+    filterValue: String
   },
 
   data() {
@@ -125,6 +126,7 @@ export default {
     },
     checkedIds(val, oldVal) {
       this.updateAllChecked();
+      console.log(val, oldVal, 'val, oldVal', this.$refs.transferTree.getCheckedKeys());
       if (this.checkChangeByUser) {
         const movedKeys = val.concat(oldVal)
           .filter(v => val.indexOf(v) === -1 || oldVal.indexOf(v) === -1);
@@ -165,6 +167,9 @@ export default {
         this.checkChangeByUser = false;
         this.checked = checked;
       }
+    },
+    filterValue(val) {
+      this.handleKeywordSearch(val)
     }
   },
   computed: {
@@ -239,6 +244,8 @@ export default {
       this.checked = value
         ? this.checkableData.map(item => item[this.keyProp])
         : [];
+      value ? this.$refs.transferTree.setCheckedNodes(this.data) : this.$refs.transferTree.setCheckedNodes([]);
+
     },
 
     clearQuery() {
@@ -257,6 +264,57 @@ export default {
       // 获取 el-tree 实例
       const tree = this.$refs.transferTree;
       tree.store._getAllNodes().forEach(v => v.expanded = false)
+    },
+    // 在搜索框中监听关键字输入事件
+    handleKeywordSearch(keyword) {
+      // 清除之前的展开状态
+      this.collapseAllNodes();
+
+      // 递归遍历树节点，展开匹配的节点
+      const tree = this.$refs.transferTree
+      this.expandMatchingNodes(this.data, keyword, tree);
+    },
+    // 递归展开匹配的节点
+    expandMatchingNodes(nodes, keyword, tree) {
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+
+        // 判断节点的文本是否包含关键字
+        if (node[this.props.label].includes(keyword)) {
+          // 展开匹配的节点
+          tree.toggleRowExpansion(node, true);
+
+          // 继续递归展开父节点
+          this.expandParentNodes(node);
+        } else {
+          // 没有匹配关键字的节点折叠起来
+          const elNode = tree.getNode(node);
+          if (elNode) {
+            this.$nextTick(() => {
+              tree.collapseNode(elNode);
+            });
+          }
+
+          // 递归处理子节点
+          if (node.children && node.children.length > 0) {
+            this.expandMatchingNodes(node.children, keyword);
+          }
+        }
+      }
+    },
+    // 递归展开父节点
+    expandParentNodes(node, tree) {
+      const parentNode = tree.getNode(node.parent);
+
+      if (parentNode) {
+        tree.toggleRowExpansion(parentNode, true);
+        this.expandParentNodes(parentNode);
+      }
+    },
+
+    // 折叠所有的节点
+    collapseAllNodes() {
+      this.$refs.transferTree.store.defaultExpandedKeys = [];
     },
   }
 };

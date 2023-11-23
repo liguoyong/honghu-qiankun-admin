@@ -2,14 +2,14 @@
     <div class="el-org-transfer">
         <div class="el-org-input">
             <el-input ref="searchRef" prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal"
-                :placeholder="placeholder" />
+                :placeholder="placeholder" @input="filterInputMethod" />
             <!-- <el-input prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal" placeholder="请输入" /> -->
         </div>
         <div class="el-transfer">
             <transfer-panel v-bind="$props" ref="leftPanel" :data="sourceData"
                 :title="titles[0] || t('el.transfer.titles.0')" :default-checked="leftDefaultChecked"
                 :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
-                @checked-change="onSourceCheckedChange">
+                @checked-change="onSourceCheckedChange" :filter-value="inputVal">
                 <slot name="left-footer"></slot>
             </transfer-panel>
             <div class="el-transfer__buttons">
@@ -28,7 +28,7 @@
             <transfer-panel v-bind="$props" ref="rightPanel" :data="targetData"
                 :title="titles[1] || t('el.transfer.titles.1')" :default-checked="rightDefaultChecked"
                 :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
-                @checked-change="onTargetCheckedChange">
+                @checked-change="onTargetCheckedChange" :filter-value="inputVal">
                 <slot name="right-footer"></slot>
             </transfer-panel>
         </div>
@@ -174,6 +174,7 @@ export default {
 
         targetData() {
             if (this.targetOrder === 'original') {
+                console.log(this.value, 'targetData - this.value');
                 return this.filterTreeData(this.data, this.value)
                 // return this.data.filter(item => this.value.indexOf(item[this.props.key]) > -1);
             } else {
@@ -210,7 +211,8 @@ export default {
         },
 
         onSourceCheckedChange(val, movedKeys) {
-            this.leftChecked = val;
+            // this.$refs.transferTree.getCheckedKeys()
+            this.leftChecked = Array.from(new Set(this.leftChecked.concat(val)));
             if (movedKeys === undefined) return;
             this.$emit('left-check-change', val, movedKeys);
         },
@@ -223,13 +225,13 @@ export default {
 
         addToLeft() {
             let currentValue = this.value.slice();
-            // this.rightChecked.forEach(item => {
-            //     const index = currentValue.indexOf(item);
-            //     if (index > -1) {
-            //         currentValue.splice(index, 1);
-            //     }
-            // });
-            currentValue = Array.from(new Set(currentValue.concat(this.rightChecked)))
+            const rightCheckeds = this.$refs.rightPanel.$refs.transferTree.getCheckedKeys(this.props.isLeaf || false)
+            rightCheckeds.forEach(item => {
+                const index = currentValue.indexOf(item);
+                if (index > -1) {
+                    currentValue.splice(index, 1);
+                }
+            });
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'left', this.rightChecked);
             this.setCheckedKeys(this.value)
@@ -253,7 +255,9 @@ export default {
             //     ? itemsToBeMoved.concat(currentValue)
             //     : currentValue.concat(itemsToBeMoved);
             //     alert(currentValue)
-            currentValue = Array.from(new Set(currentValue.concat(this.leftChecked)))
+            const leftCheckeds = this.$refs.leftPanel.$refs.transferTree.getCheckedKeys(this.props.isLeaf || false)
+            console.log(this.$refs.leftPanel.$refs.transferTree, leftCheckeds, 'leftCheckedsleftCheckedsleftCheckedsleftCheckedsleftCheckeds');
+            currentValue = leftCheckeds
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'right', this.leftChecked);
             this.setCheckedKeys(this.value)
@@ -302,6 +306,10 @@ export default {
             //     this.$refs.rightPanel.$refs.transferTree.setCheckedKeys(this.value);
             // })
         },
+        filterInputMethod(val) {
+            console.log(val, 'val')
+            // this.handleKeywordSearch(val)
+        }
     }
 };
 </script>
