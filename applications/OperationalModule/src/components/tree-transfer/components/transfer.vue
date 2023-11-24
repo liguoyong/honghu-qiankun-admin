@@ -2,7 +2,7 @@
   <div>
     <div>
       <el-input clearable size="small" :placeholder="placeholder" v-model="filterText" class="filter-tree"
-        prefix-icon="el-icon-search" clearable></el-input>
+        prefix-icon="el-icon-search"></el-input>
     </div>
     <div class="component-transfer">
       <!-- 左侧穿梭框 原料框 -->
@@ -13,6 +13,7 @@
               @change="fromAllBoxChange"></el-checkbox>
             <span @click="collapseAllNodes('from-tree')">{{ fromTitle }}</span>
             <slot name="title-left"></slot>
+            <span class="title-sum">{{ leftCheckSum }}/{{ leftSum }}</span>
           </div>
           <!-- 内容区 -->
           <div class="transfer-main">
@@ -72,6 +73,7 @@
             <el-checkbox :indeterminate="to_is_indeterminate" v-model="to_check_all"
               @change="toAllBoxChange"></el-checkbox>
             <span @click="collapseAllNodes('to-tree')">{{ toTitle }}</span>
+            <span class="title-sum">{{ rightCheckSum }}/{{ rightSum }}</span>
             <slot name="title-right"></slot>
           </div>
           <!-- 内容区 -->
@@ -79,10 +81,11 @@
             <slot name="to"></slot>
             <!-- <el-input v-if="filter" clearable size="small" v-model="filterTo" :placeholder="placeholder"
             class="filter-tree"></el-input> -->
-            <el-tree slot="to" ref="to-tree" v-show="self_to_data.length" show-checkbox :indent="indent" :draggable="draggable" :allow-drag="allowDrag"
-              :allow-drop="allowDrop" :icon-class="iconClass" :lazy="lazyRight" :data="self_to_data" :node-key="node_key"
-              :load="rightloadNode" :props="selfDefaultProps" :default-expand-all="openAll" :highlight-current="highLight"
-              :check-strictly="checkStrictly" :filter-node-method="filterNodeTo" :render-content="renderContentRight"
+            <el-tree slot="to" ref="to-tree" v-show="self_to_data.length" show-checkbox :indent="indent"
+              :draggable="draggable" :allow-drag="allowDrag" :allow-drop="allowDrop" :icon-class="iconClass"
+              :lazy="lazyRight" :data="self_to_data" :node-key="node_key" :load="rightloadNode" :props="selfDefaultProps"
+              :default-expand-all="openAll" :highlight-current="highLight" :check-strictly="checkStrictly"
+              :filter-node-method="filterNodeTo" :render-content="renderContentRight"
               :check-on-click-node="checkOnClickNode" :render-after-expand="renderAfterExpand"
               :expand-on-click-node="expandOnClickNode" :default-expanded-keys="to_expanded_keys" @check="toTreeChecked"
               @node-drag-start="nodeDragStartRight" @node-drag-enter="nodeDragEnterRight"
@@ -266,6 +269,8 @@ export default {
   },
   data() {
     return {
+      leftCheckSum: 0,
+      rightCheckSum: 0,
       from_is_indeterminate: false, // 源数据是否半选
       from_check_all: false, // 源数据是否全选
       from_expanded_keys: [], // 源数据展开节点
@@ -313,6 +318,12 @@ export default {
         this.to_array_clone = flattenDeep(_to_data, this.selfDefaultProps.children);
       }
       return _to_data;
+    },
+    leftSum() {
+      return this.getNodeCount(this.self_from_data)
+    },
+    rightSum() {
+      return this.getNodeCount(this.self_to_data)
     },
     // 左侧菜单名
     fromTitle() {
@@ -498,7 +509,13 @@ export default {
         });
 
         // 左侧删掉选中数据
-        arrayCheckedNodes.map((item) => this.$refs["from-tree"].remove(item));
+        // arrayCheckedNodes.map((item) => {
+        //   // this.$refs["from-tree"].remove(item)          
+        // });
+        const leftchecks = this.$refs["from-tree"].getCheckedNodes()
+        leftchecks.map(it => {
+          it.disabled = true
+        })
       }
 
       // 处理完毕按钮恢复禁用状态
@@ -512,7 +529,7 @@ export default {
       if (this.transferOpenNode && !this.lazy) {
         this.to_expanded_keys = keys;
       }
-
+      console.log(arrayCheckedNodes, 'arrayCheckedNodes');
       // 传递信息给父组件
       const all_move_nodes = [...arrayCheckedNodes, ...this.strictly_parents];
 
@@ -523,10 +540,22 @@ export default {
           harfKeys,
           halfNodes: arrayHalfCheckedNodes,
         });
-
       // 处理完毕取消选中
-      this.$refs["from-tree"].setCheckedKeys([]);
-      console.log(this.self_from_data, 'this.self_from_data');
+      // this.$refs["from-tree"].setCheckedKeys([]);
+      this.filterText = ''
+      function setNoDisabled(node) {
+        node.disabled = false
+        if (node.children) {
+          node.children.forEach(item => {
+            setNoDisabled(item)
+          })
+        }
+      }
+      this.self_to_data.forEach(node => {
+        setNoDisabled(node);
+      });
+      this.leftCheckSum = this.$refs['from-tree'].getCheckedKeys().length
+      console.log(this.self_to_data, this.$refs["from-tree"], 'this.self_from_data');
     },
     // 移除按钮
     removeToSource() {
@@ -608,6 +637,9 @@ export default {
       });
       // 处理完毕取消选中
       this.$refs["to-tree"].setCheckedKeys([]);
+      this.filterText = ''
+      this.rightCheckSum = this.$refs['to-tree'].getCheckedKeys().length
+      this.leftCheckSum = this.$refs['from-tree'].getCheckedKeys().length
     },
     /**
      * @name 父子不关联-授权模式的add
@@ -725,6 +757,7 @@ export default {
       }
       this.$nextTick(() => {
         this.$emit("left-check-change", nodeObj, treeObj, this.from_check_all);
+        this.leftCheckSum = this.$refs['from-tree'].getCheckedKeys().length
       });
     },
     // 父子不关联-授权模式-左侧选中子节点自动选中父节点
@@ -757,6 +790,7 @@ export default {
       }
       this.$nextTick(() => {
         this.$emit("right-check-change", nodeObj, treeObj, this.to_check_all);
+        this.rightCheckSum = this.$refs['to-tree'].getCheckedKeys().length
       });
     },
     // 父子不关联-授权模式-右侧选中父节点自动选中子节点
@@ -784,6 +818,9 @@ export default {
         this.from_check_keys = [];
       }
       this.$emit("left-check-change", null, null, this.from_check_all);
+      if (this.$refs['from-tree']) {
+        this.leftCheckSum = this.$refs['from-tree'].getCheckedKeys().length
+      }
     },
     // 目标数据 总全选checkbox
     toAllBoxChange(val) {
@@ -798,6 +835,7 @@ export default {
         this.to_check_keys = [];
       }
       this.$emit("right-check-change", null, null, this.to_check_all);
+      this.rightCheckSum = this.$refs['to-tree'].getCheckedKeys().length
     },
     // 源数据 筛选
     filterNodeFrom(value, data) {
@@ -1071,6 +1109,19 @@ export default {
           this.$refs[ref].store.nodesMap[data[i].id].expanded = false;
         }
       })
+    },
+    getNodeCount(nodes) {
+      let count = 0;
+
+      nodes.forEach(node => {
+        count++; // 每遍历一个节点，总数加一
+
+        if (node.children && node.children.length > 0) {
+          count += this.getNodeCount(node.children); // 递归累加子节点的总数
+        }
+      });
+
+      return count;
     }
   },
 };
@@ -1080,6 +1131,13 @@ export default {
   height: 248px;
   position: relative;
 
+  .title-sum {
+    position: absolute;
+    right: 8px;
+    color: #AAAEB2;
+    font-size: 14px;
+  }
+
   .nodata {
     text-align: center;
     display: flex;
@@ -1087,6 +1145,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 100%;
+
     img {
       width: 76px;
       height: 76px;
@@ -1115,7 +1174,7 @@ export default {
     background: #E5F3FF;
   }
 
-  .custom-tree-node {
+  >.el-tree-node__content .custom-tree-node {
     flex: 1;
     background: #E5F3FF;
     border-radius: 3px;
@@ -1144,6 +1203,12 @@ export default {
 
   .el-tree-node.is-checked .el-checkbox {
     background: #E5F3FF;
+  }
+  .el-tree-node__expand-icon.is-leaf {
+    color: transparent;
+  }
+  .el-tree-node__expand-icon {
+    color: #383C40;
   }
 }
 </style>

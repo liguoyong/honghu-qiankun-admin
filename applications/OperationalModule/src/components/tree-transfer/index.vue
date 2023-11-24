@@ -364,7 +364,8 @@ export default {
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #888;
+      // background: #888;
+      background: rgba(0, 0, 0, 0.3);
       /* 设置滚动条的前景色 */
       border-radius: 6px;
       /* 设置滚动条圆角 */
@@ -385,7 +386,7 @@ export default {
     }
 
     &::-webkit-scrollbar-thumb.vertical {
-      background: #888;
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 6px;
     }
 
@@ -397,7 +398,7 @@ export default {
   .transfer-left,
   .transfer-right {
     border: 1px solid #DCE1E6;
-    width: 40%;
+    width: 44%;
     height: 100%;
     box-sizing: border-box;
     border-radius: 5px;
@@ -407,15 +408,38 @@ export default {
   .transfer-center {
     position: absolute;
     top: 50%;
-    left: 40%;
-    width: 20%;
+    left: 44%;
+    width: 12%;
     transform: translateY(-50%);
     text-align: center;
   }
 
   .transfer-center-item {
-    padding: 10px;
+    padding: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+    .el-button {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 0;
+      border: 1px solid #DCE1E6;
+
+      i {
+        margin: auto;
+      }
+
+      &:not(.is-disabled) {
+        background: #1890FF;
+        color: #fff;
+        border: 1px solid transparent;
+      }
+    }
   }
 
   .address-list-center {

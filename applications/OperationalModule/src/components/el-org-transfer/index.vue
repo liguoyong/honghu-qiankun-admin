@@ -1,29 +1,29 @@
 <template>
     <div class="el-org-transfer">
         <div class="el-org-input">
-            <el-input ref="searchRef" prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal"
-                :placeholder="placeholder" @input="filterInputMethod" />
+            <el-input class="search-input" ref="searchRef" prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal"
+                :placeholder="placeholder" @input="filterInputMethod" clearable />
             <!-- <el-input prefix-icon="el-icon-search" v-bind="$props" v-model="inputVal" placeholder="请输入" /> -->
         </div>
         <div class="el-transfer">
-            <transfer-panel v-bind="$props" ref="leftPanel" :data="sourceData"
-                :title="titles[0] || t('el.transfer.titles.0')" :default-checked="leftDefaultChecked"
-                :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
+            <transfer-panel v-bind="$props" ref="leftPanel" :data="leftData" :title="titles[0] || t('el.transfer.titles.0')"
+                :default-checked="leftDefaultChecked" :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')"
                 @checked-change="onSourceCheckedChange" :filter-value="inputVal">
                 <slot name="left-footer"></slot>
             </transfer-panel>
             <div class="el-transfer__buttons">
-                <el-button type="primary" :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
-                    @click.native="addToRight" :disabled="leftChecked.length === 0">
+                <el-button size="mini"
+                    :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']" @click.native="addToRight"
+                    :disabled="leftChecked.length === 0">
                     <span v-if="buttonTexts[1] !== undefined">{{ buttonTexts[1] }}</span>
                     <i class="el-icon-arrow-right"></i>
                 </el-button>
-                <el-button type="primary" :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']"
-                    @click.native="addToLeft" :disabled="rightChecked.length === 0">
+                <el-button size="mini"
+                    :class="['el-transfer__button', hasButtonTexts ? 'is-with-texts' : '']" @click.native="addToLeft"
+                    :disabled="rightChecked.length === 0">
                     <i class="el-icon-arrow-left"></i>
                     <span v-if="buttonTexts[0] !== undefined">{{ buttonTexts[0] }}</span>
                 </el-button>
-                <slot name="btns"></slot>
             </div>
             <transfer-panel v-bind="$props" ref="rightPanel" :data="targetData"
                 :title="titles[1] || t('el.transfer.titles.1')" :default-checked="rightDefaultChecked"
@@ -58,29 +58,7 @@ export default {
         data: {
             type: Array,
             default() {
-                return [
-                    {
-                        id: 1,
-                        label: 'Node 1',
-                        children: [
-                            {
-                                id: 11,
-                                label: 'Node 1-1',
-                                children: []
-                            },
-                            {
-                                id: 12,
-                                label: 'Node 1-2',
-                                children: []
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        label: 'Node 2',
-                        children: []
-                    }
-                ];
+                return [];
             }
         },
         titles: {
@@ -144,6 +122,10 @@ export default {
         placeholder: {
             type: String,
             default: '请选择'
+        },
+        defaultCheckedKeys: {
+            type: Array,
+            default: () => { return [] }
         }
     },
 
@@ -151,10 +133,19 @@ export default {
         return {
             leftChecked: [],
             rightChecked: [],
-            inputVal: ''
+            inputVal: '',
+            leftData: [],
+            rightData: []
         };
     },
-
+    mounted() {
+        this.leftData = JSON.parse(JSON.stringify(this.data))
+        this.rightData = JSON.parse(JSON.stringify(this.data))
+        console.log(this.rightData, '1111111111111111111111111111111111')
+        setTimeout(()=>{
+            console.log(this.targetData , 'targetDatatargetDatatargetDatatargetDatatargetDatatargetData')
+        },2000)
+    },
     computed: {
         dataObj() {
             const key = this.props.key;
@@ -162,7 +153,7 @@ export default {
         },
 
         sourceData() {
-            return this.data
+            return JSON.parse(JSON.stringify(this.leftData))
 
             if (this.leftChecked.length) {
                 return this.filterTreeDataNoExit(this.data, this.value || [])
@@ -173,20 +164,11 @@ export default {
         },
 
         targetData() {
-            if (this.targetOrder === 'original') {
-                console.log(this.value, 'targetData - this.value');
-                return this.filterTreeData(this.data, this.value)
-                // return this.data.filter(item => this.value.indexOf(item[this.props.key]) > -1);
+            console.log(this.rightData, this.filterTreeData(JSON.parse(JSON.stringify(this.rightData)), this.value),'this.filterTreeData(JSON.parse(JSON.stringify(this.rightData)), this.value)')
+            if (this.targetOrder === 'original' || this.value.length) {
+                return this.filterTreeData(JSON.parse(JSON.stringify(this.rightData)), this.value)
             } else {
                 return []
-                // 目标
-                // return this.value.reduce((arr, cur) => {
-                //     const val = this.dataObj[cur];
-                //     if (val) {
-                //         arr.push(val);
-                //     }
-                //     return arr;
-                // }, []);
             }
         },
 
@@ -198,6 +180,16 @@ export default {
     watch: {
         value(val) {
             this.dispatch('ElFormItem', 'el.form.change', val);
+        },
+        data: {
+            handler(newValue, oldVal) {
+                if (newValue.length) {
+                    this.leftData = JSON.parse(JSON.stringify(newValue))
+                    this.rightData = JSON.parse(JSON.stringify(newValue))
+                }
+            },
+            deep: true  // 深度监听
+
         }
     },
 
@@ -212,7 +204,7 @@ export default {
 
         onSourceCheckedChange(val, movedKeys) {
             // this.$refs.transferTree.getCheckedKeys()
-            this.leftChecked = Array.from(new Set(this.leftChecked.concat(val)));
+            this.leftChecked = this.$refs.leftPanel.$refs.transferTree.getCheckedKeys() // Array.from(new Set(this.leftChecked.concat(val)));
             if (movedKeys === undefined) return;
             this.$emit('left-check-change', val, movedKeys);
         },
@@ -221,6 +213,21 @@ export default {
             this.rightChecked = val;
             if (movedKeys === undefined) return;
             this.$emit('right-check-change', val, movedKeys);
+        },
+        removeDisabled(rightChecked) {
+            function setnodisabled(node) {
+                if (rightChecked.includes(node.id)) {
+                    node.disabled = false
+                }
+                if (node.children && node.children.length) {
+                    node.children.forEach(item => {
+                        setnodisabled(item)
+                    })
+                }
+            }
+            this.leftData.forEach(item => {
+                setnodisabled(item)
+            })
         },
 
         addToLeft() {
@@ -232,9 +239,13 @@ export default {
                     currentValue.splice(index, 1);
                 }
             });
+
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'left', this.rightChecked);
             this.setCheckedKeys(this.value)
+            this.removeDisabled(rightCheckeds)
+            this.leftData = JSON.parse(JSON.stringify(this.data))
+            this.rightChecked = []
         },
 
         addToRight() {
@@ -256,13 +267,19 @@ export default {
             //     : currentValue.concat(itemsToBeMoved);
             //     alert(currentValue)
             const leftCheckeds = this.$refs.leftPanel.$refs.transferTree.getCheckedKeys(this.props.isLeaf || false)
-            console.log(this.$refs.leftPanel.$refs.transferTree, leftCheckeds, 'leftCheckedsleftCheckedsleftCheckedsleftCheckedsleftCheckeds');
             currentValue = leftCheckeds
             this.$emit('input', currentValue);
             this.$emit('change', currentValue, 'right', this.leftChecked);
             this.setCheckedKeys(this.value)
+            this.setCheckedKeysDisabled()
+            this.leftChecked = []
         },
-
+        setCheckedKeysDisabled() {
+            const leftchecks = this.$refs.leftPanel.$refs.transferTree.getCheckedNodes()
+            leftchecks.map(it => {
+                it.disabled = true
+            })
+        },
         clearQuery(which) {
             if (which === 'left') {
                 this.$refs.leftPanel.query = '';
@@ -307,7 +324,6 @@ export default {
             // })
         },
         filterInputMethod(val) {
-            console.log(val, 'val')
             // this.handleKeywordSearch(val)
         }
     }
@@ -315,9 +331,30 @@ export default {
 </script>
 <style lang="scss">
 .el-transfer__buttons {
+    .el-button  {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        padding: 0;
+        border: 1px solid #DCE1E6;
+
+        i {
+            margin: auto;
+        }
+    }
     .el-button+.el-button {
         display: block;
         margin-left: 0;
     }
+    .el-button:not(.is-disabled) {
+        background: #1890FF;
+        color: #fff;
+        border: 1px solid transparent;
+        
+    }
+}
+
+.search-input {
+    margin-bottom: 6px;
 }
 </style>

@@ -3,35 +3,18 @@
     <p class="el-transfer-panel__header">
       <el-checkbox v-model="allChecked" @change="handleAllCheckedChange" :disabled="!data.length"
         :indeterminate="isIndeterminate" @click.prevent>
-        <div style="display: inline-block;" @click.stop="collapseAll">{{ title }}</div>
-        <span>{{ checkedSummary }}</span>
       </el-checkbox>
+      <span class="select-label" :class="{'no-active':  !data.length}" @click.stop="collapseAll">{{ title }}</span>
+      <span class="select-sum-text">{{ checkedSummary }}</span>
     </p>
 
     <div :class="['el-transfer-panel__body', hasFooter ? 'is-with-footer' : '']">
-      <!-- <el-input class="el-transfer-panel__filter" v-model="query" size="small" :placeholder="placeholder"
-        @mouseenter.native="inputHover = true" @mouseleave.native="inputHover = false" v-if="filterable">
-        <i slot="prefix" :class="['el-input__icon', 'el-icon-' + inputIcon]" @click="clearQuery"></i>
-      </el-input> -->
-      <!-- <el-checkbox-group
-        v-model="checked"
-        v-show="!hasNoMatch && data.length > 0"
-        :class="{ 'is-filterable': filterable }"
-        class="el-transfer-panel__list">
-        <el-checkbox
-          class="el-transfer-panel__item"
-          :label="item[keyProp]"
-          :disabled="item[disabledProp]"
-          :key="item[keyProp]"
-          v-for="item in filteredData">
-          <option-content :option="item"></option-content>
-        </el-checkbox>
-      </el-checkbox-group> -->
-      <el-tree ref="transferTree" :props="props" v-show="!hasNoMatch && data.length > 0" :data="data" v-bind="$attrs"
-        :node-key="nodeKey" :default-expanded-keys="[]" show-checkbox @check-change="handleCheckChange">
-      </el-tree>
-      <p class="el-transfer-panel__empty" v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
-      <p class="el-transfer-panel__empty" v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
+      <el-scrollbar>
+        <my-tree ref="transferTree" style="height: 246px;" :props="props" :data="data" v-bind="$attrs" :node-key="nodeKey"
+          :default-expanded-keys="[]" :filter-node-method="filterNodeMethod" show-checkbox
+          @check-change="handleCheckChange">
+        </my-tree>
+      </el-scrollbar>
     </div>
     <p class="el-transfer-panel__footer" v-if="hasFooter">
       <slot></slot>
@@ -44,6 +27,7 @@ import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
 import ElCheckbox from 'element-ui/packages/checkbox';
 import ElInput from 'element-ui/packages/input';
 import Locale from 'element-ui/src/mixins/locale';
+import myTree from '../tree/tree'
 
 export default {
   mixins: [Locale],
@@ -56,6 +40,7 @@ export default {
     ElCheckboxGroup,
     ElCheckbox,
     ElInput,
+    myTree,
     OptionContent: {
       props: {
         option: Object
@@ -169,7 +154,7 @@ export default {
       }
     },
     filterValue(val) {
-      this.handleKeywordSearch(val)
+      this.$refs["transferTree"].filter(val);
     }
   },
   computed: {
@@ -190,14 +175,16 @@ export default {
 
     checkedSummary() {
       const checkedLength = this.checked.length;
+      const checkedIdLength = this.checkedIds.length
       const dataLength = this.data.length;
+      const count = this.getNodeCount(this.data)
       const { noChecked, hasChecked } = this.format;
       if (noChecked && hasChecked) {
         return checkedLength > 0
           ? hasChecked.replace(/\${checked}/g, checkedLength).replace(/\${total}/g, dataLength)
           : noChecked.replace(/\${total}/g, dataLength);
       } else {
-        return `${checkedLength}/${dataLength}`;
+        return `${checkedIdLength}/${count}`;
       }
     },
 
@@ -230,6 +217,9 @@ export default {
 
     hasFooter() {
       return !!this.$slots.default;
+    },
+    dataLength() {
+      this.getNodeCount(this.data)
     }
   },
 
@@ -259,6 +249,8 @@ export default {
       } else {
         this.checkedIds = this.checkedIds.filter(item => item !== data[this.nodeKey])
       }
+      console.log(this.$refs.transferTree.getCheckedKeys(), 'this.$refs.transferTree.getcheckedKeys()')
+      this.checkedIds = this.$refs.transferTree.getCheckedKeys()
     },
     collapseAll() {
       // 获取 el-tree 实例
@@ -316,6 +308,50 @@ export default {
     collapseAllNodes() {
       this.$refs.transferTree.store.defaultExpandedKeys = [];
     },
+    // 源数据 筛选
+    filterNodeMethod(value, data) {
+      if (this.filterNode) {
+        return this.filterNode(value, data, 'transferTree');
+      }
+      if (!value) return true;
+      return data[this.props.label].indexOf(value) !== -1;
+    },
+    getNodeCount(nodes) {
+      let count = 0;
+
+      nodes.forEach(node => {
+        count++; // 每遍历一个节点，总数加一
+
+        if (node.children && node.children.length > 0) {
+          count += this.getNodeCount(node.children); // 递归累加子节点的总数
+        }
+      });
+
+      return count;
+    }
   }
 };
 </script>
+<style lang="scss">
+.el-transfer-panel .el-transfer-panel__header {
+  .el-checkbox {
+    display: inline-block;
+  }
+
+  .select-label {
+    margin-left: 6px;
+    line-height: 40px;
+    color: #1890FF;
+    font-size: 16px;
+    &.no-active {
+      color:#AAAEB2;
+    }
+  }
+
+  .select-sum-text {
+    position: absolute;
+    color:#AAAEB2;
+    right: 6px;
+  }
+}
+</style>
