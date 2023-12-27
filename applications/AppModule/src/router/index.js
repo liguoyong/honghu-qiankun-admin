@@ -122,43 +122,6 @@ export const routes = [
     ],
   },
   {
-    path: "/design",
-    name: "designMgr",
-    component: Layout,
-    redirect: { name: "designIndex" },
-    meta: {
-      title: "设计管理中心",
-      icon: "Present",
-    },
-    children: [
-      {
-        path: "index",
-        name: "designIndex",
-        component: () =>
-          import(
-            /* webpackChunkName: "designIndex" */ "../views/Design/design/index.vue"
-          ),
-        meta: {
-          title: "设计配置",
-          activeMenu: '/design/index'
-        },
-      },
-      {
-        path: "index/:path",
-        name: "designPathIndex",
-        hidden: true,
-        component: () =>
-          import(
-            /* webpackChunkName: "designPathIndex" */ "../views/Design/design/index.vue"
-          ),
-        meta: {
-          title: "设计配置",
-          activeMenu: '/design/index'
-        },
-      }
-    ],
-  },
-  {
     path: "/operational",
     name: "operational",
     component: Layout,
@@ -218,6 +181,43 @@ export const routes = [
           activeMenu: '/operational/tool'
         },
       },
+    ],
+  },
+  {
+    path: "/design",
+    name: "designMgr",
+    component: Layout,
+    redirect: { name: "designIndex" },
+    meta: {
+      title: "设计管理中心",
+      icon: "Present",
+    },
+    children: [
+      {
+        path: "index",
+        name: "designIndex",
+        component: () =>
+          import(
+            /* webpackChunkName: "designIndex" */ "../views/Design/design/index.vue"
+          ),
+        meta: {
+          title: "设计配置",
+          activeMenu: '/design/index'
+        },
+      },
+      {
+        path: "index/:path",
+        name: "designPathIndex",
+        hidden: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "designPathIndex" */ "../views/Design/design/index.vue"
+          ),
+        meta: {
+          title: "设计配置",
+          activeMenu: '/design/index'
+        },
+      }
     ],
   },
   {
