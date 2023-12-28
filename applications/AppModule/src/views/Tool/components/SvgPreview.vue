@@ -2,7 +2,8 @@
     <div class="layout-wrapper svg-container">
         <com-page-header title="所有图标" @back="goBack" />
         <el-row :gutter="12">
-            <el-col :span="4" class="svg-container-item" v-for="item in icons" :key="item.name">
+            <el-col :span="4" :xs="12" :sm="6" :md="6" :lg="4" :xl="3" class="svg-container-item" v-for="item in icons"
+                :key="item.name">
                 <el-card shadow="hover" @dblclick="copyIcon(item.name)">
                     <svg-icon :name="item.name"></svg-icon>
                     <div class="svg-icon-name">{{ item.name }}</div>
@@ -11,7 +12,7 @@
         </el-row>
     </div>
 </template>
-  
+
 <script setup>
 import { ref, onMounted } from 'vue';
 import { ElMessage } from 'element-plus'
@@ -55,6 +56,7 @@ onMounted(async () => {
         // width: 120px;
         margin-bottom: 20px;
         text-align: center;
+
         :deep(.el-card__body) {
             background: #efefef;
         }

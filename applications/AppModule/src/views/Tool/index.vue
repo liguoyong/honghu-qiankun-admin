@@ -43,11 +43,17 @@ const configList = reactive([
             title: 'shell',
             description: 'shell命令行',
             target: '_self',
-        },{
+        }, {
             icon: 'https://img2.baidu.com/it/u=3058861405,730789891&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
             url: '/xmind',
             title: '思维导图',
             description: '思维导图，简单的思维导图页面',
+            target: '_blank',
+        }, {
+            icon: 'https://caniuse.com/img/favicon-128.png',
+            url: 'https://caniuse.com/',
+            title: 'Can I use',
+            description: 'Caniuse用于查看浏览器对各种新特性的兼容情况',
             target: '_blank',
         }]
         // https://p2.itc.cn/images01/20210707/61e2e18662c447148f244dc969d12dc0.png
