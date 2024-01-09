@@ -20,6 +20,7 @@
     "pinia": "^2.1.4",
     "qiankun": "^2.7.0",
     "qs": "^6.11.2",
+    "three": "^0.160.0",
     "vue": "^3.2.31",
     "vue-cropper": "^1.1.1",
     "vue-json-pretty": "^2.2.4",
@@ -47,7 +48,7 @@
     "unplugin-auto-import": "^0.16.6",
     "unplugin-element-plus": "^0.7.2",
     "unplugin-vue-components": "^0.25.1",
-    "vite": "^2.5.8",
+    "vite": "^2.9.16",
     "vite-plugin-optimize-persist": "^0.1.2",
     "vite-plugin-package-config": "^0.1.1",
     "vue-clipboard3": "^2.0.0"

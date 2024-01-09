@@ -1,16 +1,62 @@
 <template>
   <div class="layout-wrapper">
     <el-row :gutter="20">
-      <el-col :span="8">
-        <div class="grid-content ep-bg-purple" />
+      <el-col :span="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>重要事项</span>
+              <el-button class="button" text>Operation button</el-button>
+            </div>
+          </template>
+          <div class="text item">
+            11111111
+          </div>
+        </el-card>
       </el-col>
-      <el-col :span="8">
-        <div class="grid-content ep-bg-purple" />
+      <el-col :span="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>每日任务</span>
+              <el-button class="button" text>Operation button</el-button>
+            </div>
+          </template>
+          <div class="text item">
+            11111111
+          </div>
+        </el-card>
       </el-col>
-      <el-col :span="8">
-        <div class="grid-content ep-bg-purple">
+      <el-col :span="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>待办事项</span>
+              <el-button class="button" text>Operation button</el-button>
+            </div>
+          </template>
+          <div class="text item">
+            11111111
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <el-card class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>每日账单</span>
+              <el-button class="button" text>Operation button</el-button>
+            </div>
+          </template>
+          <div class="text item">
+            11111111
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="6">
+        <!-- <div class="grid-content ep-bg-purple">
           <el-calendar v-model="value" />
-        </div>
+        </div> -->
       </el-col>
     </el-row>
 
@@ -36,4 +82,5 @@ const value = ref(new Date());
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
-}</style>
+}
+</style>

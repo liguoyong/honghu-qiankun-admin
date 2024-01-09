@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
   let config = {
         plugins: [vue(),qiankun('vue3Vite', {useDevMode })],
         resolve: {
-          extensions: ['.js', '.vue', '.json'],
+          extensions: ['.ts','.js', '.vue', '.json'],
             alias: {
               '@': resolve('src'),
               },
