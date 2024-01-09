@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "../layout/index.vue";
 import _ from "lodash";
-
+import Work from './modules/work.js'
 export const routes = [
   {
     path: "/",
@@ -97,30 +97,7 @@ export const routes = [
       },
     ],
   },
-  {
-    path: "/work",
-    name: "workMgr",
-    component: Layout,
-    redirect: { name: "workTodo" },
-    meta: {
-      title: "办公管理中心",
-      icon: "SuitcaseLine",
-    },
-    children: [
-      {
-        path: "todo",
-        name: "workTodo",
-        component: () =>
-          import(
-            /* webpackChunkName: "workTodo" */ "../views/Work/todo/index.vue"
-          ),
-        meta: {
-          title: "待办事项",
-          activeMenu: '/work/todo'
-        },
-      }
-    ],
-  },
+  Work,
   {
     path: "/operational",
     name: "operational",

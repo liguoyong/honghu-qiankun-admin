@@ -13,13 +13,13 @@
           </div>
           <div class="common-right-menu">
             <el-dropdown trigger="hover">
-              <span>
+              <div class="flex">
                 <img class="avatar-icon" v-if="userStore.avatar" :src="userStore.avatar" alt="" srcset="" />
                 <el-icon v-else>
                   <Avatar />
                 </el-icon>
                 <span class="user-name">{{ userStore.username }}</span>
-              </span>
+              </div>
               <template #dropdown>
                 <el-dropdown-menu class="logout">
                   <el-dropdown-item @click="logout">

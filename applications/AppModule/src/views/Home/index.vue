@@ -1,12 +1,14 @@
 <template>
   <div class="layout-wrapper">
     <el-row :gutter="20">
-      <el-col :span="6">
+      <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card class="box-card">
           <template #header>
-            <div class="card-header">
+            <div class="card-header flex justify-between items-center">
               <span>重要事项</span>
-              <el-button class="button" text>Operation button</el-button>
+              <el-icon>
+                <Operation />
+              </el-icon>
             </div>
           </template>
           <div class="text item">
@@ -14,12 +16,14 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card class="box-card">
           <template #header>
-            <div class="card-header">
+            <div class="card-header flex justify-between items-center">
               <span>每日任务</span>
-              <el-button class="button" text>Operation button</el-button>
+              <el-icon>
+                <Operation />
+              </el-icon>
             </div>
           </template>
           <div class="text item">
@@ -27,12 +31,14 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card class="box-card">
           <template #header>
-            <div class="card-header">
+            <div class="card-header flex justify-between items-center">
               <span>待办事项</span>
-              <el-button class="button" text>Operation button</el-button>
+              <el-icon>
+                <Operation />
+              </el-icon>
             </div>
           </template>
           <div class="text item">
@@ -40,12 +46,14 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card class="box-card">
           <template #header>
-            <div class="card-header">
+            <div class="card-header flex justify-between items-center">
               <span>每日账单</span>
-              <el-button class="button" text>Operation button</el-button>
+              <el-icon>
+                <Operation />
+              </el-icon>
             </div>
           </template>
           <div class="text item">

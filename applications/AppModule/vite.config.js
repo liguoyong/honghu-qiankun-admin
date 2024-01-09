@@ -53,6 +53,7 @@ export default defineConfig({
     open: true,
     host: "0.0.0.0",
     port: 2000,
+    hot: true,
     proxy: {
       // '/cnbi': {
       //   target: 'http://192.168.2.207:9005',
