@@ -13,16 +13,20 @@
             <el-button type="primary" @click="handelCreateTodo">
                 <el-icon color="#fff" style="margin-right: 8px;">
                     <Plus />
-                </el-icon>新增计划
+                </el-icon>新增待办事项
             </el-button>
         </div>
         <el-table :data="tableData" stripe style="width: 100%" @row-dblclick="handelClickViewDetail">
             <el-table-column prop="id" label="id" />
             <el-table-column prop="title" label="标题" />
             <el-table-column prop="desc" label="描述" />
-            <el-table-column prop="date" label="日期" />
+            <el-table-column prop="date" label="日期">
+                <template #default="scope">
+                    {{ scope.row.startTime + '~' + scope.row.endTime }}
+                </template>
+            </el-table-column>
             <el-table-column label="创建时间">
-                <template #default="scope">{{ transformTimeDate(scope.row.createTime) }}</template>
+                <template #default="scope">{{ transformTimeDate(scope.row.startTime) }}</template>
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="120">
                 <template #default="scope">
@@ -122,7 +126,7 @@ const handelClickViewDetail = async (row: { 'id': string, [key: string]: string 
     const { code = 0, data = {} } = await getTodoDetail({ id: row.id })
     if (code === 200) {
         drawer.show = true
-        drawer.title = '查看计划详情'
+        drawer.title = '查看待办事项详情'
         drawer.data = data
     }
 }
@@ -134,7 +138,7 @@ const handelCreateTodo = () => {
 const handleClickDelete = async (id: number) => {
 
     ElMessageBox.confirm(
-        '确认删除该计划?',
+        '确认删除该待办事项?',
         '温馨提示',
         {
             confirmButtonText: '确认',

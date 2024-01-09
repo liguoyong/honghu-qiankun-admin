@@ -1,11 +1,12 @@
 <template>
     <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
-        :title="props.dialog.type === 'add' ? '新增计划' : '编辑计划'" destroy-on-close @confirm="handleSubmit">
+        :title="props.dialog.type === 'add' ? '新增待办事项' : '编辑待办事项'" destroy-on-close @confirm="handleSubmit">
         <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules" @submit="handleSubmit"
             label-width="80px">
-            <el-form-item class="content-item" label="日期" v-slot="date" prop="date">
-                <el-date-picker v-model="props.dialog.form.date" type="datetime" placeholder="请选择日期"
-                    value-format="YYYY-MM-DD hh:mm:ss" />
+            <el-form-item class="content-item" label="时间" v-slot="date" prop="date">
+                <el-date-picker v-model="props.dialog.form.date" type="datetimerange" range-separator="至"
+                    placeholder="请选择时间" start-placeholder="开始时间" end-placeholder="结束时间" format="YYYY-MM-DD HH:mm:ss"
+                    value-format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd" time-format="A hh:mm:ss" />
             </el-form-item>
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
                 <!-- 此处注意写法v-model:content -->
@@ -95,14 +96,14 @@ function handleSubmit() {
     const form = {
         ...props.dialog?.form
     }
-
+    console.log(form, 'form');
     formRef.value?.validate(async (valid: Boolean, fields: string[]) => {
         if (valid) {
             let res
             if (props.dialog.type === 'add') {
-                res = await createTodo(form)
+                res = await createTodo({ ...form, startTime: form.date[0], endTime: form.date[1] })
             } else {
-                res = await updateTodo(form)
+                res = await updateTodo({ ...form, startTime: form.date[0], endTime: form.date[1] })
             }
             if (res.code === 200) {
                 ElMessage.success(props.dialog.type === 'add' ? '新增成功' : '更新成功')

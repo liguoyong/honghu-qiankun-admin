@@ -2,7 +2,7 @@
   <div class="layout-wrapper">
     <el-row :gutter="20">
       <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-        <el-card class="box-card">
+        <el-card class="box-card mb-4">
           <template #header>
             <div class="card-header flex justify-between items-center">
               <span>重要事项</span>
@@ -17,7 +17,7 @@
         </el-card>
       </el-col>
       <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-        <el-card class="box-card">
+        <el-card class="box-card mb-4">
           <template #header>
             <div class="card-header flex justify-between items-center">
               <span>每日任务</span>
@@ -32,7 +32,7 @@
         </el-card>
       </el-col>
       <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-        <el-card class="box-card">
+        <el-card class="box-card mb-4">
           <template #header>
             <div class="card-header flex justify-between items-center">
               <span>待办事项</span>
@@ -47,7 +47,7 @@
         </el-card>
       </el-col>
       <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-        <el-card class="box-card">
+        <el-card class="box-card mb-4">
           <template #header>
             <div class="card-header flex justify-between items-center">
               <span>每日账单</span>
