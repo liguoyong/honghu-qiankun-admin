@@ -1,20 +1,24 @@
 <template>
-    <com-dialog width="60%" class="noteForm" v-model="props.dialog.show"
+    <com-dialog width="60%" class="todoDialogForm" v-model="props.dialog.show"
         :title="props.dialog.type === 'add' ? '新增待办事项' : '编辑待办事项'" destroy-on-close @confirm="handleSubmit">
-        <com-form ref="formRef" v-model="props.dialog.form" :options="formOptions" :rules="rules" @submit="handleSubmit"
-            label-width="80px">
-            <el-form-item class="content-item" label="时间" v-slot="date" prop="date">
-                <el-date-picker v-model="props.dialog.form.date" type="datetimerange" range-separator="至"
-                    placeholder="请选择时间" start-placeholder="开始时间" end-placeholder="结束时间" format="YYYY-MM-DD HH:mm:ss"
-                    value-format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd" time-format="A hh:mm:ss" />
-            </el-form-item>
-            <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
-                <!-- 此处注意写法v-model:content -->
-                <div class="quill-container">
-                    <QuillEditor ref="myQuillEditor2" theme="snow" v-model:content="props.dialog.form.content"
-                        :options="data.editorOption" contentType="html" @update:content="setValue()" />
-                </div>
-            </el-form-item>
+        <com-form ref="formRef" class="todoForm" v-model="props.dialog.form" :options="formOptions" :rules="rules"
+            @submit="handleSubmit" label-width="80px">
+            <template #date>
+                <el-form-item class="content-item" label="时间" prop="date">
+                    <el-date-picker v-model="props.dialog.form.date" type="datetimerange" range-separator="至"
+                        placeholder="请选择时间" start-placeholder="开始时间" end-placeholder="结束时间" format="YYYY-MM-DD HH:mm:ss"
+                        value-format="YYYY-MM-DD HH:mm:ss" date-format="YYYY/MM/DD ddd" time-format="A hh:mm:ss" />
+                </el-form-item>
+            </template>
+            <!-- 此处注意写法v-model:content -->
+            <template #content>
+                <el-form-item class="content-item" label="内容" prop="content">
+                    <div class="quill-container">
+                        <QuillEditor ref="myQuillEditor2" theme="snow" v-model:content="props.dialog.form.content"
+                            :options="data.editorOption" contentType="html" @update:content="setValue()" />
+                    </div>
+                </el-form-item>
+            </template>
         </com-form>
     </com-dialog>
 </template>
@@ -28,8 +32,11 @@ import { updateTodo, createTodo } from '@/api/todo'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 interface RuleForm {
     title: string,
-    desc: string,
     date: string,
+    desc: string,
+    priority: string | number,
+    status: string | number,
+    type: string,
     content: string
 }
 const emits = defineEmits(['close'])
@@ -49,17 +56,74 @@ const formRef = ref()
 const myQuillEditor2 = ref()
 const formOptions = computed<FormOption[]>(() => [
     { label: '标题', prop: 'title', required: true },
-    { label: '日期', prop: 'date', required: true, slot: 'date' },
     { label: '描述', prop: 'desc', required: true },
+    { label: '时间', prop: 'date', required: true, slot: 'date' },
+    {
+        label: '优先级', component: 'el-select', prop: 'priority', required: true, props: {
+            options: [{
+                label: '高',
+                value: '1'
+            }, {
+                label: '中',
+                value: '2'
+            }, {
+                label: '低',
+                value: '3'
+            }]
+        }
+    },
+    {
+        label: '状态', component: 'el-select', prop: 'status', required: true, props: {
+            // 0:未开始、1:进行中、2:已完成、3:已取消
+            options: [{
+                label: '未开始',
+                value: '0'
+            }, {
+                label: '进行中',
+                value: '1'
+            }, {
+                label: '已完成',
+                value: '2'
+            }, {
+                label: '已取消',
+                value: '3'
+            }]
+        }
+    },
+    {
+        label: '类型', component: 'el-select', prop: 'type', required: true, props: {
+            multiple: true,
+            filterable: true,
+            'allow-create': true,
+            options: [{
+                label: '工作',
+                value: '工作'
+            }, {
+                label: '娱乐',
+                value: '娱乐'
+            }]
+        }
+    },
     { label: '内容', prop: 'content', required: true, slot: 'content' }
 ])
 const rules = reactive<FormRules<RuleForm>>({
     title: [
         { required: true, message: '请填写标题', trigger: 'blur' },
     ],
-    date: [{ required: true, message: '请选择日期', trigger: 'change blur' }],
     desc: [
         { required: true, message: '请填写描述', trigger: 'blur' },
+    ],
+    date: [
+        { required: true, message: '请选择时间', trigger: 'change blur' }
+    ],
+    priority: [
+        { required: true, message: '请选择优先级', trigger: 'change' }
+    ],
+    status: [
+        { required: true, message: '请选择状态', trigger: 'change' }
+    ],
+    type: [
+        { required: true, message: '请选择或输入类型', trigger: 'blur' }
     ],
     content: [
         { required: true, message: '请填写内容', trigger: 'blur' },
@@ -101,9 +165,9 @@ function handleSubmit() {
         if (valid) {
             let res
             if (props.dialog.type === 'add') {
-                res = await createTodo({ ...form, startTime: form.date[0], endTime: form.date[1] })
+                res = await createTodo({ ...form, startTime: form.date[0], endTime: form.date[1], type: form.type.join(',') })
             } else {
-                res = await updateTodo({ ...form, startTime: form.date[0], endTime: form.date[1] })
+                res = await updateTodo({ ...form, startTime: form.date[0], endTime: form.date[1], type: form.type.join(',') })
             }
             if (res.code === 200) {
                 ElMessage.success(props.dialog.type === 'add' ? '新增成功' : '更新成功')
@@ -131,6 +195,12 @@ function handleSubmit() {
 
     ::v-deep(.ql-toolbar.ql-snow+.ql-container.ql-snow) {
         border-radius: 0 0 4px 4px;
+    }
+}
+
+.todoForm {
+    :deep(.el-select) {
+        width: 100%;
     }
 }
 </style>

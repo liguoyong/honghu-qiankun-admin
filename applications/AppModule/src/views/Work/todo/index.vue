@@ -25,6 +25,9 @@
                     {{ scope.row.startTime + '~' + scope.row.endTime }}
                 </template>
             </el-table-column>
+            <el-table-column prop="priority" label="优先级" />
+            <el-table-column prop="status" label="状态" />
+            <el-table-column prop="type" label="类型" />
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.startTime) }}</template>
             </el-table-column>
