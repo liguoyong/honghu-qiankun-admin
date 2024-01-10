@@ -210,6 +210,7 @@ const handelToUrl = (url: string, target: undefined | string) => {
             .tool-tab-img {
                 width: 42px;
                 height: 42px;
+                display: inline-block;
             }
         }
     }

@@ -62,13 +62,13 @@ const formOptions = computed<FormOption[]>(() => [
         label: '优先级', component: 'el-select', prop: 'priority', required: true, props: {
             options: [{
                 label: '高',
-                value: '1'
+                value: 1
             }, {
                 label: '中',
-                value: '2'
+                value: 2
             }, {
                 label: '低',
-                value: '3'
+                value: 3
             }]
         }
     },
@@ -77,16 +77,16 @@ const formOptions = computed<FormOption[]>(() => [
             // 0:未开始、1:进行中、2:已完成、3:已取消
             options: [{
                 label: '未开始',
-                value: '0'
+                value: 0
             }, {
                 label: '进行中',
-                value: '1'
+                value: 1
             }, {
                 label: '已完成',
-                value: '2'
+                value: 2
             }, {
                 label: '已取消',
-                value: '3'
+                value: 3
             }]
         }
     },

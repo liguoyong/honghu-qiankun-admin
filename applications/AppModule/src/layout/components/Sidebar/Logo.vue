@@ -1,8 +1,8 @@
 <template>
   <!-- collapse 折叠 ； expand 展开 -->
-  <div class="sidebar-logo-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
+  <div class="sidebar-logo-container" :class="{ 'isCollapse': isCollapse, 'expand': !isCollapse }">
     <transition name="sidebarLogoFade">
-      <router-link :key="isCollapse ? 'collapse':'expand'" to="/">
+      <router-link :key="isCollapse ? 'collapse' : 'expand'" to="/">
         <div class="sidebar-logo-link">
           <svg-icon name="logo" icon-class="logo" class="sidebar-logo"></svg-icon>
           <h1 v-show="!isCollapse" class="sidebar-title">{{ title }} </h1>
@@ -34,6 +34,7 @@ const title = '鸿鹄云平台'
   // background: var(--el-color-primary);
   overflow: hidden;
   background: #387FF7;
+
   &.expand {
     .sidebar-logo-link {
       margin-left: 12px;

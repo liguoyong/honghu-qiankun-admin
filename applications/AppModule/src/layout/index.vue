@@ -1,10 +1,10 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside :width="isCollapse ? '64px' : '200px'" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
+      <el-aside :width="isCollapse ? '64px' : '200px'" :class="{ 'isCollapse': isCollapse, 'expand': !isCollapse }">
         <component :is="sidebar"></component>
       </el-aside>
-      <el-main class="common-layout-container" :class="{ 'collapse': isCollapse, 'expand': !isCollapse }">
+      <el-main class="common-layout-container" :class="{ 'isCollapse': isCollapse, 'expand': !isCollapse }">
         <el-header>
           <div class="common-header-left">
             <svg-icon name="hamburger" class="el-icon hamburger-icon" :class="{ 'isCollapse': isCollapse }"

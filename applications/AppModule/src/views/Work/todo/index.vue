@@ -20,14 +20,23 @@
             <el-table-column prop="id" label="id" />
             <el-table-column prop="title" label="标题" />
             <el-table-column prop="desc" label="描述" />
-            <el-table-column prop="date" label="日期">
-                <template #default="scope">
-                    {{ scope.row.startTime + '~' + scope.row.endTime }}
+            <el-table-column prop="startTime" label="开始时间" />
+            <el-table-column prop="endTime" label="截止时间" />
+            <el-table-column prop="priority" label="优先级">
+                <template #default="{ row }">
+                    {{ filterPriority(row.priority) }}
                 </template>
             </el-table-column>
-            <el-table-column prop="priority" label="优先级" />
-            <el-table-column prop="status" label="状态" />
-            <el-table-column prop="type" label="类型" />
+            <el-table-column prop="status" label="状态">
+                <template #default="{ row }">
+                    {{ filterStatus(row.status) }}
+                </template>
+            </el-table-column>
+            <el-table-column prop="type" label="类型">
+                <template #default="{ row }">
+                    {{ row.type }}
+                </template>
+            </el-table-column>
             <el-table-column label="创建时间">
                 <template #default="scope">{{ transformTimeDate(scope.row.startTime) }}</template>
             </el-table-column>
@@ -119,9 +128,10 @@ const handleCurrentChange = (val: number) => {
 
 const handleClickEdit = async (id: number) => {
     const { code, data = {} } = await getTodoDetail({ id: id })
+    const type = data.type ? data.type.split(',') : ''
     if (code == 200) {
         updateDialog.type = 'edit'
-        updateDialog.form = data
+        updateDialog.form = { ...data, date: [data.startTime, data.endTime], type }
         updateDialog.show = true
     }
 }
@@ -172,6 +182,41 @@ const handelCloseEditDialog = (key: number | undefined) => {
         getList()
     }
 }
+const filterPriority = (priority: number) => {
+    switch (priority) {
+        case 1:
+            return '高'
+            break;
+        case 2:
+            return '中'
+            break;
+        case 3:
+            return '低'
+        default:
+            return ''
+            break;
+    }
+}
+
+const filterStatus = (status: number) => {
+    switch (status) {
+        case 0:
+            return '未开始'
+            break;
+        case 1:
+            return '进行中'
+            break;
+        case 2:
+            return '已完成'
+            break;
+        case 3:
+            return '已取消'
+        default:
+            return ''
+            break;
+    }
+}
+
 </script>
 
 <style>

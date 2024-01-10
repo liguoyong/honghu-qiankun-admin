@@ -73,6 +73,8 @@ watch(route, (newRoute, oldRoute) => {
   height: calc(100vh - 64px);
   overflow: hidden;
   width: 200px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 
   .el-menu {
     border-right: none;
