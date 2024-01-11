@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-wrapper">
+  <div class="layout-wrapper home-container">
     <el-row :gutter="20">
       <el-col :span="6" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
         <el-card class="box-card mb-4">
@@ -42,7 +42,9 @@
             </div>
           </template>
           <div class="text item">
-            11111111
+            <ul ref="todoList" class="todoList">
+              <li v-for="item in items" :key="item.id">标题：{{ item.title }}</li>
+            </ul>
           </div>
         </el-card>
       </el-col>
@@ -70,11 +72,48 @@
 
   </div>
 </template>
-<script setup lang="ts">
-import { ref } from "vue";
-const value = ref(new Date());
+<script lang="ts">
+import { ref, reactive, onMounted } from "vue";
+import { ElMessage } from 'element-plus'
+import Sortable from 'sortablejs';
+import { getTodoAll } from '@/api/todo'
+export default {
+   setup() {
+    const value = ref(new Date());
+    const items = ref([]);
+    let sortable;
+     getTodoAll().then(res => {
+      if (res.code === 200) {
+        items.value = res.data
+        console.log(todoList.value, 'asa')
+      } else {
+        ElMessage.error(res.msg)
+      }
+    })
+
+    onMounted(async () => {
+      sortable = Sortable.create(document.querySelector('.todoList'), {
+        onEnd: (evt) => {
+          const item = items.value.splice(evt.oldIndex, 1)[0];
+          items.value.splice(evt.newIndex, 0, item);
+        }
+      });
+    });
+    return {
+      value,
+      items
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
+.home-container {
+  .box-card {
+    min-height: 41vh;
+  }
+
+}
+
 .el-row {
   margin-bottom: 20px;
 }
