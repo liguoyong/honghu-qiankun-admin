@@ -8,11 +8,7 @@
                     value-format="YYYY-MM-DD hh:mm:ss" />
             </el-form-item>
             <el-form-item class="content-item" label="内容" v-slot="content" prop="content">
-                <!-- 此处注意写法v-model:content -->
-                <div class="quill-container">
-                    <QuillEditor ref="myQuillEditor2" theme="snow" v-model:content="props.dialog.form.content"
-                        :options="data.editorOption" contentType="html" @update:content="setValue()" />
-                </div>
+                <com-quill-editor v-model:content="props.dialog.form.content" />
             </el-form-item>
         </com-form>
     </com-dialog>
@@ -22,17 +18,8 @@ import { reactive, ref, toRaw, watch, computed, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { FormOption } from '@/components/form/index'
-import { QuillEditor, Quill } from '@vueup/vue-quill'
-
-import ImageUploader from 'quill-image-uploader';
-
-import 'quill-image-uploader/dist/quill.imageUploader.min.css';
-
-// Quill.register("modules/imageResize", ImageResize);
-Quill.register("modules/imageUploader", ImageUploader);
 import { updatePlan, createPlan } from '@/api/plan'
 import { uploadFile } from '@/api/upload'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
 interface RuleForm {
     title: string,
     desc: string,
@@ -72,74 +59,7 @@ const rules = reactive<FormRules<RuleForm>>({
         { required: true, message: '请填写内容', trigger: 'blur' },
     ],
 })
-const data = reactive({
-    content: '',
-    editorOption: {
-        modules: {
-            toolbar: [
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                [{ 'font': [] }],
-                [{ 'align': [] }],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                [{ 'indent': '-1' }, { 'indent': '+1' }],
-                [{ 'header': 1 }, { 'header': 2 }],
-                ['image'],
-                [{ 'direction': 'rtl' }],
-                [{ 'color': [] }, { 'background': [] }]
-            ],
-            imageUploader: {
-                upload: async (file: any) => {
-                    try {
-                        return new Promise((resolve, reject) => {
-                            const formData = new FormData();
-                            formData.append("file", file);
-                            uploadFile(formData, {
-                                headers: {
-                                    "Content-Type": "multipart/form-data",
-                                },
-                            }).then((res: any) => {
-                                resolve(res.data.url);
-                            }).catch(err => {
-                                reject("Upload failed");
-                                console.error("Error:", err)
-                            })
-                        })
-                    } catch (error) {
-                        console.error('压缩和上传图像时出错:', error);
-                    }
-                }
-            },
-        },
-        placeholder: '请输入内容...'
-    }
-})
-// 抛出更改内容，此处避免出错直接使用文档提供的getHTML方法
-const setValue = () => {
-    const text = toRaw(myQuillEditor2.value).getHTML()
-}
 
-// 上传文件
-const uploadImage = (file, callback) => {
-    const formData = new FormData()
-    formData.append('file', file)
-    uploadFile(formData, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-    }).then((res: any) => {
-        console.log(res);
-        if (res.code === 200) {
-            const { url } = res.data
-            callback(url)
-            ElMessage.success('裁切成功')
-            // centerDialogVisible.value = false
-        }
-    })
-}
-onMounted(() => {
-    myQuillEditor2.value && toRaw(myQuillEditor2.value).setHTML(props.dialog.form.content)
-});
 function handleSubmit() {
     const form = {
         ...props.dialog?.form
@@ -163,22 +83,3 @@ function handleSubmit() {
     })
 }
 </script>
-<style lang="scss" scoped>
-.quill-container {
-    width: 100%;
-    border-radius: 4px;
-
-    ::v-deep(.ql-container) {
-        min-height: 200px;
-
-    }
-
-    ::v-deep(.ql-toolbar.ql-snow) {
-        border-radius: 4px 4px 0 0;
-    }
-
-    ::v-deep(.ql-toolbar.ql-snow+.ql-container.ql-snow) {
-        border-radius: 0 0 4px 4px;
-    }
-}
-</style>

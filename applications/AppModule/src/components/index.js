@@ -1,5 +1,6 @@
 import SvgIcon from './SvgIcon/index.vue'
 import DataEmpty from './DataEmpty/index.vue'
+import QuillEditor from './QuillEditor/index.vue'
 import ComTable from './table/Table.vue'
 import ComForm from './form/Form.vue'
 import ComDialog from './Dialog.vue'
@@ -10,6 +11,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 const Components = {
   'svg-icon': SvgIcon,
   'data-empty': DataEmpty,
+  'com-quill-editor': QuillEditor,
   'com-table': ComTable,
   'com-form': ComForm,
   'com-dialog': ComDialog,

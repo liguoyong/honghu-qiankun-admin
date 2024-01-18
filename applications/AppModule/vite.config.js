@@ -8,6 +8,7 @@ const ElementPlus = require("unplugin-element-plus/webpack");
 const { ElementPlusResolver } = require("unplugin-vue-components/resolvers");
 import OptimizationPersist from "vite-plugin-optimize-persist";
 import PkgConfig from "vite-plugin-package-config";
+import inject from '@rollup/plugin-inject';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,10 @@ export default defineConfig({
     svgBuilder('./src/icons/svg/'),
     PkgConfig(),
     OptimizationPersist(),
+    inject({
+      'window.Quill': ['@vueup/vue-quill', 'Quill'],
+      Quill: ['@vueup/vue-quill', 'Quill'],
+    }),
   ],
 
   css: {
