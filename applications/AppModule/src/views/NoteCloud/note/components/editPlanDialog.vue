@@ -22,8 +22,16 @@ import { reactive, ref, toRaw, watch, computed, onMounted } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage } from 'element-plus'
 import { FormOption } from '@/components/form/index'
-import { QuillEditor } from '@vueup/vue-quill'
+import { QuillEditor, Quill } from '@vueup/vue-quill'
+
+import ImageUploader from 'quill-image-uploader';
+
+import 'quill-image-uploader/dist/quill.imageUploader.min.css';
+
+// Quill.register("modules/imageResize", ImageResize);
+Quill.register("modules/imageUploader", ImageUploader);
 import { updatePlan, createPlan } from '@/api/plan'
+import { uploadFile } from '@/api/upload'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 interface RuleForm {
     title: string,
@@ -79,7 +87,29 @@ const data = reactive({
                 ['image'],
                 [{ 'direction': 'rtl' }],
                 [{ 'color': [] }, { 'background': [] }]
-            ]
+            ],
+            imageUploader: {
+                upload: async (file: any) => {
+                    try {
+                        return new Promise((resolve, reject) => {
+                            const formData = new FormData();
+                            formData.append("file", file);
+                            uploadFile(formData, {
+                                headers: {
+                                    "Content-Type": "multipart/form-data",
+                                },
+                            }).then((res: any) => {
+                                resolve(res.data.url);
+                            }).catch(err => {
+                                reject("Upload failed");
+                                console.error("Error:", err)
+                            })
+                        })
+                    } catch (error) {
+                        console.error('压缩和上传图像时出错:', error);
+                    }
+                }
+            },
         },
         placeholder: '请输入内容...'
     }
@@ -87,6 +117,25 @@ const data = reactive({
 // 抛出更改内容，此处避免出错直接使用文档提供的getHTML方法
 const setValue = () => {
     const text = toRaw(myQuillEditor2.value).getHTML()
+}
+
+// 上传文件
+const uploadImage = (file, callback) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    uploadFile(formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    }).then((res: any) => {
+        console.log(res);
+        if (res.code === 200) {
+            const { url } = res.data
+            callback(url)
+            ElMessage.success('裁切成功')
+            // centerDialogVisible.value = false
+        }
+    })
 }
 onMounted(() => {
     myQuillEditor2.value && toRaw(myQuillEditor2.value).setHTML(props.dialog.form.content)

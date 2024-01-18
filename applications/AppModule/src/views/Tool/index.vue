@@ -159,6 +159,13 @@ const configList = reactive([
             description: '一个无需设计技能的开源UI库，具有精美的手工制作的Vue组件',
             target: '_blank',
         },
+        {
+            icon: 'https://pinia.web3doc.top/logo.svg',
+            url: 'https://pinia.web3doc.top/',
+            title: 'Pinia',
+            description: 'Vue 存储库',
+            target: '_blank',
+        },
         ]
     },
     { label: '摸鱼专区', children: [] },
