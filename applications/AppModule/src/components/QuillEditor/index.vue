@@ -103,16 +103,16 @@ export default {
     width: 100%;
     border-radius: 4px;
 
-    ::v-deep(.ql-container) {
+    :deep(.ql-container) {
         min-height: 200px;
 
     }
 
-    ::v-deep(.ql-toolbar.ql-snow) {
+    :deep(.ql-toolbar.ql-snow) {
         border-radius: 4px 4px 0 0;
     }
 
-    ::v-deep(.ql-toolbar.ql-snow+.ql-container.ql-snow) {
+    :deep(.ql-toolbar.ql-snow+.ql-container.ql-snow) {
         border-radius: 0 0 4px 4px;
     }
 }
